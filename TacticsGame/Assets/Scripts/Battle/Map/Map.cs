@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using TacticsGame.Battle.Map.UI;
+using UnityEngine;
 
 namespace TacticsGame.Battle.Map
 {
     public class Map : MonoBehaviour
     {
-        private const int MapSizeX = 10, MapSizeZ = 10;
+        private const int MapSizeX = 16, MapSizeZ = 16;
         public Canvas canvas;
+        
         
         private void Awake()
         {
@@ -19,6 +21,11 @@ namespace TacticsGame.Battle.Map
                     var mapTile = new MapTile(x, z);
                 }
             }
+        }
+
+        private void Start()
+        {
+            MoveGridLine.DrawMoveGrid(MoveGrid.MoveGridTiles(MapTile.GetTile(5, 5), 5));
         }
 
     }

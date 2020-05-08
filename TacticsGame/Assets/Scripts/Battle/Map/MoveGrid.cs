@@ -10,7 +10,7 @@ namespace TacticsGame.Battle.Map
             for (var i = 0; i < numMoves; i++) {
                 var addTiles = new HashSet<MapTile>();
                 foreach (var mapTile in moveTiles) {
-                    addTiles.UnionWith(ValidateMoveTiles(mapTile.FindAdjacentTiles()));
+                    addTiles.UnionWith(ValidateMoveTiles(mapTile.GetNeswTiles().Values));
                 }
                 moveTiles.UnionWith(addTiles);
             }
@@ -22,7 +22,7 @@ namespace TacticsGame.Battle.Map
         {
             var returnTiles = new HashSet<MapTile>();
             foreach (var mapTile in mapTiles) {
-                if (!mapTile.MoveBlocked) returnTiles.Add(mapTile);
+                if (mapTile != null && !mapTile.MoveBlocked) returnTiles.Add(mapTile);
             }
             
             return returnTiles;
