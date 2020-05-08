@@ -5,6 +5,7 @@ namespace TacticsGame.Battle.Map
     public class Map : MonoBehaviour
     {
         private const int MapSizeX = 10, MapSizeZ = 10;
+        public Canvas canvas;
         
         private void Awake()
         {
@@ -19,6 +20,6 @@ namespace TacticsGame.Battle.Map
                 }
             }
         }
-        
+
     }
 }
