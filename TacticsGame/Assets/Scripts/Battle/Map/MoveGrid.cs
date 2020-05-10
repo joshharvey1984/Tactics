@@ -10,7 +10,7 @@ namespace TacticsGame.Battle.Map
             for (var i = 0; i < numMoves; i++) {
                 var addTiles = new HashSet<MapTile>();
                 foreach (var mapTile in moveTiles) {
-                    addTiles.UnionWith(ValidateMoveTiles(mapTile.GetNeswTiles().Values));
+                    addTiles.UnionWith(ValidateMoveTiles(mapTile.GetNeswTiles().Values, i));
                 }
                 moveTiles.UnionWith(addTiles);
             }
@@ -18,11 +18,14 @@ namespace TacticsGame.Battle.Map
             return moveTiles;
         }
 
-        private static IEnumerable<MapTile> ValidateMoveTiles(IEnumerable<MapTile> mapTiles)
+        private static IEnumerable<MapTile> ValidateMoveTiles(IEnumerable<MapTile> mapTiles, int moveNum)
         {
             var returnTiles = new HashSet<MapTile>();
-            foreach (var mapTile in mapTiles) {
-                if (mapTile != null && !mapTile.MoveBlocked) returnTiles.Add(mapTile);
+            foreach (var mapTile in mapTiles)
+            {
+                if (mapTile == null || !mapTile.CanMoveInto()) continue;
+                if (mapTile.MoveNum == -1) mapTile.MoveNum = moveNum + 1;
+                returnTiles.Add(mapTile);
             }
             
             return returnTiles;
