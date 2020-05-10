@@ -6,20 +6,28 @@ namespace TacticsGame.Battle.Map
 {
     public class MapTile
     {
-        private static readonly HashSet<MapTile> All = new HashSet<MapTile>();
+        public static readonly HashSet<MapTile> All = new HashSet<MapTile>();
         public static MapTile MouseHoverTile { get; set; } = null;
         
         public int MapPosX { get; }
         public int MapPosZ { get; }
+        public Dictionary<string, CoverType> Cover { get; set; }
 
         public GameObject UiTile { get; set; }
         public int MoveNum { get; set; } = -1;
-        public GameObject Unit { get; set; }
+        public Prop TileProp { get; set; }
 
         public MapTile(int mapPosX, int mapPosZ)
         {
             MapPosX = mapPosX;
             MapPosZ = mapPosZ;
+            Cover = new Dictionary<string, CoverType>()
+            {
+                {"North", CoverType.None},
+                {"South", CoverType.None},
+                {"East", CoverType.None},
+                {"West", CoverType.None}
+            };
             All.Add(this);
         }
 
@@ -49,7 +57,8 @@ namespace TacticsGame.Battle.Map
 
         public bool CanMoveInto()
         {
-            return !Unit;
+            if (TileProp) return false;
+            return true;
         }
 
         public static MapTile GetMapTileFromUi(GameObject hoverTile) => All.First(tile => tile.UiTile == hoverTile);
