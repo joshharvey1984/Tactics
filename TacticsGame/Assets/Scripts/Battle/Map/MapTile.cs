@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TacticsGame.Battle.Map.Enums;
+using static TacticsGame.Battle.Map.Enums.CoverType;
+using static TacticsGame.Battle.Map.Enums.Direction;
 
 namespace TacticsGame.Battle.Map
 {
@@ -11,25 +14,41 @@ namespace TacticsGame.Battle.Map
         
         public int MapPosX { get; }
         public int MapPosZ { get; }
-        public Dictionary<string, CoverType> Cover { get; set; }
+        public Dictionary<Direction, CoverType> Cover { get; set; }
+        public Dictionary<Direction, bool> MoveBlocked { get; set; }
 
         public GameObject UiTile { get; set; }
         public int MoveNum { get; set; } = -1;
         public Prop TileProp { get; set; }
+        
+        public List<GameObject> CoverIcons = new List<GameObject>();
 
         public MapTile(int mapPosX, int mapPosZ)
         {
             MapPosX = mapPosX;
             MapPosZ = mapPosZ;
-            Cover = new Dictionary<string, CoverType>()
+            Cover = new Dictionary<Direction, CoverType>()
             {
-                {"North", CoverType.None},
-                {"South", CoverType.None},
-                {"East", CoverType.None},
-                {"West", CoverType.None}
+                {North, NoCover},
+                {South, NoCover},
+                {East, NoCover},
+                {West, NoCover}
+            };
+            
+            MoveBlocked = new Dictionary<Direction, bool>()
+            {
+                {North, false},
+                {South, false},
+                {East, false},
+                {West, false}
             };
             All.Add(this);
         }
+        
+        public static MapTile GetMapTileFromUi(GameObject hoverTile) => All.First(tile => tile.UiTile == hoverTile);
+        
+        public static MapTile GetMapTileFromPos(int posX, int posZ) =>
+            All.FirstOrDefault(mapTile => mapTile.MapPosX == posX && mapTile.MapPosZ == posZ);
 
         public IEnumerable<MapTile> GetAdjacentTiles() => 
             All.Where(mapTile => mapTile.MapPosX >= MapPosX - 1 && mapTile.MapPosX <= MapPosX + 1)
@@ -40,19 +59,15 @@ namespace TacticsGame.Battle.Map
         
         public Vector3 GetWorldPosition() => new Vector3(MapPosX, 0, MapPosZ);
         
-        public static MapTile GetTile(int posX, int posZ) =>
-            All.FirstOrDefault(mapTile => mapTile.MapPosX == posX && mapTile.MapPosZ == posZ);
-
-        public Dictionary<string, MapTile> GetNeswTiles()
+        public Dictionary<Direction, MapTile> GetNSEWTiles()
         {
-            var returnDict = new Dictionary<string, MapTile>
+            return new Dictionary<Direction, MapTile>
             {
-                {"North", GetTile(MapPosX + 1, MapPosZ)},
-                {"South", GetTile(MapPosX - 1, MapPosZ)},
-                {"East", GetTile(MapPosX, MapPosZ - 1)},
-                {"West", GetTile(MapPosX, MapPosZ + 1)}
+                {North, GetMapTileFromPos(MapPosX + 1, MapPosZ)},
+                {South, GetMapTileFromPos(MapPosX - 1, MapPosZ)},
+                {East, GetMapTileFromPos(MapPosX, MapPosZ - 1)},
+                {West, GetMapTileFromPos(MapPosX, MapPosZ + 1)}
             };
-            return returnDict;
         }
 
         public bool CanMoveInto()
@@ -61,7 +76,12 @@ namespace TacticsGame.Battle.Map
             return true;
         }
 
-        public static MapTile GetMapTileFromUi(GameObject hoverTile) => All.First(tile => tile.UiTile == hoverTile);
-
+        public void SetBlocks(Direction direction, CoverType coverType, bool moveBlocker)
+        {
+            if (TileProp) return;
+            var reverseDirection = DirectionExtensions.Reverse(direction);
+            Cover[reverseDirection] = coverType;
+            MoveBlocked[reverseDirection] = moveBlocker;
+        }
     }
 }

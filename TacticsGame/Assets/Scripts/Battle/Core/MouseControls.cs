@@ -17,11 +17,15 @@ namespace TacticsGame.Battle.Core
             MouseHoverTile = GetMapTileFromUi(hoverTileObject);
             if (MouseHoverTile.MoveNum > 0)
             {
-                var rTiles = MoveRoute.GetMoveRoute(GetTile(0, 0), MouseHoverTile);
+                var rTiles = MoveRoute.GetMoveRoute(GetMapTileFromPos(0, 0), MouseHoverTile);
                 RouteLine.DrawMoveLine(rTiles);
+                var ci = GameObject.Find("Map").GetComponent<CoverIcons>();
+                ci.DrawIcons(MouseHoverTile);
             }
             else
             {
+                var ci = GameObject.Find("Map").GetComponent<CoverIcons>();
+                ci.DrawIcons(MouseHoverTile);
                 RouteLine.DestroyMoveLine();
             }
         }

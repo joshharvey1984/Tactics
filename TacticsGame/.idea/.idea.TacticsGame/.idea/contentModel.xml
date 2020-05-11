@@ -80,6 +80,15 @@
           <e p="SciFiFlatSkills" t="Include">
             <e p="ReadMe.txt" t="Include" />
           </e>
+          <e p="UIPack" t="Include">
+            <e p="Resources" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="JustRotate.cs" t="Include" />
+                <e p="PressedBtn.cs" t="Include" />
+                <e p="SliderValuePass.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
         <e p="Scripts" t="Include">
           <e p="Battle" t="Include">
@@ -88,13 +97,18 @@
               <e p="MouseControls.cs" t="Include" />
             </e>
             <e p="Map" t="Include">
-              <e p="CoverType.cs" t="Include" />
+              <e p="Enums" t="Include">
+                <e p="CoverType.cs" t="Include" />
+                <e p="Direction.cs" t="Include" />
+              </e>
               <e p="Map.cs" t="Include" />
               <e p="MapTile.cs" t="Include" />
               <e p="MoveGrid.cs" t="Include" />
               <e p="MoveRoute.cs" t="Include" />
               <e p="Prop.cs" t="Include" />
               <e p="UI" t="Include">
+                <e p="CoverIcon.cs" t="Include" />
+                <e p="CoverIcons.cs" t="Include" />
                 <e p="MoveGridLine.cs" t="Include" />
                 <e p="RouteLine.cs" t="Include" />
               </e>

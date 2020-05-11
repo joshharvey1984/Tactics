@@ -1,18 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TacticsGame.Battle.Map
 {
     public static class MoveGrid
     {
-        public static IEnumerable<MapTile> MoveGridTiles(MapTile startTile, int numMoves)
+        public static List<MapTile> MoveGridTiles(MapTile startTile, int numMoves)
         {
-            var moveTiles = new HashSet<MapTile> {startTile};
+            var moveTiles = new List<MapTile> {startTile};
             for (var i = 0; i < numMoves; i++) {
                 var addTiles = new HashSet<MapTile>();
                 foreach (var mapTile in moveTiles) {
-                    addTiles.UnionWith(ValidateMoveTiles(mapTile.GetNeswTiles().Values, i));
+                    addTiles.UnionWith(ValidateMoveTiles(mapTile.GetNSEWTiles().Values, i));
                 }
-                moveTiles.UnionWith(addTiles);
+
+                foreach (var addTile in addTiles.Where(addTile => !moveTiles.Contains(addTile))) {
+                    moveTiles.Add(addTile);
+                }
+                
             }
 
             return moveTiles;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using TacticsGame.Battle.Map.Enums;
 using UnityEngine;
+using static TacticsGame.Battle.Map.Enums.Direction;
 
 namespace TacticsGame.Battle.Map.UI
 {
@@ -14,22 +15,22 @@ namespace TacticsGame.Battle.Map.UI
             if (_moveGrid) Object.Destroy(_moveGrid);
         }
 
-        public static void DrawMoveGrid(IEnumerable<MapTile> moveTiles)
+        public static void DrawMoveGrid(List<MapTile> moveTiles)
         {
             _moveGrid = new GameObject {name = "MoveGrid"};
             foreach (var mapTile in moveTiles) {
-                if (!moveTiles.Contains(mapTile.GetNeswTiles()["North"]))
-                    DrawLine(mapTile.GetWorldPosition(), "North");
-                if (!moveTiles.Contains(mapTile.GetNeswTiles()["South"]))
-                    DrawLine(mapTile.GetWorldPosition(), "South");
-                if (!moveTiles.Contains(mapTile.GetNeswTiles()["East"]))
-                    DrawLine(mapTile.GetWorldPosition(), "East");
-                if (!moveTiles.Contains(mapTile.GetNeswTiles()["West"]))
-                    DrawLine(mapTile.GetWorldPosition(), "West");
+                if (!moveTiles.Contains(mapTile.GetNSEWTiles()[North]))
+                    DrawLine(mapTile.GetWorldPosition(), North);
+                if (!moveTiles.Contains(mapTile.GetNSEWTiles()[South]))
+                    DrawLine(mapTile.GetWorldPosition(), South);
+                if (!moveTiles.Contains(mapTile.GetNSEWTiles()[East]))
+                    DrawLine(mapTile.GetWorldPosition(), East);
+                if (!moveTiles.Contains(mapTile.GetNSEWTiles()[West]))
+                    DrawLine(mapTile.GetWorldPosition(), West);
             }
         }
         
-        private static void DrawLine(Vector3 pos, string nsew)
+        private static void DrawLine(Vector3 pos, Direction direction)
         {
             _gridLine = new GameObject();
             _gridLine.transform.SetParent(_moveGrid.transform);
@@ -43,19 +44,19 @@ namespace TacticsGame.Battle.Map.UI
             lr.endWidth = 0.035f;
             lr.positionCount = 2;
 
-            if (nsew == "North") {
+            if (direction == North) {
                 lr.SetPosition(0, new Vector3(0.5F, 0.1F, 0.5F));
                 lr.SetPosition(1, new Vector3(0.5F, 0.1F, -0.5F)); 
             }
-            if (nsew == "South") {
+            if (direction == South) {
                 lr.SetPosition(0, new Vector3(-0.5F, 0.1F, 0.5F));
                 lr.SetPosition(1, new Vector3(-0.5F, 0.1F, -0.5F)); 
             }
-            if (nsew == "East") {
+            if (direction == East) {
                 lr.SetPosition(0, new Vector3(0.5F, 0.1F, -0.5F));
                 lr.SetPosition(1, new Vector3(-0.5F, 0.1F, -0.5F)); 
             }
-            if (nsew == "West") {
+            if (direction == West) {
                 lr.SetPosition(0, new Vector3(0.5F, 0.1F, 0.5F));
                 lr.SetPosition(1, new Vector3(-0.5F, 0.1F, 0.5F)); 
             }

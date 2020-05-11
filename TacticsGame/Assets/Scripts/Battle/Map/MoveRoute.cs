@@ -35,7 +35,7 @@ namespace TacticsGame.Battle.Map
             var checkTile = endTile;
             for (var i = 0; i < endTile.MoveNum; i++)
             {
-                foreach (var tile in checkTile.GetNeswTiles().Values) {
+                foreach (var tile in checkTile.GetNSEWTiles().Values) {
                     if (tile == null || tile.MoveNum != (checkTile.MoveNum - 1) || !tile.CanMoveInto()) continue;
                     tileRoute.Add(tile);
                     checkTile = tile;
@@ -50,7 +50,7 @@ namespace TacticsGame.Battle.Map
         private static float Lerp(int start, int end, float t) => start + t * (end - start);
         
         private static MapTile LerpTile(MapTile start, MapTile end, float t) =>
-            MapTile.GetTile(Convert.ToInt32(Lerp(start.MapPosX, end.MapPosX, t)),
+            MapTile.GetMapTileFromPos(Convert.ToInt32(Lerp(start.MapPosX, end.MapPosX, t)),
                 Convert.ToInt32(Lerp(start.MapPosZ, end.MapPosZ, t)));
 
         private static List<MapTile> AllLerpedTiles(MapTile startTile, MapTile endTile)

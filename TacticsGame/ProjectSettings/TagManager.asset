@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - UITile
+  - Prop
   layers:
   - Default
   - TransparentFX

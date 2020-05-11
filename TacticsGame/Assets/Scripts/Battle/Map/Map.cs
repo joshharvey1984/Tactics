@@ -31,7 +31,7 @@ namespace TacticsGame.Battle.Map
 
         private void Start()
         {
-            MoveGridLine.DrawMoveGrid(MoveGrid.MoveGridTiles(MapTile.GetTile(0, 0), 8));
+            MoveGridLine.DrawMoveGrid(MoveGrid.MoveGridTiles(MapTile.GetMapTileFromPos(0, 0), 8));
         }
 
     }
