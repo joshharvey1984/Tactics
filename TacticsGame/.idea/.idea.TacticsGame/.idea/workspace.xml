@@ -20,22 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27871e6a-4bb0-429f-991d-2bbca1185c60" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Unit.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Unit.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +41,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" root0="FORCE_HIGHLIGHTING" />
@@ -60,8 +54,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Unit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -88,9 +82,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseRightClick.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" />
       </list>
     </option>
   </component>
@@ -231,6 +227,10 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="1287" y="691" key="Vcs.Push.Dialog.v2/3840.457.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1588934254955" />
+    <state x="1587" y="317" width="1308" height="1247" key="dock-window-1" timestamp="1590431401637">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="1587" y="317" width="1308" height="1247" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590431401637" />
     <state x="1326" y="598" key="search.everywhere.popup" timestamp="1588589277048">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>

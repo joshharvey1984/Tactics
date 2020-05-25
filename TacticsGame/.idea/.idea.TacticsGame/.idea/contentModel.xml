@@ -115,7 +115,10 @@
                 <e p="RouteLine.cs" t="Include" />
               </e>
             </e>
-            <e p="Unit.cs" t="Include" />
+            <e p="Units" t="Include">
+              <e p="Unit.cs" t="Include" />
+              <e p="UnitMovement.cs" t="Include" />
+            </e>
           </e>
           <e p="Gangs" t="Include">
             <e p="Ganger.cs" t="Include" />
