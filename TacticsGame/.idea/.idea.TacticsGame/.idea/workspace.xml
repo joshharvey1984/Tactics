@@ -20,20 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27871e6a-4bb0-429f-991d-2bbca1185c60" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/Truck_04 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/Truck_04 Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/CoverType.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/CoverType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,30 +58,39 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Unit.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Gangs/Ganger.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveLine.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/CoverEnum.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/CoverType.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Enums.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Direction.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MapUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MapUi.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Unit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseRightClick.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" />
       </list>
     </option>
   </component>
@@ -93,10 +104,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34996042" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30007917" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.build.unityPlugin" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -137,13 +150,78 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="242" y="418" width="1240" height="1116" key="DiffContextDialog/3840.457.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1588946948759" />
+    <state width="1294" height="106" key="GridCell.Tab.0.bottom" timestamp="1590250612131">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.0.bottom/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612131" />
+    <state width="1294" height="106" key="GridCell.Tab.0.center" timestamp="1590250612131">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.0.center/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612131" />
+    <state width="1294" height="106" key="GridCell.Tab.0.left" timestamp="1590250612131">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.0.left/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612131" />
+    <state width="1294" height="106" key="GridCell.Tab.0.right" timestamp="1590250612131">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.0.right/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612131" />
+    <state width="1294" height="106" key="GridCell.Tab.1.bottom" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.1.bottom/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.1.center" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.1.center/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.1.left" timestamp="1590250612131">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.1.left/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612131" />
+    <state width="1294" height="106" key="GridCell.Tab.1.right" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.1.right/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.2.bottom" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.2.bottom/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.2.center" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.2.center/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.2.left" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.2.left/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.2.right" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.2.right/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.3.bottom" timestamp="1590250612133">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.3.bottom/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612133" />
+    <state width="1294" height="106" key="GridCell.Tab.3.center" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.3.center/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.3.left" timestamp="1590250612132">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.3.left/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612132" />
+    <state width="1294" height="106" key="GridCell.Tab.3.right" timestamp="1590250612133">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1294" height="106" key="GridCell.Tab.3.right/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590250612133" />
     <state x="487" y="688" key="Rider.ProjectTemplateDialog.Size" timestamp="1589127627401">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="487" y="688" key="Rider.ProjectTemplateDialog.Size/3840.457.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1589127627401" />
-    <state x="1173" y="604" key="SettingsEditor" timestamp="1588934207815">
+    <state x="1173" y="604" key="SettingsEditor" timestamp="1590428799067">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
+    <state x="1173" y="604" key="SettingsEditor/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1590428799067" />
     <state x="1173" y="604" key="SettingsEditor/3840.457.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1588934207815" />
     <state x="273" y="371" width="1237" height="1116" key="VCS.FileHistoryDialog" timestamp="1588935813289">
       <screen x="0" y="0" width="3072" height="1688" />

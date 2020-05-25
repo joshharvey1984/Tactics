@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using TacticsGame.Battle.Map.Enums;
 using UnityEngine;
 
-namespace TacticsGame.Battle.Map.Enums
+namespace TacticsGame.Battle.Map
 {
     public class Prop : MonoBehaviour
     {

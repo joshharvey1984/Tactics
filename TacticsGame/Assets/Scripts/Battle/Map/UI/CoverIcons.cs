@@ -1,25 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Map.Enums;
 using UnityEngine;
-using static TacticsGame.Battle.Map.Enums.CoverType;
-using static TacticsGame.Battle.Map.Enums.Direction;
 
-namespace TacticsGame.Battle.Map.UI
-{
-    public class CoverIcons : MonoBehaviour
-    {
+namespace TacticsGame.Battle.Map.UI {
+    public class CoverIcons : MonoBehaviour {
+        private static MouseHoverTile _mouseHoverTile;
         [SerializeField] private GameObject coverIcon;
-        private MapTile _hoverTile;
-        private IEnumerable<MapTile> _iconTiles;
         [SerializeField] private Texture fullCover;
+        private IEnumerable<MapTile> _iconTiles;
 
-        public void DrawIcons(MapTile hoverTile)
-        {
-            _hoverTile = hoverTile;
+        public void Awake() {
+            _mouseHoverTile = GameObject.Find("GameManager").GetComponent<MouseHoverTile>();
+        }
+
+        public void SubscribeToHoverTile() => _mouseHoverTile.OnHoverTileChanged += DrawIcons;
+        public void UnsubscribeToHoverTile() => _mouseHoverTile.OnHoverTileChanged -= DrawIcons;
+
+        private void DrawIcons(object sender, MouseHoverTile.OnHoverTileChangedArgs args) {
+
+            if (args.HoverTileUi == null) {
+                DestroyAll();
+                return;
+            }
+            
+            var hoverTile = MapTile.GetMapTileFromUi(args.HoverTileUi);
             _iconTiles = hoverTile.GetAdjacentTiles();
             DestroyAll();
-            
+
             foreach (var iconTile in _iconTiles) {
                 if (!iconTile.CanMoveInto()) continue;
                 if (iconTile.CoverIcons.Count > 0) continue;
@@ -28,55 +37,53 @@ namespace TacticsGame.Battle.Map.UI
                     CreateIcon(iconTile, coverType.Key, coverType.Value);
                 }
             }
-            
-            foreach(var mapTile in MapTile.All) {
-                foreach (var icon in mapTile.CoverIcons)
-                {
-                    if (mapTile== _hoverTile)
-                        icon.GetComponent<Renderer>().material.color = new Color32(121, 187, 191, 255);
-                    else
-                        icon.GetComponent<Renderer>().material.color = new Color32(121, 187, 191, 50);
+
+            foreach (var mapTile in MapTile.All) {
+                foreach (var icon in mapTile.CoverIcons) {
+                    icon.GetComponent<CoverIcon>().HighlightIcon(mapTile == hoverTile);
                 }
             }
         }
 
-        public void DestroyAll()
-        {
-            foreach (var mapTile in MapTile.All) {
-                if (_iconTiles.Contains(mapTile)) continue;
+        private void DestroyAll() {
+            foreach (var mapTile in MapTile.All.Where(mapTile => !_iconTiles.Contains(mapTile))) {
                 foreach (var icon in mapTile.CoverIcons) {
                     Destroy(icon);
                 }
+
                 mapTile.CoverIcons.Clear();
             }
         }
 
-        private void CreateIcon(MapTile mapTile, Direction direction, CoverType coverType)
-        {
-            if (coverType == NoCover) return;
+        private void CreateIcon(MapTile mapTile, Direction direction, CoverType coverType) {
+            if (coverType == CoverType.NoCover) return;
+
             var instPos = mapTile.UiTile.transform.position;
             var instRot = mapTile.UiTile.transform.rotation;
+
             instRot.y = 90;
             instPos.y = -0.3F;
-            if (direction == North) {
+
+            if (direction == Direction.North) {
                 instRot.w += 90;
                 instPos.x += 0.45F;
             }
-            if (direction == South) {
+
+            if (direction == Direction.South) {
                 instRot.w += 90;
                 instPos.x -= 0.45F;
             }
-            if (direction == East) {
+
+            if (direction == Direction.East) {
                 instPos.z -= 0.45F;
             }
-            if (direction == West) {
+
+            if (direction == Direction.West) {
                 instPos.z += 0.45F;
             }
-            
-            var instIcon = Instantiate(coverIcon, instPos, instRot, transform);
 
-            if (coverType == FullCover) instIcon.GetComponent<MeshRenderer>().material.mainTexture = fullCover;
-            
+            var instIcon = Instantiate(coverIcon, instPos, instRot, transform);
+            if (coverType == CoverType.FullCover) instIcon.GetComponent<CoverIcon>().SetCoverIcon(fullCover);
             mapTile.CoverIcons.Add(instIcon);
         }
     }

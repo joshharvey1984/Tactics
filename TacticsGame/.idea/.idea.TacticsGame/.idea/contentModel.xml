@@ -94,7 +94,8 @@
           <e p="Battle" t="Include">
             <e p="Core" t="Include">
               <e p="GameManager.cs" t="Include" />
-              <e p="MouseControls.cs" t="Include" />
+              <e p="MouseHoverTile.cs" t="Include" />
+              <e p="PlayerControls.cs" t="Include" />
             </e>
             <e p="Map" t="Include">
               <e p="Enums" t="Include">
@@ -110,9 +111,11 @@
                 <e p="CoverIcon.cs" t="Include" />
                 <e p="CoverIcons.cs" t="Include" />
                 <e p="MoveGridLine.cs" t="Include" />
+                <e p="MovementUI.cs" t="Include" />
                 <e p="RouteLine.cs" t="Include" />
               </e>
             </e>
+            <e p="Unit.cs" t="Include" />
           </e>
           <e p="Gangs" t="Include">
             <e p="Ganger.cs" t="Include" />

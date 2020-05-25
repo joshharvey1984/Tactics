@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace TacticsGame.Battle.Map
 {
@@ -11,7 +12,7 @@ namespace TacticsGame.Battle.Map
             for (var i = 0; i < numMoves; i++) {
                 var addTiles = new HashSet<MapTile>();
                 foreach (var mapTile in moveTiles) {
-                    addTiles.UnionWith(ValidateMoveTiles(mapTile.GetNSEWTiles().Values, i));
+                   addTiles.UnionWith(ValidateMoveTiles(mapTile.GetNSEWTiles().Values, i));
                 }
 
                 foreach (var addTile in addTiles.Where(addTile => !moveTiles.Contains(addTile))) {

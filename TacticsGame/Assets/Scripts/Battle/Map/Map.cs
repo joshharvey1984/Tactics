@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using TacticsGame.Battle.Map.UI;
+﻿using System;
 using UnityEngine;
 
 namespace TacticsGame.Battle.Map
@@ -14,6 +13,9 @@ namespace TacticsGame.Battle.Map
         private void Awake()
         {
             CreateMapTiles();
+            foreach (var unit in Unit.All) {
+                unit.currentTile = MapTile.GetMapTileFromPos(Convert.ToInt32(unit.gameObject.transform.position.x), Convert.ToInt32(unit.gameObject.transform.position.z));
+            }
         }
 
         private void CreateMapTiles()
@@ -21,18 +23,12 @@ namespace TacticsGame.Battle.Map
             for (var x = 0; x < MapSizeX; x++) {
                 for (var z = 0; z < MapSizeZ; z++) {
                     var mapTile = new MapTile(x, z);
-                    var uiTile = Instantiate(uiTilePrefab, new Vector3(x, 0.05F, z), Quaternion.identity, gameObject.transform);
+                    var uiTile = Instantiate(uiTilePrefab, new Vector3(x, 0.05F, z), Quaternion.identity, transform);
                     uiTile.transform.Rotate(90, 0, 0);
                     uiTile.GetComponent<Renderer>().enabled = false;
                     mapTile.UiTile = uiTile;
                 }
             }
         }
-
-        private void Start()
-        {
-            MoveGridLine.DrawMoveGrid(MoveGrid.MoveGridTiles(MapTile.GetMapTileFromPos(0, 0), 8));
-        }
-
     }
 }
