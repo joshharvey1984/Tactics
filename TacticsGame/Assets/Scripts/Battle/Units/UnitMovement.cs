@@ -1,5 +1,4 @@
-﻿using System;
-using TacticsGame.Battle.Map;
+﻿using TacticsGame.Battle.Map;
 using UnityEngine;
 
 namespace TacticsGame.Battle.Units {

@@ -23,6 +23,7 @@ namespace TacticsGame.Battle.Map.UI {
             UnsubscribeToHoverTile();
             RouteLine.DestroyMoveLine();
             MoveGridLine.DestroyMoveGrid();
+            CoverIcons.DestroyAll();
         }
         
         private static void SubscribeToHoverTile() {

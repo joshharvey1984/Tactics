@@ -6,10 +6,16 @@ namespace TacticsGame.Battle.Units {
     public class Unit : MonoBehaviour
     {
         public static readonly List<Unit> All = new List<Unit>();
+        public static Unit SelectedUnit;
+
+        public Weapon weapon;
+        public Armour armour;
+        public List<Ability> abilities;
 
         private UnitMovement _unitMovement;
         private List<MapTile> _moveTiles;
         private int _moveNum;
+        public bool _moveTaken;
 
         public MapTile currentTile;
 
@@ -34,6 +40,7 @@ namespace TacticsGame.Battle.Units {
 
         private void EndMoveTurn() {
             _unitMovement.EndMove();
+            _moveTaken = true;
         }
     }
 }

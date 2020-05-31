@@ -45,13 +45,13 @@ namespace TacticsGame.Battle.Map.UI {
             }
         }
 
-        private void DestroyAll() {
+        public void DestroyAll() {
             foreach (var mapTile in MapTile.All.Where(mapTile => !_iconTiles.Contains(mapTile))) {
                 foreach (var icon in mapTile.CoverIcons) {
                     Destroy(icon);
                 }
-
-                mapTile.CoverIcons.Clear();
+                
+                mapTile.CoverIcons.Clear(); 
             }
         }
 

@@ -84,7 +84,6 @@
             <e p="Resources" t="Include">
               <e p="Scripts" t="Include">
                 <e p="JustRotate.cs" t="Include" />
-                <e p="PressedBtn.cs" t="Include" />
                 <e p="SliderValuePass.cs" t="Include" />
               </e>
             </e>
@@ -115,10 +114,20 @@
                 <e p="RouteLine.cs" t="Include" />
               </e>
             </e>
+            <e p="UI" t="Include">
+              <e p="ABilityPanel.cs" t="Include" />
+              <e p="ActionButton.cs" t="Include" />
+            </e>
             <e p="Units" t="Include">
               <e p="Unit.cs" t="Include" />
               <e p="UnitMovement.cs" t="Include" />
             </e>
+          </e>
+          <e p="Data" t="Include">
+            <e p="Ability.cs" t="Include" />
+            <e p="Armour.cs" t="Include" />
+            <e p="StatusEffect.cs" t="Include" />
+            <e p="Weapon.cs" t="Include" />
           </e>
           <e p="Gangs" t="Include">
             <e p="Ganger.cs" t="Include" />

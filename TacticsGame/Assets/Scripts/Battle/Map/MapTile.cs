@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 using TacticsGame.Battle.Map.Enums;
 using static TacticsGame.Battle.Map.Enums.CoverType;
@@ -11,9 +10,7 @@ namespace TacticsGame.Battle.Map
     public class MapTile
     {
         public static readonly HashSet<MapTile> All = new HashSet<MapTile>();
-        public static MapTile MouseHoverTile { get; set; }
-        public static MapTile SelectedTile { get; set; }
-        
+
         public int MapPosX { get; }
         public int MapPosZ { get; }
         public Dictionary<Direction, CoverType> Cover { get; set; }
