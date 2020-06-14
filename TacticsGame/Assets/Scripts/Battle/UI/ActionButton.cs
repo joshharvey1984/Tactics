@@ -1,17 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace TacticsGame.Battle.UI {
     public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
-        private Button _btn;
+        private static readonly List<ActionButton> All = new List<ActionButton>();
+        
         private Transform _myIcon;
         public AbilityPanel abilityPanel;
         public Ability ability;
 
         private void Awake() {
-            _btn = GetComponent<Button>();
+            All.Add(this);
             _myIcon = transform.GetChild(0);
+        }
+
+        public static void DestroyAll() {
+            foreach (var actionButton in All) {
+                Destroy(actionButton.gameObject);
+            }
+            All.Clear();
         }
 
         public void SetIcon(Sprite icon) => _myIcon.gameObject.GetComponent<Image>().sprite = icon;

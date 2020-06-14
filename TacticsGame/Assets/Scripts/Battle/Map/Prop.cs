@@ -14,6 +14,9 @@ namespace TacticsGame.Battle.Map
         [SerializeField]
         private bool moveBlocker = false;
         
+        [SerializeField]
+        private bool sightBlocker = false;
+        
         private Bounds Bounds { get; set; }
         public GameObject boundsCalc;
 

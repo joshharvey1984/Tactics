@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UITile
   - Prop
+  - LOS
   layers:
   - Default
   - TransparentFX

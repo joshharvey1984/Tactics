@@ -14,7 +14,7 @@ namespace TacticsGame.Battle.Map.UI {
 
         public static void DrawMovementUI(Unit unit) {
             _currentUnit = unit;
-            var moveTiles = MoveGrid.MoveGridTiles(unit.currentTile, unit.movePoints);
+            var moveTiles = MoveGrid.MoveGridTiles(unit.GetCurrentMapTile(), unit.movePoints);
             MoveGridLine.DrawMoveGrid(moveTiles);
             SubscribeToHoverTile();
         }
@@ -50,7 +50,7 @@ namespace TacticsGame.Battle.Map.UI {
 
         private static void UpdateMovementUi() {
             if (_hoverTile.MoveNum > 0) {
-                var rTiles = MoveRoute.GetMoveRoute(_currentUnit.currentTile, _hoverTile);
+                var rTiles = MoveRoute.GetMoveRoute(_currentUnit.GetCurrentMapTile(), _hoverTile);
                 RouteLine.DrawMoveLine(rTiles);
             }
             else {
@@ -61,7 +61,7 @@ namespace TacticsGame.Battle.Map.UI {
         private static void MoveTileSelected(object sender, EventArgs args) {
             if (_hoverTile == null || _hoverTile.MoveNum < 1) return;
             DestroyMovementUI();
-            var rTiles = MoveRoute.GetMoveRoute(_currentUnit.currentTile, _hoverTile);
+            var rTiles = MoveRoute.GetMoveRoute(_currentUnit.GetCurrentMapTile(), _hoverTile);
             _currentUnit.MoveUnit(rTiles);
         }
     }

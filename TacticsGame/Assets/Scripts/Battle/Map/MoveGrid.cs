@@ -35,6 +35,10 @@ namespace TacticsGame.Battle.Map
             }
             
             return returnTiles;
-        } 
+        }
+
+        public static void ResetMovedGrid() {
+            foreach (var mapTile in MapTile.All) mapTile.MoveNum = -1;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using TacticsGame.Battle.Map.Enums;
+using TacticsGame.Battle.Units;
 using static TacticsGame.Battle.Map.Enums.CoverType;
 using static TacticsGame.Battle.Map.Enums.Direction;
 
@@ -69,11 +70,7 @@ namespace TacticsGame.Battle.Map
             };
         }
 
-        public bool CanMoveInto()
-        {
-            if (TileProp) return false;
-            return true;
-        }
+        public bool CanMoveInto() => !TileProp && Unit.All.All(unit => unit.GetCurrentMapTile() != this);
 
         public void SetBlocks(Direction direction, CoverType coverType, bool moveBlocker)
         {
@@ -81,6 +78,19 @@ namespace TacticsGame.Battle.Map
             var reverseDirection = DirectionExtensions.Reverse(direction);
             Cover[reverseDirection] = coverType;
             MoveBlocked[reverseDirection] = moveBlocker;
+        }
+
+        public bool CanSeeOtherTile(MapTile mapTile, float distance) {
+            var startPos = UiTile.transform.position;
+            var endPos = mapTile.UiTile.transform.position;
+            startPos.y += 0.8F;
+            endPos.y += 0.8F;
+            
+            if (Vector3.Distance(startPos, endPos) > distance) return false;
+            if (Physics.Raycast(startPos, endPos - startPos, out var hit, distance)) {
+                if (hit.collider.CompareTag($"LOS")) return false;
+            }
+            return true;
         }
     }
 }

@@ -11,12 +11,8 @@ namespace TacticsGame.Battle.Map
         public Canvas canvas;
         
         
-        private void Awake()
-        {
+        private void Awake() {
             CreateMapTiles();
-            foreach (var unit in Unit.All) {
-                unit.currentTile = MapTile.GetMapTileFromPos(Convert.ToInt32(unit.gameObject.transform.position.x), Convert.ToInt32(unit.gameObject.transform.position.z));
-            }
         }
 
         private void CreateMapTiles()

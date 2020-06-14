@@ -22,14 +22,19 @@
     <list default="true" id="27871e6a-4bb0-429f-991d-2bbca1185c60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Controllers/SoldierBasic.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Controllers/SoldierBasic.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/Truck_04 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/Truck_04 Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/TargetBtn.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/TargetBtn.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/ActionButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/ActionButton.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,24 +46,28 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/UI/ActionButton.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/51/accec36f/Void.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Ability.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/RouteLine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gangs/Ganger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Direction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/94/9a1ef732/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -72,11 +81,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Enums.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Direction.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MapUI.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseControls.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MapUi.cs" />
@@ -86,16 +92,22 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseRightClick.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
         <option value="$PROJECT_DIR$/Assets/Plugins/UIPack/Resources/Scripts/PressedBtn.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/ChangeAbility.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/ABilityPanel.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/ActionButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/ActionButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/TargetButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetPanel.cs" />
       </list>
     </option>
   </component>

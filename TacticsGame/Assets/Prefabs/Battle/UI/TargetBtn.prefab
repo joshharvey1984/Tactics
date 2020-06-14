@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4162014382982014022}
   - component: {fileID: 4835379906838124333}
   - component: {fileID: -8421897800631213373}
-  - component: {fileID: -5455104174359039719}
+  - component: {fileID: 6839876481017732201}
   m_Layer: 5
   m_Name: TargetBtn
   m_TagString: Untagged
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &-5455104174359039719
+--- !u!114 &6839876481017732201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,13 +146,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2435251781896281019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9403258f246c924b89d7cb5a44874e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ab0953440e6b73438935e7162200451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPercentage: {fileID: 7557752455527207644}
-  gl: {fileID: 0}
+  targetPanel: {fileID: 0}
   targetUnit: {fileID: 0}
-  selected: {fileID: 7386950389279980540}
 --- !u!1 &7386950389279980540
 GameObject:
   m_ObjectHideFlags: 0

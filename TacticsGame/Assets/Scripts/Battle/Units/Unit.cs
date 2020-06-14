@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TacticsGame.Battle.Map;
+using TacticsGame.Battle.Map.UI;
+using TacticsGame.Battle.UI;
 using UnityEngine;
 
 namespace TacticsGame.Battle.Units {
@@ -8,6 +12,10 @@ namespace TacticsGame.Battle.Units {
         public static readonly List<Unit> All = new List<Unit>();
         public static Unit SelectedUnit;
 
+        private Transform _transform;
+        private List<SkinnedMeshRenderer> _meshRenderers;
+        [SerializeField] private GameObject weaponGameObject;
+
         public Weapon weapon;
         public Armour armour;
         public List<Ability> abilities;
@@ -15,20 +23,35 @@ namespace TacticsGame.Battle.Units {
         private UnitMovement _unitMovement;
         private List<MapTile> _moveTiles;
         private int _moveNum;
-        public bool _moveTaken;
 
-        public MapTile currentTile;
+        private static AbilityPanel _abilityPanel;
+        private static TargetPanel _targetPanel;
+
+        public int gang;
+        public string unitName;
+        
+        public bool moveTaken;
+        public bool turnTaken;
 
         public int movePoints = 8;
 
         private void Awake() {
             All.Add(this);
+            
+            _transform = gameObject.transform;
             _unitMovement = GetComponent<UnitMovement>();
             _unitMovement.unit = this;
+            
+            var objectRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+            _meshRenderers = objectRenderers.ToList();
+            
+            _abilityPanel = GameObject.Find("AbilityPanel").GetComponent<AbilityPanel>();
+            _targetPanel = GameObject.Find("TargetPanel").GetComponent<TargetPanel>();
         }
 
         public void MoveUnit(List<MapTile> tiles) {
             _moveTiles = tiles;
+            _moveNum = 0;
             MoveNextTile();
         }
 
@@ -40,7 +63,33 @@ namespace TacticsGame.Battle.Units {
 
         private void EndMoveTurn() {
             _unitMovement.EndMove();
-            _moveTaken = true;
+            moveTaken = true;
+            _targetPanel.UpdateTargetPanel(EnemiesInLineOfSight());
+        }
+
+        public MapTile GetCurrentMapTile() => MapTile.GetMapTileFromPos(Convert.ToInt32(_transform.position.x), 
+            Convert.ToInt32(_transform.position.z));
+
+        public void StartTurn() {
+            MovementUI.DrawMovementUI(this);
+            _abilityPanel.CreateAbilityButtons();
+            _targetPanel.UpdateTargetPanel(EnemiesInLineOfSight());
+        }
+
+        private List<Unit> EnemiesInLineOfSight() => All.Where(unit => unit.gang != gang)
+                .Where(unit => GetCurrentMapTile().CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F))
+                .ToList();
+
+        private void DrawUnit() {
+            foreach (var meshRenderer in _meshRenderers) {
+                meshRenderer.enabled = true;
+            }
+        }
+        
+        private void HideUnit() {
+            foreach (var meshRenderer in _meshRenderers) {
+                meshRenderer.enabled = false;
+            }
         }
     }
 }

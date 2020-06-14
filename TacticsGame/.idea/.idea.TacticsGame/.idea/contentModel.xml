@@ -117,6 +117,8 @@
             <e p="UI" t="Include">
               <e p="ABilityPanel.cs" t="Include" />
               <e p="ActionButton.cs" t="Include" />
+              <e p="TargetButton.cs" t="Include" />
+              <e p="TargetPanel.cs" t="Include" />
             </e>
             <e p="Units" t="Include">
               <e p="Unit.cs" t="Include" />
