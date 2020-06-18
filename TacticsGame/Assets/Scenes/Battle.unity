@@ -495,7 +495,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5197b49cd57c4644981a4ebf92019199, type: 2}
   - {fileID: 2100000, guid: 33edda90fefdb5443b3a5933ab04989e, type: 2}
   rate: 8
-  on: 0
+  toFire: 0
 --- !u!114 &297741866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +508,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637d15cde478f3c4a8c22a7625f96b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletTracePrefab: {fileID: 100008, guid: bc3a64cfd905f544fb7380fcd883b57c, type: 3}
+  rate: 8
+  velocity: {x: 0, y: 0, z: 0}
+  toFire: 0
+  accuracy: 0.5
 --- !u!1001 &310699900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1143,6 +1148,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 8c8744c00de6b514886191a133940481, type: 2}
   armour: {fileID: 11400000, guid: 1f49ef55396a0e241b2bb51c7f27a911, type: 2}
   targetUnit: {fileID: 0}
+  muzzle: {fileID: 297741863}
   gang: 0
   unitName: Dave
   moveTaken: 0
@@ -2955,6 +2961,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 8c8744c00de6b514886191a133940481, type: 2}
   armour: {fileID: 11400000, guid: 1f49ef55396a0e241b2bb51c7f27a911, type: 2}
   targetUnit: {fileID: 0}
+  muzzle: {fileID: 0}
   gang: 1
   unitName: Josh
   moveTaken: 0

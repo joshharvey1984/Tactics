@@ -20,15 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27871e6a-4bb0-429f-991d-2bbca1185c60" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Controllers/SoldierBasic.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Controllers/SoldierBasic.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects/bulletTrace.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects/bulletTrace.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/BulletTracerGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/BulletTracerGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/MuzzleFlashGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/MuzzleFlashGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Ability.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Ability.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/AbilityBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/AbilityBehaviour.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,14 +113,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/AbilityBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/AbilityBehaviours/CalculateToHit.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Ability.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Misc/MuzzleFlash.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Misc/MuzzleFlashGenerator.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/MuzzleFlashGenerator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/MuzzleFlash.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/BulletTracerGenerator.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/BulletTracer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/BulletTracerGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/MuzzleFlashGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" />
       </list>
     </option>
   </component>

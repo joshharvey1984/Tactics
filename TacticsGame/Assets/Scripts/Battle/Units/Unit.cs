@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TacticsGame.Battle.Effects;
 using TacticsGame.Battle.Map;
 using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.UI;
@@ -31,6 +32,10 @@ namespace TacticsGame.Battle.Units {
         private static AbilityPanel _abilityPanel;
         private static TargetPanel _targetPanel;
 
+        public GameObject muzzle;
+        private MuzzleFlashGenerator _muzzleFlashGenerator;
+        private BulletTracerGenerator _bulletTracerGenerator;
+
         public int gang;
         public string unitName;
         
@@ -53,6 +58,9 @@ namespace TacticsGame.Battle.Units {
             
             _abilityPanel = GameObject.Find("AbilityPanel").GetComponent<AbilityPanel>();
             _targetPanel = GameObject.Find("TargetPanel").GetComponent<TargetPanel>();
+
+            _muzzleFlashGenerator = muzzle.GetComponent<MuzzleFlashGenerator>();
+            _bulletTracerGenerator = muzzle.GetComponent<BulletTracerGenerator>();
             
             abilities.Add(new FireAbility());
         }
@@ -103,6 +111,11 @@ namespace TacticsGame.Battle.Units {
             foreach (var meshRenderer in _meshRenderers) {
                 meshRenderer.enabled = false;
             }
+        }
+
+        public void FireBullets(int numBullets) {
+            _muzzleFlashGenerator.toFire = numBullets;
+            _bulletTracerGenerator.toFire = numBullets;
         }
     }
 }

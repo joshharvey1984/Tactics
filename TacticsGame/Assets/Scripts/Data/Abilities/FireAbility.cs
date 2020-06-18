@@ -17,6 +17,7 @@ namespace TacticsGame.Data.Abilities {
         }
         
         public override void Execute() {
+            Unit.SelectedUnit.FireBullets(5);
         }
 
     }
