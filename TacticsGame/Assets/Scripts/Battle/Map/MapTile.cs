@@ -92,5 +92,13 @@ namespace TacticsGame.Battle.Map
             }
             return true;
         }
+
+        public CoverType OfferingCoverFrom(MapTile mapTile) {
+            if (mapTile.MapPosX > MapPosX) return Cover[North];
+            if (mapTile.MapPosX < MapPosX) return Cover[South];
+            if (mapTile.MapPosZ > MapPosZ) return Cover[West];
+            if (mapTile.MapPosZ < MapPosZ) return Cover[East];
+            return NoCover;
+        }
     }
 }

@@ -26,6 +26,8 @@ namespace TacticsGame.Battle.Units {
         private List<MapTile> _moveTiles;
         private int _moveNum;
 
+        public Unit targetUnit;
+
         private static AbilityPanel _abilityPanel;
         private static TargetPanel _targetPanel;
 
@@ -36,6 +38,8 @@ namespace TacticsGame.Battle.Units {
         public bool turnTaken;
 
         public int movePoints = 8;
+        public int aim = 10;
+        public int defence = 10;
 
         private void Awake() {
             All.Add(this);
@@ -71,8 +75,9 @@ namespace TacticsGame.Battle.Units {
             _targetPanel.UpdateTargetPanel(EnemiesInLineOfSight());
         }
 
-        public void ExecuteAbility(Ability ability, Unit targetUnit = null) {
-             Debug.Log(ability.Description);
+        public void ExecuteAbility(Ability ability, Unit aTargetUnit = null) {
+            targetUnit = aTargetUnit; 
+            ability.Execute();
         }
 
         public MapTile GetCurrentMapTile() => MapTile.GetMapTileFromPos(Convert.ToInt32(_transform.position.x), 

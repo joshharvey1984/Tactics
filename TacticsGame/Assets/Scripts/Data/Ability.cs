@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TacticsGame.Battle.Units;
 using UnityEngine;
 
 namespace TacticsGame.Data {
@@ -11,6 +12,7 @@ namespace TacticsGame.Data {
         }
         public abstract AbilityTypes AbilityType { get; set; }
         public abstract Sprite Icon { get; set; }
-        public abstract List<AbilityBehaviour> AbilityBehaviours { get; set; }
+
+        public abstract void Execute();
     }
 }
