@@ -126,7 +126,11 @@
             </e>
           </e>
           <e p="Data" t="Include">
+            <e p="Abilities" t="Include">
+              <e p="FireAbility.cs" t="Include" />
+            </e>
             <e p="Ability.cs" t="Include" />
+            <e p="AbilityBehaviour.cs" t="Include" />
             <e p="Armour.cs" t="Include" />
             <e p="StatusEffect.cs" t="Include" />
             <e p="Weapon.cs" t="Include" />

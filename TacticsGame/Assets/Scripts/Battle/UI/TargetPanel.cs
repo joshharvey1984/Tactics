@@ -8,8 +8,7 @@ namespace TacticsGame.Battle.UI {
 
         [SerializeField] private GameObject targetButtonPrefab;
 
-        private Unit _currentTarget;
-        
+        public Unit currentTarget;
         
         private void Awake() {
             _transform = gameObject.transform;
@@ -22,10 +21,10 @@ namespace TacticsGame.Battle.UI {
         }
 
         public void ChangeTarget(Unit unit) {
-            _currentTarget = unit;
+            currentTarget = unit;
         }
 
-        public void UpdateTargetPanel(List<Unit> units = null) {
+        public void UpdateTargetPanel(List<Unit> units) {
             TargetButton.DestroyAll();
             foreach (var unit in units) {
                 var btn = Instantiate(targetButtonPrefab, transform);

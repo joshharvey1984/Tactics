@@ -4,6 +4,8 @@ using System.Linq;
 using TacticsGame.Battle.Map;
 using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.UI;
+using TacticsGame.Data;
+using TacticsGame.Data.Abilities;
 using UnityEngine;
 
 namespace TacticsGame.Battle.Units {
@@ -18,7 +20,7 @@ namespace TacticsGame.Battle.Units {
 
         public Weapon weapon;
         public Armour armour;
-        public List<Ability> abilities;
+        public List<Ability> abilities = new List<Ability>();
 
         private UnitMovement _unitMovement;
         private List<MapTile> _moveTiles;
@@ -41,12 +43,14 @@ namespace TacticsGame.Battle.Units {
             _transform = gameObject.transform;
             _unitMovement = GetComponent<UnitMovement>();
             _unitMovement.unit = this;
-            
+
             var objectRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             _meshRenderers = objectRenderers.ToList();
             
             _abilityPanel = GameObject.Find("AbilityPanel").GetComponent<AbilityPanel>();
             _targetPanel = GameObject.Find("TargetPanel").GetComponent<TargetPanel>();
+            
+            abilities.Add(new FireAbility());
         }
 
         public void MoveUnit(List<MapTile> tiles) {
@@ -65,6 +69,10 @@ namespace TacticsGame.Battle.Units {
             _unitMovement.EndMove();
             moveTaken = true;
             _targetPanel.UpdateTargetPanel(EnemiesInLineOfSight());
+        }
+
+        public void ExecuteAbility(Ability ability, Unit targetUnit = null) {
+             Debug.Log(ability.Description);
         }
 
         public MapTile GetCurrentMapTile() => MapTile.GetMapTileFromPos(Convert.ToInt32(_transform.position.x), 

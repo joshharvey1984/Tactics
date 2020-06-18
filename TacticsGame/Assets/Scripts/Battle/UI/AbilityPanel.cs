@@ -1,6 +1,7 @@
 ﻿using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.Units;
+using TacticsGame.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,8 +29,8 @@ namespace TacticsGame.Battle.UI {
         public void ChangeAbility(Ability ability) {
             _currentAbility = ability;
             ActivatePanel();
-            abilityDescription.GetComponent<Text>().text = ability.description;
-            executeButton.transform.GetChild(0).GetComponent<Text>().text = ability.name;
+            abilityDescription.GetComponent<Text>().text = ability.Description;
+            executeButton.transform.GetChild(0).GetComponent<Text>().text = ability.Name;
             MovementUI.DestroyMovementUI();
         }
 
@@ -57,14 +58,15 @@ namespace TacticsGame.Battle.UI {
         public void ExecuteAbility() {
             DeactivatePanel();
             ActionButton.DestroyAll();
-            _gameManager.EndUnitTurn();
+            TargetButton.DestroyAll();
+            Unit.SelectedUnit.ExecuteAbility(_currentAbility, _targetPanel.currentTarget);
         } 
         
         public void CreateAbilityButtons() {
             foreach (var ability in Unit.SelectedUnit.abilities) {
                 var btn = Instantiate(buttonPrefab, buttonPanel.transform);
                 var actionButton = btn.GetComponent<ActionButton>();
-                actionButton.SetIcon(ability.icon);
+                actionButton.SetIcon(ability.Icon);
                 actionButton.abilityPanel = this;
                 actionButton.ability = ability;
             }

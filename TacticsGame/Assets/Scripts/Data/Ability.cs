@@ -1,29 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Ability", menuName = "Ability")]
-public class Ability : ScriptableObject
-{
-    public new string name;
-    public enum AbilityTypes
-    {
-        standard,
-        weapon
+namespace TacticsGame.Data {
+    public abstract class Ability {
+        public abstract string Name { get; set;}
+        public abstract string Description { get; set;}
+        public enum AbilityTypes {
+            Active,
+            Passive
+        }
+        public abstract AbilityTypes AbilityType { get; set; }
+        public abstract Sprite Icon { get; set; }
+        public abstract List<AbilityBehaviour> AbilityBehaviours { get; set; }
     }
-    public AbilityTypes abilityType;
-    public string description;
-    public Sprite icon;
-    public List<TargettingTypes> targetting;
-    public enum TargettingTypes
-    {
-        self,
-        enemy,
-        teammate, 
-        cone,
-        fire
-    }
-    public List<StatusEffect> statusEffects;
-    public List<StatusEffect> targetStatusEffect;
-    public float aimModifier;
-    public int damageModifer;
 }
