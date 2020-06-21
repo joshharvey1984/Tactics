@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using TacticsGame.Battle.Map;
-using TacticsGame.Battle.Map.UI;
-using TacticsGame.Battle.UI;
 using TacticsGame.Battle.Units;
 using UnityEngine;
 
@@ -28,7 +26,6 @@ namespace TacticsGame.Battle.Core
 
         public void EndUnitTurn() {
             MoveGrid.ResetMovedGrid();
-            Unit.SelectedUnit.turnTaken = true;
             currentGangTurn++;
             if (currentGangTurn > 1) currentGangTurn = 0;
             if (FindNextUnit() == null) {

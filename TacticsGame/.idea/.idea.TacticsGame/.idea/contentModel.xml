@@ -95,6 +95,7 @@
         <e p="Scripts" t="Include">
           <e p="Battle" t="Include">
             <e p="Core" t="Include">
+              <e p="CombatDamageCalc.cs" t="Include" />
               <e p="CombatHitCalc.cs" t="Include" />
               <e p="GameManager.cs" t="Include" />
               <e p="MouseHoverTile.cs" t="Include" />
@@ -129,6 +130,7 @@
               <e p="ActionButton.cs" t="Include" />
               <e p="TargetButton.cs" t="Include" />
               <e p="TargetPanel.cs" t="Include" />
+              <e p="TextPopup.cs" t="Include" />
             </e>
             <e p="Units" t="Include">
               <e p="Unit.cs" t="Include" />
@@ -138,12 +140,10 @@
           <e p="Data" t="Include">
             <e p="Abilities" t="Include">
               <e p="FireAbility.cs" t="Include" />
+              <e p="HunkerDown.cs" t="Include" />
             </e>
             <e p="Ability.cs" t="Include" />
-            <e p="AbilityBehaviour.cs" t="Include" />
-            <e p="AbilityBehaviours" t="Include">
-              <e p="CalculateToHit.cs" t="Include" />
-            </e>
+            <e p="AbilityPause.cs" t="Include" />
             <e p="Armour.cs" t="Include" />
             <e p="StatusEffect.cs" t="Include" />
             <e p="Weapon.cs" t="Include" />

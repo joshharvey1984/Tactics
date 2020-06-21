@@ -45,7 +45,7 @@ namespace TacticsGame.Battle.Units {
             }
         }
 
-        private void SetAnimation(string anim, bool tf) {
+        public void SetAnimation(string anim, bool tf) {
             _animator.SetBool(anim, tf);
         }
     }

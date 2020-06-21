@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Effects;
 using TacticsGame.Battle.Map;
 using TacticsGame.Battle.Map.UI;
@@ -31,6 +32,9 @@ namespace TacticsGame.Battle.Units {
 
         private static AbilityPanel _abilityPanel;
         private static TargetPanel _targetPanel;
+        public GameObject popupTextPrefab;
+        private GameObject _canvas;
+        private GameManager _gameManager;
 
         public GameObject muzzle;
         private MuzzleFlashGenerator _muzzleFlashGenerator;
@@ -43,8 +47,12 @@ namespace TacticsGame.Battle.Units {
         public bool turnTaken;
 
         public int movePoints = 8;
+        public int hitPoints = 100;
         public int aim = 10;
         public int defence = 10;
+        
+        public int currentHitPoints = 100;
+        public List<(StatusEffect, int)> currentStatusEffects = new List<(StatusEffect, int)>();
 
         private void Awake() {
             All.Add(this);
@@ -55,7 +63,9 @@ namespace TacticsGame.Battle.Units {
 
             var objectRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             _meshRenderers = objectRenderers.ToList();
-            
+
+            _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _canvas = GameObject.Find("Canvas");
             _abilityPanel = GameObject.Find("AbilityPanel").GetComponent<AbilityPanel>();
             _targetPanel = GameObject.Find("TargetPanel").GetComponent<TargetPanel>();
 
@@ -63,11 +73,13 @@ namespace TacticsGame.Battle.Units {
             _bulletTracerGenerator = muzzle.GetComponent<BulletTracerGenerator>();
             
             abilities.Add(new FireAbility());
+            abilities.Add(new HunkerDown());
         }
 
         public void MoveUnit(List<MapTile> tiles) {
             _moveTiles = tiles;
             _moveNum = 0;
+            _unitMovement.SetAnimation("Crouch", false);
             MoveNextTile();
         }
 
@@ -97,6 +109,12 @@ namespace TacticsGame.Battle.Units {
             _targetPanel.UpdateTargetPanel(EnemiesInLineOfSight());
         }
 
+        public void EndTurn() {
+            turnTaken = true;
+            targetUnit = null;
+            _gameManager.EndUnitTurn();
+        }
+
         private List<Unit> EnemiesInLineOfSight() => All.Where(unit => unit.gang != gang)
                 .Where(unit => GetCurrentMapTile().CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F))
                 .ToList();
@@ -116,6 +134,19 @@ namespace TacticsGame.Battle.Units {
         public void FireBullets(int numBullets) {
             _muzzleFlashGenerator.toFire = numBullets;
             _bulletTracerGenerator.toFire = numBullets;
+        }
+
+        public void PopUpText(string text) {
+            var popUpText = Instantiate(popupTextPrefab, _canvas.transform);
+            popUpText.GetComponent<TextPopup>().TrueStart(this, text);
+        }
+
+        public void LookAtGameObject(GameObject gameObj) {
+            gameObject.transform.LookAt(gameObj.transform);
+        }
+
+        public void PlayAnimation(string anim) {
+            _unitMovement.SetAnimation(anim, true);
         }
     }
 }
