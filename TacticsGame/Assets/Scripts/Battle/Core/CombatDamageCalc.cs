@@ -9,11 +9,13 @@ namespace TacticsGame.Battle.Core {
         
         private static Unit _attackingUnit;
         private static Unit _defendingUnit;
+        private static Ability _ability;
         
-        public static Dictionary<string, int> DamageCalculation(Unit attackingUnit, Unit defendingUnit)
+        public static Dictionary<string, int> DamageCalculation(Unit attackingUnit, Unit defendingUnit, Ability ability)
         {
             _attackingUnit = attackingUnit;
             _defendingUnit = defendingUnit;
+            _ability = ability;
             var baseDamage = _attackingUnit.weapon.damage;
             var armourReduction = _defendingUnit.armour.damageReduction;
             //var flushOut = 0;

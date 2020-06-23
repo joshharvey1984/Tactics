@@ -1,20 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TacticsGame.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace TacticsGame.Battle.UI {
-    public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
-        private static readonly List<ActionButton> All = new List<ActionButton>();
+    public class AbilityButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
+        private static readonly List<AbilityButton> All = new List<AbilityButton>();
         
-        private Transform _myIcon;
-        public AbilityPanel abilityPanel;
-        public Ability ability;
+        private Image _myIcon;
+        private Ability _ability;
+
+        public event EventHandler<OnAbilityButtonClickArgs> OnAbilityButtonClick;
+        public class OnAbilityButtonClickArgs : EventArgs {
+            public Ability SelectedAbility;
+        }
 
         private void Awake() {
             All.Add(this);
-            _myIcon = transform.GetChild(0);
+            _myIcon = transform.GetChild(0).gameObject.GetComponent<Image>();
         }
 
         public static void DestroyAll() {
@@ -24,30 +29,19 @@ namespace TacticsGame.Battle.UI {
             All.Clear();
         }
 
-        public void SetIcon(Sprite icon) => _myIcon.gameObject.GetComponent<Image>().sprite = icon;
-
         private void OnDeHover() {
-            if (_myIcon != null) _myIcon.localScale = Vector3.one;
+            if (_myIcon != null) transform.localScale = Vector3.one;
         }
 
         private void OnHover() {
-            if (_myIcon != null) _myIcon.localScale = Vector3.one * 1.2f;
+            if (_myIcon != null) transform.localScale = Vector3.one * 1.2f;
         }
-
-        private void OnClick() {
-            abilityPanel.ChangeAbility(ability);
-        }
-
-        public void OnPointerEnter(PointerEventData eventData) {
-            OnHover();
-        }
-
-        public void OnPointerExit(PointerEventData eventData) {
-            OnDeHover();
-        }
-
-        public void OnPointerClick(PointerEventData eventData) {
-            OnClick();
-        }
+        
+        private void OnClick() => OnAbilityButtonClick?.Invoke(this, new OnAbilityButtonClickArgs{ SelectedAbility = _ability });
+        public void AssignAbility(Ability ability) => _ability = ability;
+        public void SetIcon(Sprite icon) => _myIcon.sprite = icon;
+        public void OnPointerEnter(PointerEventData eventData) => OnHover();
+        public void OnPointerExit(PointerEventData eventData) => OnDeHover();
+        public void OnPointerClick(PointerEventData eventData) => OnClick();
     }
 }

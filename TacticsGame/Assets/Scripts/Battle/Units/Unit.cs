@@ -4,6 +4,7 @@ using System.Linq;
 using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Effects;
 using TacticsGame.Battle.Map;
+using TacticsGame.Battle.Map.Enums;
 using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.UI;
 using TacticsGame.Data;
@@ -29,6 +30,7 @@ namespace TacticsGame.Battle.Units {
         private int _moveNum;
 
         public Unit targetUnit;
+        public Ability selectedAbility;
 
         private static AbilityPanel _abilityPanel;
         private static TargetPanel _targetPanel;
@@ -52,7 +54,7 @@ namespace TacticsGame.Battle.Units {
         public int defence = 10;
         
         public int currentHitPoints = 100;
-        public List<(StatusEffect, int)> currentStatusEffects = new List<(StatusEffect, int)>();
+        public List<StatusEffect> currentStatusEffects = new List<StatusEffect>();
 
         private void Awake() {
             All.Add(this);
@@ -92,44 +94,41 @@ namespace TacticsGame.Battle.Units {
         private void EndMoveTurn() {
             _unitMovement.EndMove();
             moveTaken = true;
-            _targetPanel.UpdateTargetPanel(EnemiesInLineOfSight());
+            _abilityPanel.CreateAbilityButtons();
+            _targetPanel.UpdateTargetPanel();
         }
 
-        public void ExecuteAbility(Ability ability, Unit aTargetUnit = null) {
-            targetUnit = aTargetUnit; 
-            ability.Execute();
+        public void ExecuteAbility() {
+            selectedAbility.Execute();
         }
 
         public MapTile GetCurrentMapTile() => MapTile.GetMapTileFromPos(Convert.ToInt32(_transform.position.x), 
             Convert.ToInt32(_transform.position.z));
 
         public void StartTurn() {
+            StatusEffectDurationUpdate();
             MovementUI.DrawMovementUI(this);
             _abilityPanel.CreateAbilityButtons();
-            _targetPanel.UpdateTargetPanel(EnemiesInLineOfSight());
+            _targetPanel.UpdateTargetPanel();
+        }
+
+        private void StatusEffectDurationUpdate() {
+            foreach (var currentStatusEffect in currentStatusEffects) {
+                currentStatusEffect.turnLength--;
+            }
+            currentStatusEffects.RemoveAll(effect => effect.turnLength <= 0);
         }
 
         public void EndTurn() {
-            turnTaken = true;
+            selectedAbility = null;
             targetUnit = null;
+            turnTaken = true;
             _gameManager.EndUnitTurn();
         }
 
-        private List<Unit> EnemiesInLineOfSight() => All.Where(unit => unit.gang != gang)
+        public List<Unit> EnemiesInLineOfSight() => All.Where(unit => unit.gang != gang)
                 .Where(unit => GetCurrentMapTile().CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F))
                 .ToList();
-
-        private void DrawUnit() {
-            foreach (var meshRenderer in _meshRenderers) {
-                meshRenderer.enabled = true;
-            }
-        }
-        
-        private void HideUnit() {
-            foreach (var meshRenderer in _meshRenderers) {
-                meshRenderer.enabled = false;
-            }
-        }
 
         public void FireBullets(int numBullets) {
             _muzzleFlashGenerator.toFire = numBullets;
@@ -140,13 +139,8 @@ namespace TacticsGame.Battle.Units {
             var popUpText = Instantiate(popupTextPrefab, _canvas.transform);
             popUpText.GetComponent<TextPopup>().TrueStart(this, text);
         }
-
-        public void LookAtGameObject(GameObject gameObj) {
-            gameObject.transform.LookAt(gameObj.transform);
-        }
-
-        public void PlayAnimation(string anim) {
-            _unitMovement.SetAnimation(anim, true);
-        }
+        
+        public void LookAtGameObject(GameObject gameObj) => gameObject.transform.LookAt(gameObj.transform);
+        public void PlayAnimation(string anim) => _unitMovement.SetAnimation(anim, true);
     }
 }

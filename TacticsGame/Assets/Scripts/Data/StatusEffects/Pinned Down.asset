@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pinned Down
   icon: {fileID: 21300000, guid: ccbc5960842102744a8da2f729d5ffca, type: 3}
+  turnLength: 1

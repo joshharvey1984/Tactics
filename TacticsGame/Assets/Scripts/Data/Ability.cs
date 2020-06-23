@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TacticsGame.Battle.Units;
+﻿using TacticsGame.Battle.Units;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,6 +12,11 @@ namespace TacticsGame.Data {
         }
         public abstract AbilityTypes AbilityType { get; set; }
         public abstract Sprite Icon { get; set; }
+        public enum TargetingTypes {
+            Enemy,
+            Self
+        }
+        public abstract TargetingTypes TargetingType { get; set; }
         protected readonly AbilityPause AbilityPause;
 
         protected Ability() {
@@ -23,7 +27,7 @@ namespace TacticsGame.Data {
 
         protected void AddStatusEffect(string statusEffect, int numTurns) {
             var statusEffectObject = AssetDatabase.LoadAssetAtPath($"Assets/Scripts/Data/StatusEffects/{statusEffect}.asset", typeof(StatusEffect)) as StatusEffect;
-            Unit.SelectedUnit.currentStatusEffects.Add((statusEffectObject, numTurns));
+            Unit.SelectedUnit.currentStatusEffects.Add(statusEffectObject);
         }
 
         public static void EndAbility() {

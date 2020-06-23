@@ -6,5 +6,6 @@ namespace TacticsGame.Data {
     {
         public new string name;
         public Sprite icon;
+        public int turnLength;
     }
 }

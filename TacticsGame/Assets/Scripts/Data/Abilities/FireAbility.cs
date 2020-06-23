@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TacticsGame.Battle.Core;
+﻿using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Units;
 using UnityEditor;
 using UnityEngine;
@@ -10,12 +9,14 @@ namespace TacticsGame.Data.Abilities {
         public override string Description { get; set; }
         public override AbilityTypes AbilityType { get; set; }
         public override Sprite Icon { get; set; }
+        public override TargetingTypes TargetingType { get; set; }
 
         public FireAbility() {
             Name = "Fire";
             AbilityType = AbilityTypes.Active;
             Description = "Fire weapon at selected Enemy";
             Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Target.png", typeof(Sprite)) as Sprite;
+            TargetingType = TargetingTypes.Enemy;
         }
         
         public override void Execute() {
@@ -24,9 +25,9 @@ namespace TacticsGame.Data.Abilities {
             selectedUnit.LookAtGameObject(targetUnit.gameObject);
             var hitSuccess = Random.Range(0.01F, 1.00F);
             var damageDone = 0;
-            var successfulHit = hitSuccess < CombatHitCalc.CalculateHitChance(selectedUnit, targetUnit)["HIT"];
+            var successfulHit = hitSuccess < CombatHitCalc.CalculateHitChance(selectedUnit, targetUnit, this)["HIT"];
             if (successfulHit)
-                damageDone = CombatDamageCalc.DamageCalculation(selectedUnit, targetUnit)["DAMAGE"];
+                damageDone = CombatDamageCalc.DamageCalculation(selectedUnit, targetUnit, this)["DAMAGE"];
             selectedUnit.FireBullets(5);
             targetUnit.PopUpText(successfulHit ? damageDone.ToString() : "MISS");
             targetUnit.currentHitPoints -= damageDone;

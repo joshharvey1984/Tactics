@@ -1,4 +1,5 @@
-﻿using TacticsGame.Battle.Core;
+﻿using System.Linq;
+using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.Units;
 using TacticsGame.Data;
@@ -7,8 +8,6 @@ using UnityEngine.UI;
 
 namespace TacticsGame.Battle.UI {
     public class AbilityPanel : MonoBehaviour {
-        private GameManager _gameManager;
-        
         [SerializeField] private GameObject buttonPanel;
         [SerializeField] private GameObject moveButton;
         [SerializeField] private GameObject executeButton;
@@ -16,26 +15,30 @@ namespace TacticsGame.Battle.UI {
         
         [SerializeField] private GameObject buttonPrefab;
 
-        [SerializeField] private GameObject targetPanel;
-        private TargetPanel _targetPanel;
+        public HitPanel _hitPanel;
+        private DamagePanel _damagePanel;
         
-        private Ability _currentAbility;
+        private TargetPanel _targetPanel;
 
         private void Awake() {
-            _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            _targetPanel = targetPanel.GetComponent<TargetPanel>();
+            _targetPanel = FindObjectOfType<TargetPanel>();
+            _hitPanel = Resources.FindObjectsOfTypeAll<HitPanel>()[0];
+            _damagePanel = Resources.FindObjectsOfTypeAll<DamagePanel>()[0];
         }
-        
-        public void ChangeAbility(Ability ability) {
-            _currentAbility = ability;
-            ActivatePanel();
-            abilityDescription.GetComponent<Text>().text = ability.Description;
-            executeButton.transform.GetChild(0).GetComponent<Text>().text = ability.Name;
+
+        private void ChangeAbility(object sender, AbilityButton.OnAbilityButtonClickArgs e) {
             MovementUI.DestroyMovementUI();
+            Unit.SelectedUnit.selectedAbility = e.SelectedAbility;
+            ActivatePanel();
+            abilityDescription.GetComponent<Text>().text = e.SelectedAbility.Description;
+            executeButton.transform.GetChild(0).GetComponent<Text>().text = e.SelectedAbility.Name;
         }
 
         public void MoveMode() {
+            Unit.SelectedUnit.selectedAbility = null;
+            Unit.SelectedUnit.targetUnit = null;
             DeactivatePanel();
+            _targetPanel.UpdateTargetPanel();
             MovementUI.DrawMovementUI(Unit.SelectedUnit);
         }
 
@@ -45,6 +48,8 @@ namespace TacticsGame.Battle.UI {
             abilityDescription.SetActive(true);
             executeButton.SetActive(true);
             _targetPanel.MovePanel(210);
+            if (Unit.SelectedUnit.selectedAbility.TargetingType == Ability.TargetingTypes.Enemy) ActivateCombatPanels();
+            else DeactivateCombatPanels();
         }
 
         private void DeactivatePanel() {
@@ -53,23 +58,45 @@ namespace TacticsGame.Battle.UI {
             abilityDescription.SetActive(false);
             executeButton.SetActive(false);
             _targetPanel.MovePanel(80);
+            DeactivateCombatPanels();
+        }
+
+        private void ActivateCombatPanels() {
+            _hitPanel.ActivatePanel();
+            _damagePanel.ActivatePanel();
+        }
+        
+        private void DeactivateCombatPanels() {
+            _hitPanel.DeactivatePanel();
+            _damagePanel.DeactivatePanel();
         }
 
         public void ExecuteAbility() {
             DeactivatePanel();
-            ActionButton.DestroyAll();
+            AbilityButton.DestroyAll();
             TargetButton.DestroyAll();
-            Unit.SelectedUnit.ExecuteAbility(_currentAbility, _targetPanel.currentTarget);
+            Unit.SelectedUnit.ExecuteAbility();
         } 
         
         public void CreateAbilityButtons() {
+            AbilityButton.DestroyAll();
             foreach (var ability in Unit.SelectedUnit.abilities) {
+                if (ability.TargetingType == Ability.TargetingTypes.Enemy && Unit.SelectedUnit.EnemiesInLineOfSight().Count == 0)
+                    continue;
                 var btn = Instantiate(buttonPrefab, buttonPanel.transform);
-                var actionButton = btn.GetComponent<ActionButton>();
+                var actionButton = btn.GetComponent<AbilityButton>();
+                actionButton.OnAbilityButtonClick += ChangeAbility;
+                actionButton.OnAbilityButtonClick += _targetPanel.ChangedAbility;
                 actionButton.SetIcon(ability.Icon);
-                actionButton.abilityPanel = this;
-                actionButton.ability = ability;
+                actionButton.AssignAbility(ability);
             }
+        }
+
+        public void ChangedTarget(object sender, TargetButton.OnTargetButtonClickArgs e) {
+            if (Unit.SelectedUnit.selectedAbility == null || 
+                Unit.SelectedUnit.selectedAbility.TargetingType != Ability.TargetingTypes.Enemy) 
+                ChangeAbility(sender, new AbilityButton.OnAbilityButtonClickArgs 
+                    {SelectedAbility = Unit.SelectedUnit.abilities[0]});
         }
     }
 }
