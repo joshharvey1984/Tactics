@@ -4,12 +4,12 @@ using System.Linq;
 using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Effects;
 using TacticsGame.Battle.Map;
-using TacticsGame.Battle.Map.Enums;
 using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.UI;
 using TacticsGame.Data;
 using TacticsGame.Data.Abilities;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TacticsGame.Battle.Units {
     public class Unit : MonoBehaviour
@@ -56,6 +56,9 @@ namespace TacticsGame.Battle.Units {
         public int currentHitPoints = 100;
         public List<StatusEffect> currentStatusEffects = new List<StatusEffect>();
 
+        [SerializeField] private GameObject statusBarPrefab;
+        private UnitStatusBar _unitStatusBar;
+
         private void Awake() {
             All.Add(this);
             
@@ -78,7 +81,20 @@ namespace TacticsGame.Battle.Units {
             abilities.Add(new HunkerDown());
         }
 
+        private void Start() {
+            CreateStatusBar();
+        }
+
+        private void CreateStatusBar() {
+            var statusBar = Instantiate(statusBarPrefab, GameObject.Find("Canvas").transform);
+            statusBar.GetComponent<Slider>().maxValue = hitPoints;
+            statusBar.GetComponent<Slider>().value = hitPoints;
+            _unitStatusBar = statusBar.GetComponent<UnitStatusBar>();
+            _unitStatusBar.unit = this;
+        }
+
         public void MoveUnit(List<MapTile> tiles) {
+            _gameManager.StopTimer();
             _moveTiles = tiles;
             _moveNum = 0;
             _unitMovement.SetAnimation("Crouch", false);
@@ -96,9 +112,11 @@ namespace TacticsGame.Battle.Units {
             moveTaken = true;
             _abilityPanel.CreateAbilityButtons();
             _targetPanel.UpdateTargetPanel();
+            _gameManager.StartTimer();
         }
 
         public void ExecuteAbility() {
+            _gameManager.StopTimer();
             selectedAbility.Execute();
         }
 
@@ -142,5 +160,15 @@ namespace TacticsGame.Battle.Units {
         
         public void LookAtGameObject(GameObject gameObj) => gameObject.transform.LookAt(gameObj.transform);
         public void PlayAnimation(string anim) => _unitMovement.SetAnimation(anim, true);
+        
+        public void TakeDamage(int damageToTake) {
+            currentHitPoints -= damageToTake;
+            _unitStatusBar.LoseHealth(damageToTake);
+        }
+
+        public void AddStatusEffect(StatusEffect statusEffect) {
+            currentStatusEffects.Add(statusEffect);
+            _unitStatusBar.UpdateStatusIcons();
+        } 
     }
 }

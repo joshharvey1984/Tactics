@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TacticsGame.Battle.Units;
 using TacticsGame.Data;
-using TacticsGame.Data.Abilities;
 using static TacticsGame.Battle.Map.Enums.CoverType;
 
 namespace TacticsGame.Battle.Core {
@@ -22,7 +21,7 @@ namespace TacticsGame.Battle.Core {
             foreach (var statusEffect in defendingUnit.currentStatusEffects) {
                 if (statusEffect.name == "Hunker Down") hunkerDown = 0.2F;
             }
-            var toHit = basicHit + coverBonus + hunkerDown;
+            var toHit = basicHit - coverBonus - hunkerDown;
             return new Dictionary<string, float>
             {
                 {"Aim vs Defence", basicHit},
@@ -37,9 +36,9 @@ namespace TacticsGame.Battle.Core {
         
         private static float CoverBonus() {
             if (_defendingUnit.GetCurrentMapTile().OfferingCoverFrom(_attackingUnit.GetCurrentMapTile()) ==
-                HalfCover) return -0.2F;
+                HalfCover) return 0.15F;
             if (_defendingUnit.GetCurrentMapTile().OfferingCoverFrom(_attackingUnit.GetCurrentMapTile()) ==
-                FullCover) return -0.4F;
+                FullCover) return 0.3F;
             return 0;
         }
     }

@@ -30,7 +30,7 @@ namespace TacticsGame.Data.Abilities {
                 damageDone = CombatDamageCalc.DamageCalculation(selectedUnit, targetUnit, this)["DAMAGE"];
             selectedUnit.FireBullets(5);
             targetUnit.PopUpText(successfulHit ? damageDone.ToString() : "MISS");
-            targetUnit.currentHitPoints -= damageDone;
+            targetUnit.TakeDamage(damageDone);
             AbilityPause.StartPause(1.5F, this);
         }
     }

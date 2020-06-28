@@ -16,7 +16,6 @@ namespace TacticsGame.Battle.UI {
             foreach (var modValue in aimModValues) modValue.text = "";
             
             var attackingUnit = Unit.SelectedUnit;
-            Debug.Log($"{attackingUnit} - {attackingUnit.targetUnit} - {attackingUnit.selectedAbility}");
             var combatCalc = CombatHitCalc.CalculateHitChance(attackingUnit, attackingUnit.targetUnit,
                 attackingUnit.selectedAbility);
             toHitValue.text = combatCalc["HIT"] * 100 + "%";

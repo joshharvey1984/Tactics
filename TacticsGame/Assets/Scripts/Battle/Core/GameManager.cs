@@ -1,17 +1,23 @@
 ﻿using System.Linq;
 using TacticsGame.Battle.Map;
+using TacticsGame.Battle.UI;
 using TacticsGame.Battle.Units;
 using UnityEngine;
 
-namespace TacticsGame.Battle.Core
-{
+namespace TacticsGame.Battle.Core {
     public class GameManager : MonoBehaviour {
-
         public int currentRound;
         public int currentGangTurn;
+        public string[] playerNames = {"Josh", "Dave"};
+        private float _timer = 60;
+        private bool _countdown = true;
 
-        public GameObject abilityPanel;
-        public GameObject targetPanel;
+        private InfoBar _infoBar;
+
+        private void Awake() {
+            _infoBar = FindObjectOfType<InfoBar>();
+            _infoBar.SetPlayerNames(playerNames);
+        }
         
         private void Start() {
             currentRound = 1;
@@ -20,7 +26,9 @@ namespace TacticsGame.Battle.Core
         }
 
         private void StartUnitTurn(Unit unit) {
+            _infoBar.SetPlayerTurn(currentRound, playerNames[currentGangTurn]);
             Unit.SelectedUnit = unit;
+            ResetTimer();
             unit.StartTurn();
         }
 
@@ -42,6 +50,23 @@ namespace TacticsGame.Battle.Core
             currentRound++;
             foreach (var unit in Unit.All) unit.turnTaken = false;
             StartUnitTurn(FindNextUnit());
+        }
+
+        private void ResetTimer() {
+            _timer = 60;
+            StartTimer();
+        }
+
+        public void StartTimer() => _countdown = true;
+        public void StopTimer() => _countdown = false;
+
+        private void Update() {
+            if (_countdown) {
+                _timer -= Time.deltaTime;
+                _infoBar.UpdateTimer(_timer);
+                if (_timer <= 0) Unit.SelectedUnit.EndTurn();
+            }
+            
         }
     }
 }

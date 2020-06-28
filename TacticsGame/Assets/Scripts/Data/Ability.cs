@@ -25,9 +25,9 @@ namespace TacticsGame.Data {
         
         public abstract void Execute();
 
-        protected void AddStatusEffect(string statusEffect, int numTurns) {
+        protected void AddStatusEffect(string statusEffect) {
             var statusEffectObject = AssetDatabase.LoadAssetAtPath($"Assets/Scripts/Data/StatusEffects/{statusEffect}.asset", typeof(StatusEffect)) as StatusEffect;
-            Unit.SelectedUnit.currentStatusEffects.Add(statusEffectObject);
+            Unit.SelectedUnit.AddStatusEffect(statusEffectObject);
         }
 
         public static void EndAbility() {

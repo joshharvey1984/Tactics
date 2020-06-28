@@ -15,7 +15,7 @@ namespace TacticsGame.Battle.UI {
         
         [SerializeField] private GameObject buttonPrefab;
 
-        public HitPanel _hitPanel;
+        private HitPanel _hitPanel;
         private DamagePanel _damagePanel;
         
         private TargetPanel _targetPanel;

@@ -130,9 +130,11 @@
               <e p="ABilityPanel.cs" t="Include" />
               <e p="DamagePanel.cs" t="Include" />
               <e p="HitPanel.cs" t="Include" />
+              <e p="InfoBar.cs" t="Include" />
               <e p="TargetButton.cs" t="Include" />
               <e p="TargetPanel.cs" t="Include" />
               <e p="TextPopup.cs" t="Include" />
+              <e p="UnitStatusBar.cs" t="Include" />
             </e>
             <e p="Units" t="Include">
               <e p="Unit.cs" t="Include" />

@@ -20,7 +20,7 @@ namespace TacticsGame.Data.Abilities {
         public override void Execute() {
             Unit.SelectedUnit.PopUpText("HUNKER DOWN");
             Unit.SelectedUnit.PlayAnimation("Crouch");
-            AddStatusEffect("Hunker Down", 1);
+            AddStatusEffect("Hunker Down");
             AbilityPause.StartPause(1.5F, this);
         }
     }
