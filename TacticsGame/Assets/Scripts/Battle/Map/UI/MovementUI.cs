@@ -49,7 +49,7 @@ namespace TacticsGame.Battle.Map.UI {
         }
 
         private static void UpdateMovementUi() {
-            if (_hoverTile.MoveNum > 0 && _hoverTile.CanMoveInto()) {
+            if (_hoverTile.MoveNum > 0 && !_hoverTile.TileProp) {
                 var rTiles = MoveRoute.GetMoveRoute(_currentUnit.GetCurrentMapTile(), _hoverTile);
                 RouteLine.DrawMoveLine(rTiles);
             }

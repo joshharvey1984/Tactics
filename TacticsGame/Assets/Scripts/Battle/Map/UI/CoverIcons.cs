@@ -9,7 +9,7 @@ namespace TacticsGame.Battle.Map.UI {
         private static MouseHoverTile _mouseHoverTile;
         [SerializeField] private GameObject coverIcon;
         [SerializeField] private Texture fullCover;
-        private IEnumerable<MapTile> _iconTiles;
+        private Dictionary<Direction, MapTile> _iconTiles;
 
         public void Awake() {
             _mouseHoverTile = GameObject.Find("GameManager").GetComponent<MouseHoverTile>();
@@ -19,22 +19,21 @@ namespace TacticsGame.Battle.Map.UI {
         public void UnsubscribeToHoverTile() => _mouseHoverTile.OnHoverTileChanged -= DrawIcons;
 
         private void DrawIcons(object sender, MouseHoverTile.OnHoverTileChangedArgs args) {
-
             if (args.HoverTileUi == null) {
                 DestroyAll();
                 return;
             }
             
             var hoverTile = MapTile.GetMapTileFromUi(args.HoverTileUi);
-            _iconTiles = hoverTile.GetAdjacentTiles();
+            _iconTiles = hoverTile.GetAdjacentTiles(false);
             DestroyAll();
 
             foreach (var iconTile in _iconTiles) {
-                if (!iconTile.CanMoveInto()) continue;
-                if (iconTile.CoverIcons.Count > 0) continue;
-                var tileCover = iconTile.Cover;
+                if (iconTile.Value.TileProp) continue;
+                if (iconTile.Value.CoverIcons.Count > 0) continue;
+                var tileCover = iconTile.Value.Cover;
                 foreach (var coverType in tileCover) {
-                    CreateIcon(iconTile, coverType.Key, coverType.Value);
+                    CreateIcon(iconTile.Value, coverType.Key, coverType.Value);
                 }
             }
 
@@ -46,7 +45,7 @@ namespace TacticsGame.Battle.Map.UI {
         }
 
         public void DestroyAll() {
-            foreach (var mapTile in MapTile.All.Where(mapTile => !_iconTiles.Contains(mapTile))) {
+            foreach (var mapTile in MapTile.All.Where(mapTile => !_iconTiles.Values.Contains(mapTile))) {
                 foreach (var icon in mapTile.CoverIcons) {
                     Destroy(icon);
                 }
