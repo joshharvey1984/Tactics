@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Map.Enums;
 using UnityEngine;
 
@@ -10,12 +10,20 @@ namespace TacticsGame.Battle.Map {
         [SerializeField] private bool wallType;
         [SerializeField] private CoverType coverType = CoverType.NoCover;
         [SerializeField] private bool moveBlocker = false;
-        [SerializeField] private bool sightBlocker = false;
+        [SerializeField] private bool transparentHover = false;
+
+        private MouseHoverTile _mouseHoverTile;
+        private Camera _mainCamera;
+        private MeshRenderer _meshRenderer;
         private Bounds Bounds { get; set; }
         public GameObject boundsCalc;
 
         private void Awake() {
             All.Add(this);
+            _mainCamera = Camera.main;
+            _mouseHoverTile = FindObjectOfType<MouseHoverTile>();
+            _mouseHoverTile.OnHoverTileChanged += CheckForTransparency;
+            _meshRenderer = GetComponentInChildren<MeshRenderer>();
         }
 
         private void Start() {
@@ -50,8 +58,38 @@ namespace TacticsGame.Battle.Map {
             else {
                 MapTile.GetMapTileFromPos(pos.x + 0.5F, pos.z + 0.5F).SetBlocks(Direction.East, coverType, moveBlocker);
                 MapTile.GetMapTileFromPos(pos.x + 0.5F, pos.z - 0.5F).SetBlocks(Direction.West, coverType, moveBlocker);
-                Debug.Log(MapTile.GetMapTileFromPos(pos.x + 0.5F, pos.z - 0.5F).MoveBlocked[Direction.West]);
             }
         }
+
+        private void CheckForTransparency(object sender, MouseHoverTile.OnHoverTileChangedArgs args) {
+            if (!transparentHover) return;
+            if (args.HoverTileUi == null) {
+                TurnOpaque();
+                return;
+            }
+
+            var camPos = _mainCamera.transform.position;
+            var propPos = transform.position;
+            var mousePos = args.HoverTileUi.transform.position;
+            
+            if (camPos.x < propPos.x && mousePos.x > propPos.x && Vector3.Distance(mousePos, propPos) < 3.0F ||
+                camPos.z < propPos.z && mousePos.z > propPos.z && Vector3.Distance(mousePos, propPos) < 3.0F) {
+                TurnTransparent();
+            }
+            else {
+                TurnOpaque();
+            }
+        }
+
+        private void TurnOpaque() {
+            _meshRenderer.material.shader = Shader.Find("Standard");
+        }
+
+        private void TurnTransparent() {
+            _meshRenderer.material.shader = Shader.Find("Outlined/Silhouette Only");
+            _meshRenderer.material.SetColor("_OutlineColor", new Color(0.213F, 0.925F, 0.943F));
+        }
+        
+        
     }
 }

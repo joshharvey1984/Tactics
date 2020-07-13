@@ -104,11 +104,14 @@ namespace TacticsGame.Battle.Map {
         public bool CanSeeOtherTile(MapTile mapTile, float distance) {
             var startPos = UiTile.transform.position;
             var endPos = mapTile.UiTile.transform.position;
+            
             startPos.y += 0.8F;
             endPos.y += 0.8F;
-
             if (Vector3.Distance(startPos, endPos) > distance) return false;
-            if (Physics.Raycast(startPos, endPos - startPos, out var hit, distance)) {
+            
+            var direction = endPos - startPos;
+            //Debug.DrawLine(startPos, endPos, Color.red, distance);
+            if (Physics.Linecast(startPos, endPos, out var hit)) {
                 if (hit.collider.CompareTag($"LOS")) return false;
             }
 

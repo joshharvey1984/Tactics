@@ -26,7 +26,10 @@ namespace TacticsGame.Battle.UI {
 
         public void ChangedAbility(object sender, AbilityButton.OnAbilityButtonClickArgs e) {
             if (e.SelectedAbility.TargetingType == Enemy) {
-                if (!Unit.SelectedUnit.targetUnit) Unit.SelectedUnit.targetUnit = Unit.SelectedUnit.EnemiesInLineOfSight()[0];
+                if (!Unit.SelectedUnit.targetUnit) {
+                    Unit.SelectedUnit.targetUnit = Unit.SelectedUnit.EnemiesInLineOfSight()[0];
+                }
+                
                 TargetButton.All.First(targetButton => targetButton.targetUnit == Unit.SelectedUnit.targetUnit)
                     .ChangeColour(new Color32(191, 30, 46, 255));
             }

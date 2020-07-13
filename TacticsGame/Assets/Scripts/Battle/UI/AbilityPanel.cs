@@ -85,8 +85,8 @@ namespace TacticsGame.Battle.UI {
                     continue;
                 var btn = Instantiate(buttonPrefab, buttonPanel.transform);
                 var actionButton = btn.GetComponent<AbilityButton>();
-                actionButton.OnAbilityButtonClick += ChangeAbility;
                 actionButton.OnAbilityButtonClick += _targetPanel.ChangedAbility;
+                actionButton.OnAbilityButtonClick += ChangeAbility;
                 actionButton.SetIcon(ability.Icon);
                 actionButton.AssignAbility(ability);
             }

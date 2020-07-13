@@ -4,6 +4,7 @@
     <e p="C:\Users\joshh\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
     <e p="C:\Users\joshh\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_TacticsGame.700158922.00" t="ExcludeRecursive" />
     <e p="D:\Unity\Tactics\TacticsGame" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -75,6 +76,69 @@
             </e>
             <e p="InfoMK4.txt" t="Include" />
           </e>
+          <e p="HighlightPlus" t="Include">
+            <e p="Demo" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="SphereHighlightEventExample.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Editor" t="Include">
+              <e p="HighlightEffectEditor.cs" t="Include" />
+              <e p="HighlightManagerEditor.cs" t="Include" />
+              <e p="HighlightProfileEditor.cs" t="Include" />
+              <e p="HighlightSeeThroughOccluderEditor.cs" t="Include" />
+              <e p="HighlightTriggerEditor.cs" t="Include" />
+              <e p="TransparentWithDepth.cs" t="Include" />
+            </e>
+            <e p="ReadMe.txt" t="Include" />
+            <e p="Resources" t="Include">
+              <e p="HighlightPlus" t="Include">
+                <e p="HighlightAddDepth.shader" t="Include" />
+                <e p="HighlightAddDepthClip.shader" t="Include" />
+                <e p="HighlightBlurGlow.shader" t="Include" />
+                <e p="HighlightBlurOutline.shader" t="Include" />
+                <e p="HighlightComposeGlow.shader" t="Include" />
+                <e p="HighlightComposeOutline.shader" t="Include" />
+                <e p="HighlightGlow.shader" t="Include" />
+                <e p="HighlightInnerGlow.shader" t="Include" />
+                <e p="HighlightMask.shader" t="Include" />
+                <e p="HighlightOccluder.shader" t="Include" />
+                <e p="HighlightOutline.shader" t="Include" />
+                <e p="HighlightOverlay.shader" t="Include" />
+                <e p="HighlightSeeThroughBorder.shader" t="Include" />
+                <e p="HighlightSeeThroughInner.shader" t="Include" />
+                <e p="HighlightSolidColor.shader" t="Include" />
+                <e p="HighlightTarget.shader" t="Include" />
+              </e>
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="HighlightEffect.cs" t="Include" />
+              <e p="HighlightEffectActions.cs" t="Include" />
+              <e p="HighlightEffectOccluderManager.cs" t="Include" />
+              <e p="HighlightManager.cs" t="Include" />
+              <e p="HighlightProfile.cs" t="Include" />
+              <e p="HighlightSeeThroughOccluder.cs" t="Include" />
+              <e p="HighlightTrigger.cs" t="Include" />
+            </e>
+          </e>
+          <e p="HighlightPlusBundle" t="Include">
+            <e p="_README.txt" t="Include" />
+          </e>
+          <e p="OutlineEffect" t="Include">
+            <e p="Demo" t="Include">
+              <e p="MaterialSwitcher.cs" t="Include" />
+              <e p="OutlineAnimation.cs" t="Include" />
+              <e p="Rotate.cs" t="Include" />
+              <e p="Toggle.cs" t="Include" />
+            </e>
+            <e p="LinkedSet.cs" t="Include" />
+            <e p="Outline.cs" t="Include" />
+            <e p="OutlineEffect.cs" t="Include" />
+            <e p="Resources" t="Include">
+              <e p="OutlineBufferShader.shader" t="Include" />
+              <e p="OutlineShader.shader" t="Include" />
+            </e>
+          </e>
           <e p="RainbowAssets" t="Include">
             <e p="!Core" t="Include">
               <e p="NOTICES.txt" t="Include" />
@@ -98,6 +162,7 @@
               <e p="CombatDamageCalc.cs" t="Include" />
               <e p="CombatHitCalc.cs" t="Include" />
               <e p="GameManager.cs" t="Include" />
+              <e p="MainCamera.cs" t="Include" />
               <e p="MouseHoverTile.cs" t="Include" />
               <e p="PlayerControls.cs" t="Include" />
             </e>
@@ -155,6 +220,9 @@
           <e p="Gangs" t="Include">
             <e p="Ganger.cs" t="Include" />
           </e>
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="Outline Shader.shader" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

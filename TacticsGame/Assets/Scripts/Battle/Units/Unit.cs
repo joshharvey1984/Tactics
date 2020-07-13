@@ -138,6 +138,7 @@ namespace TacticsGame.Battle.Units {
         }
 
         public void EndTurn() {
+            MovementUI.DestroyMovementUI();
             selectedAbility = null;
             targetUnit = null;
             turnTaken = true;
