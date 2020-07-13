@@ -20,19 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27871e6a-4bb0-429f-991d-2bbca1185c60" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/wall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/wall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Direction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Direction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetPanel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,13 +118,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/CombatHitCalc.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/InfoBar.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Direction.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveRoute.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" />
@@ -142,6 +130,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/UnitStatusBar.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MainCamera.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Direction.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
       </list>
     </option>
   </component>
@@ -286,10 +277,10 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="1287" y="691" key="Vcs.Push.Dialog.v2/3840.457.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1588934254955" />
-    <state x="1830" y="320" width="952" height="1251" key="dock-window-1" timestamp="1592748327555">
+    <state x="1476" y="274" width="1160" height="1251" key="dock-window-1" timestamp="1594637134139">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state x="1830" y="320" width="952" height="1251" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1592748327555" />
+    <state x="1476" y="274" width="1160" height="1251" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1594637134139" />
     <state x="1660" y="310" width="995" height="1251" key="dock-window-2" timestamp="1592752879024">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>

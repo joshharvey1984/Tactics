@@ -19,9 +19,7 @@ namespace TacticsGame.Battle.Map {
         public GameObject UiTile { get; set; }
         public int MoveNum { get; set; } = -1;
         public Prop TileProp { get; set; }
-
-        public List<GameObject> CoverIcons = new List<GameObject>();
-
+        
         public MapTile(int mapPosX, int mapPosZ) {
             MapPosX = mapPosX;
             MapPosZ = mapPosZ;
@@ -55,18 +53,30 @@ namespace TacticsGame.Battle.Map {
         public string GetTileName() => $"{MapPosX} - {MapPosZ}";
         public Vector3 GetWorldPosition() => new Vector3(MapPosX, 0, MapPosZ);
 
+        private MapTile GetAdjacentTile(Direction direction) {
+            if (direction == North) return GetMapTileFromPos(MapPosX + 1, MapPosZ);
+            if (direction == South) return GetMapTileFromPos(MapPosX - 1, MapPosZ);
+            if (direction == East) return GetMapTileFromPos(MapPosX, MapPosZ - 1);
+            if (direction == West) return GetMapTileFromPos(MapPosX, MapPosZ + 1);
+            if (direction == SouthWest) return GetMapTileFromPos(MapPosX - 1, MapPosZ + 1);
+            if (direction == SouthEast) return GetMapTileFromPos(MapPosX - 1, MapPosZ - 1);
+            if (direction == NorthWest) return GetMapTileFromPos(MapPosX + 1, MapPosZ + 1);
+            if (direction == NorthEast) return GetMapTileFromPos(MapPosX + 1, MapPosZ - 1);
+            return null;
+        }
+
         public Dictionary<Direction, MapTile> GetAdjacentTiles(bool diagonals) {
             var returnDir = new Dictionary<Direction, MapTile> {
-                {North, GetMapTileFromPos(MapPosX + 1, MapPosZ)},
-                {South, GetMapTileFromPos(MapPosX - 1, MapPosZ)},
-                {East, GetMapTileFromPos(MapPosX, MapPosZ - 1)},
-                {West, GetMapTileFromPos(MapPosX, MapPosZ + 1)}
+                {North, GetAdjacentTile(North)},
+                {South, GetAdjacentTile(South)},
+                {East, GetAdjacentTile(East)},
+                {West, GetAdjacentTile(West)}
             };
             if (diagonals) {
-                returnDir.Add(NorthEast, GetMapTileFromPos(MapPosX + 1, MapPosZ - 1));
-                returnDir.Add(NorthWest, GetMapTileFromPos(MapPosX + 1, MapPosZ + 1));
-                returnDir.Add(SouthEast, GetMapTileFromPos(MapPosX - 1, MapPosZ - 1));
-                returnDir.Add(SouthWest, GetMapTileFromPos(MapPosX - 1, MapPosZ + 1));
+                returnDir.Add(NorthEast, GetAdjacentTile(NorthEast));
+                returnDir.Add(NorthWest, GetAdjacentTile(NorthWest));
+                returnDir.Add(SouthEast, GetAdjacentTile(SouthEast));
+                returnDir.Add(SouthWest, GetAdjacentTile(SouthWest));
             }
 
             return returnDir;
@@ -126,6 +136,21 @@ namespace TacticsGame.Battle.Map {
             else if (Cover[East] > bestCover) bestCover = Cover[East];
 
             return bestCover;
+        }
+
+        public List<MapTile> CornerPeakFrom() {
+            var peakList = new List<MapTile>();
+
+            foreach (var cardinal in DirectionExtensions.GetCardinals()) {
+                foreach (var rightAngleDirection in DirectionExtensions.GetRightAngleDirections(cardinal)) {
+                    if (MoveBlocked[cardinal] && !GetAdjacentTile(rightAngleDirection).MoveBlocked[cardinal]) {
+                        peakList.Add(GetAdjacentTile(DirectionExtensions
+                            .GetDiagonalFromCardinals(cardinal, rightAngleDirection)));
+                    }
+                }
+            }
+
+            return peakList;
         }
     }
 }

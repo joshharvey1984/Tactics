@@ -145,9 +145,20 @@ namespace TacticsGame.Battle.Units {
             _gameManager.EndUnitTurn();
         }
 
-        public List<Unit> EnemiesInLineOfSight() => All.Where(unit => unit.gang != gang)
-                .Where(unit => GetCurrentMapTile().CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F))
-                .ToList();
+        public List<Unit> EnemiesInLineOfSight() {
+            var returnList = new List<Unit>();
+            var peakList = new List<MapTile>();
+            
+            peakList.Add(GetCurrentMapTile());
+            peakList.AddRange(GetCurrentMapTile().CornerPeakFrom());
+
+            foreach (var peakTile in peakList) {
+                returnList.AddRange(All.Where(unit => unit.gang != gang)
+                    .Where(unit => peakTile.CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F)));
+            }
+
+            return returnList;
+        }
 
         public void FireBullets(int numBullets) {
             _muzzleFlashGenerator.toFire = numBullets;
