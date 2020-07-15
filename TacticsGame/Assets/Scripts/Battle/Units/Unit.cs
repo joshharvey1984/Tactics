@@ -47,6 +47,7 @@ namespace TacticsGame.Battle.Units {
         
         public bool moveTaken;
         public bool turnTaken;
+        public Dictionary<Ability, List<MapTile>> watchingTiles = new Dictionary<Ability, List<MapTile>>();
 
         public int movePoints = 8;
         public int hitPoints = 100;
@@ -64,7 +65,7 @@ namespace TacticsGame.Battle.Units {
             
             _transform = gameObject.transform;
             _unitMovement = GetComponent<UnitMovement>();
-            _unitMovement.unit = this;
+            _unitMovement._unit = this;
 
             var objectRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             _meshRenderers = objectRenderers.ToList();
@@ -79,6 +80,7 @@ namespace TacticsGame.Battle.Units {
             
             abilities.Add(new FireAbility());
             abilities.Add(new HunkerDown());
+            abilities.Add(new Overwatch());
         }
 
         private void Start() {
@@ -117,7 +119,9 @@ namespace TacticsGame.Battle.Units {
 
         public void ExecuteAbility() {
             _gameManager.StopTimer();
-            selectedAbility.Execute();
+            if (selectedAbility.SpecialTarget == Ability.SpecialTargeting.Cone) selectedAbility.Targeting();
+            else selectedAbility.Execute();
+            
         }
 
         public MapTile GetCurrentMapTile() => MapTile.GetMapTileFromPos(Convert.ToInt32(_transform.position.x), 
@@ -125,6 +129,7 @@ namespace TacticsGame.Battle.Units {
 
         public void StartTurn() {
             StatusEffectDurationUpdate();
+            _unitStatusBar.UpdateStatusIcons();
             MovementUI.DrawMovementUI(this);
             _abilityPanel.CreateAbilityButtons();
             _targetPanel.UpdateTargetPanel();
@@ -145,20 +150,11 @@ namespace TacticsGame.Battle.Units {
             _gameManager.EndUnitTurn();
         }
 
-        public List<Unit> EnemiesInLineOfSight() {
-            var returnList = new List<Unit>();
-            var peakList = new List<MapTile>();
-            
-            peakList.Add(GetCurrentMapTile());
-            peakList.AddRange(GetCurrentMapTile().CornerPeakFrom());
-
-            foreach (var peakTile in peakList) {
-                returnList.AddRange(All.Where(unit => unit.gang != gang)
-                    .Where(unit => peakTile.CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F)));
-            }
-
-            return returnList;
-        }
+        public List<Unit> EnemiesInLineOfSight() => 
+            All.Where(unit => unit.gang != gang)
+                .Where(unit => GetCurrentMapTile().CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F, true))
+                .Distinct()
+                .ToList();
 
         public void FireBullets(int numBullets) {
             _muzzleFlashGenerator.toFire = numBullets;

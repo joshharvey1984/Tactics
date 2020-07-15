@@ -188,6 +188,9 @@
                 <e p="MoveGridLine.cs" t="Include" />
                 <e p="MovementUI.cs" t="Include" />
                 <e p="RouteLine.cs" t="Include" />
+                <e p="Targeting" t="Include">
+                  <e p="ConeTarget.cs" t="Include" />
+                </e>
               </e>
             </e>
             <e p="UI" t="Include">
@@ -210,6 +213,7 @@
             <e p="Abilities" t="Include">
               <e p="FireAbility.cs" t="Include" />
               <e p="HunkerDown.cs" t="Include" />
+              <e p="Overwatch.cs" t="Include" />
             </e>
             <e p="Ability.cs" t="Include" />
             <e p="AbilityPause.cs" t="Include" />

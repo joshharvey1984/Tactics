@@ -17,6 +17,12 @@ namespace TacticsGame.Data {
             Self
         }
         public abstract TargetingTypes TargetingType { get; set; }
+
+        public enum SpecialTargeting {
+            None = default,
+            Cone
+        }
+        public virtual SpecialTargeting SpecialTarget { get; set; }
         protected readonly AbilityPause AbilityPause;
 
         protected Ability() {
@@ -26,12 +32,14 @@ namespace TacticsGame.Data {
         public abstract void Execute();
 
         protected void AddStatusEffect(string statusEffect) {
-            var statusEffectObject = AssetDatabase.LoadAssetAtPath($"Assets/Scripts/Data/StatusEffects/{statusEffect}.asset", typeof(StatusEffect)) as StatusEffect;
+            var statusEffectObject = AssetDatabase
+                .LoadAssetAtPath($"Assets/Scripts/Data/StatusEffects/{statusEffect}.asset", typeof(StatusEffect)) as StatusEffect;
             Unit.SelectedUnit.AddStatusEffect(statusEffectObject);
         }
 
-        public static void EndAbility() {
-            Unit.SelectedUnit.EndTurn();
-        }
+        public abstract void EndAbility();
+
+        public virtual void Targeting() { }
+        public virtual void TileWatchTrigger(Unit triggeredUnit) { }
     }
 }

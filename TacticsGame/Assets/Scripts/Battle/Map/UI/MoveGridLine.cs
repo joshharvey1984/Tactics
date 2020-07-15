@@ -13,7 +13,7 @@ namespace TacticsGame.Battle.Map.UI {
         }
 
         public static void DrawMoveGrid(List<MapTile> moveTiles) {
-            _moveGrid = new GameObject {name = "MoveGrid"};
+            _moveGrid = new GameObject { name = "MoveGrid" };
             foreach (var mapTile in moveTiles) {
                 if (!moveTiles.Contains(mapTile.GetAdjacentTiles(false)[North]))
                     DrawLine(mapTile.GetWorldPosition(), North);

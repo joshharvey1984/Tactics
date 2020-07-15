@@ -21,7 +21,11 @@ namespace TacticsGame.Data.Abilities {
             Unit.SelectedUnit.PopUpText("HUNKER DOWN");
             Unit.SelectedUnit.PlayAnimation("Crouch");
             AddStatusEffect("Hunker Down");
-            AbilityPause.StartPause(1.5F, this);
+            AbilityPause.StartPause(1.5F, this, "EndAbility");
+        }
+
+        public override void EndAbility() {
+            Unit.SelectedUnit.EndTurn();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using TacticsGame.Battle.Map;
+using TacticsGame.Data.Abilities;
 using UnityEngine;
 
 namespace TacticsGame.Battle.Units {
@@ -9,10 +10,16 @@ namespace TacticsGame.Battle.Units {
         private MapTile _nextTile;
         private Vector3 _nextPos;
         
-        public Unit unit;
+        public Unit _unit;
+        private MapTile _lastMapTile;
+        
 
         private void Awake() {
             _animator = GetComponent<Animator>();
+        }
+
+        private void Start() {
+            _lastMapTile = _unit.GetCurrentMapTile();
         }
 
         public void SetNextTile(MapTile tile) {
@@ -36,11 +43,28 @@ namespace TacticsGame.Battle.Units {
             if (_nextTile != null) {
                 if (Vector3.Distance(transform.position, _nextPos) > 0.01f) {
                     transform.position = Vector3.MoveTowards(transform.position, _nextPos, MoveSpeed * Time.deltaTime);
+                    if (_unit.GetCurrentMapTile() != _lastMapTile) {
+                        _lastMapTile = _unit.GetCurrentMapTile();
+                        CheckForTileWatch();
+                    }
                     //_cameraScript.CentreOnGameObject(ut.position);
                 }
                 else {
                     transform.position = new Vector3(_nextPos.x, _nextPos.y, _nextPos.z);
-                    unit.MoveNextTile();
+                    _unit.MoveNextTile();
+                }
+            }
+        }
+
+        private void CheckForTileWatch() {
+            foreach (var unit in Unit.All) {
+                if (unit.gang == _unit.gang) continue;
+                if (unit.watchingTiles.Count == 0) continue;
+                foreach (var unitWatchingTile in unit.watchingTiles) {
+                    if (!unitWatchingTile.Value.Contains(_lastMapTile)) continue;
+                    unitWatchingTile.Key.TileWatchTrigger(unit);
+                    unit.watchingTiles.Remove(unitWatchingTile.Key);
+                    break;
                 }
             }
         }

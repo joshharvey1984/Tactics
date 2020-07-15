@@ -110,22 +110,27 @@ namespace TacticsGame.Battle.Map {
             Cover[direction] = coverType;
             MoveBlocked[direction] = moveBlocker;
         }
-
-        public bool CanSeeOtherTile(MapTile mapTile, float distance) {
-            var startPos = UiTile.transform.position;
+        
+        public bool CanSeeOtherTile(MapTile mapTile, float distance, bool cornerPeak = false) {
+            var startPositions = new List<Vector3> { UiTile.transform.position };
+            if (cornerPeak)
+                startPositions.AddRange(CornerPeakFrom().Select(tile => tile.UiTile.transform.position));
+            
             var endPos = mapTile.UiTile.transform.position;
-            
-            startPos.y += 0.8F;
             endPos.y += 0.8F;
-            if (Vector3.Distance(startPos, endPos) > distance) return false;
-            
-            var direction = endPos - startPos;
-            //Debug.DrawLine(startPos, endPos, Color.red, distance);
-            if (Physics.Linecast(startPos, endPos, out var hit)) {
-                if (hit.collider.CompareTag($"LOS")) return false;
+
+            foreach (var startPosition in startPositions) {
+                var losPos = startPosition;
+                losPos.y += 0.8F;
+                if (Vector3.Distance(losPos, endPos) > distance) continue;
+                if (Physics.Linecast(losPos, endPos, out var hit)) {
+                    if (hit.collider.CompareTag($"LOS")) continue;
+                }
+
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         public CoverType OfferingCoverFrom(MapTile mapTile) {
@@ -151,6 +156,15 @@ namespace TacticsGame.Battle.Map {
             }
 
             return peakList;
+        }
+
+        public void HighlightTile() => UiTile.GetComponent<MeshRenderer>().enabled = true;
+        public void UnhighlightTile() => UiTile.GetComponent<MeshRenderer>().enabled = false;
+        public static void HighlightMultipleTiles(IEnumerable<MapTile> mapTiles) {
+            foreach (var mapTile in mapTiles) mapTile.HighlightTile();
+        }
+        public static void UnhighlightAllTiles() {
+            foreach (var mapTile in All) mapTile.UnhighlightTile();
         }
     }
 }
