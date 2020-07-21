@@ -16,8 +16,9 @@ namespace TacticsGame.Battle.Map.UI.Targeting {
         public void SubscribeToHoverTile() {
             _mouseHoverTile.OnHoverTileChanged += RefreshCone;
             _playerControls.OnLeftClick += ConeSelect;
-        } 
-        public void UnsubscribeToHoverTile() { 
+        }
+
+        private void UnsubscribeToHoverTile() { 
             _mouseHoverTile.OnHoverTileChanged -= RefreshCone;
             _playerControls.OnLeftClick -= ConeSelect;
         } 
@@ -67,15 +68,15 @@ namespace TacticsGame.Battle.Map.UI.Targeting {
             MapTile.UnhighlightAllTiles();
             if (args.HoverTileUi == null) return;
             
-            Unit.SelectedUnit.LookAtGameObject(args.HoverTileUi);
-            var conePos = Unit.SelectedUnit.transform.position;
-            var coneRot = Unit.SelectedUnit.transform.rotation;
+            Unit.ActiveUnit.LookAtGameObject(args.HoverTileUi);
+            var conePos = Unit.ActiveUnit.transform.position;
+            var coneRot = Unit.ActiveUnit.transform.rotation;
             conePos.y += 0.1F;
             _coneTarget = new GameObject { name = "ConeTarget" };
             _coneTarget.transform.position = conePos;
             _coneTarget.transform.rotation = coneRot;
             DrawCone(13, 90);
-            MapTile.HighlightMultipleTiles(FindTilesInCone());
+            MapTile.HighlightMultipleTiles(FindTilesInCone(), Color.white);
         }
         
         private List<MapTile> FindTilesInCone()
@@ -87,7 +88,7 @@ namespace TacticsGame.Battle.Map.UI.Targeting {
 
             return MapTile.All
                 .Where(tile => PointInTriangle(new Vector3(tile.MapPosX, tile.MapPosZ), vPos0, vPos1, vPos2))
-                .Where(tile => Unit.SelectedUnit.GetCurrentMapTile().CanSeeOtherTile(tile, 20.0F, true))
+                .Where(tile => Unit.ActiveUnit.GetCurrentMapTile().CanSeeOtherTile(tile, 20.0F, true))
                 .ToList();
         }
         
@@ -103,12 +104,12 @@ namespace TacticsGame.Battle.Map.UI.Targeting {
         }
 
         private void ConeSelect(object sender, EventArgs args) {
-            Unit.SelectedUnit.watchingTiles.Clear();
-            Unit.SelectedUnit.watchingTiles.Add(Unit.SelectedUnit.selectedAbility, FindTilesInCone());
+            Unit.ActiveUnit.watchingTiles.Clear();
+            Unit.ActiveUnit.watchingTiles.Add(Unit.ActiveUnit.selectedAbility, FindTilesInCone());
             Object.Destroy(_coneTarget);
             MapTile.UnhighlightAllTiles();
             UnsubscribeToHoverTile();
-            Unit.SelectedUnit.selectedAbility.Execute();
+            Unit.ActiveUnit.selectedAbility.Execute();
         }
     }
 }

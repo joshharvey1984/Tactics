@@ -35,8 +35,9 @@ namespace TacticsGame.Battle.UI {
         }
 
         private void DeHover() {
-            if (Unit.SelectedUnit.targetUnit != targetUnit || 
-                Unit.SelectedUnit.selectedAbility.TargetingType != Ability.TargetingTypes.Enemy)
+            if (Unit.ActiveUnit.targetUnit != targetUnit || 
+                Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyFire ||
+                Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyWatch)
                 ChangeColour(new Color32(138, 31, 43, 215));
         }
         

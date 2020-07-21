@@ -24,7 +24,7 @@ namespace TacticsGame.Battle.UI {
 
         public void UpdateStatusIcons() {
             if (unit.currentStatusEffects.Count > 0) {
-                statusIcon.GetComponent<Image>().sprite = unit.currentStatusEffects[0].icon;
+                statusIcon.GetComponent<Image>().sprite = unit.currentStatusEffects[0].Icon;
                 statusIcon.GetComponent<Image>().enabled = true;
             }
             else {
@@ -46,7 +46,7 @@ namespace TacticsGame.Battle.UI {
         private IEnumerator SlideHealth() {
             for (var i = 0; i < _health; i++) {
                 _slider.value -= 1;
-                yield return new WaitForSeconds(0.05F);
+                yield return new WaitForSeconds(0.02F);
             }
         }
     }

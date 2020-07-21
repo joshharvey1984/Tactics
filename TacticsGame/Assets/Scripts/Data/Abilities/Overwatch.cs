@@ -1,4 +1,5 @@
-﻿using TacticsGame.Battle.Core;
+﻿using System.Collections.Generic;
+using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Map.UI.Targeting;
 using TacticsGame.Battle.Units;
 using UnityEditor;
@@ -12,6 +13,7 @@ namespace TacticsGame.Data.Abilities {
         public override Sprite Icon { get; set; }
         public override TargetingTypes TargetingType { get; set; }
         public override SpecialTargeting SpecialTarget { get; set; }
+        public override List<CombatHitModifier> CombatHitModifiers { get; set; }
 
         public Overwatch() {
             Name = "Overwatch";
@@ -20,6 +22,13 @@ namespace TacticsGame.Data.Abilities {
             Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Eye.png", typeof(Sprite)) as Sprite;
             TargetingType = TargetingTypes.Self;
             SpecialTarget = SpecialTargeting.Cone;
+            CombatHitModifiers = new List<CombatHitModifier> {
+                new CombatHitModifier {
+                    Name = "Reaction Shot", 
+                    Description = "Reaction Shot", 
+                    ModifierValue = -0.2F
+                }
+            };
         }
 
         public override void Targeting() {
@@ -28,18 +37,18 @@ namespace TacticsGame.Data.Abilities {
         }
 
         public override void Execute() {
-            Unit.SelectedUnit.PopUpText("OVERWATCH");
-            AddStatusEffect("Overwatch");
+            Unit.ActiveUnit.PopUpText("OVERWATCH");
+            AddStatusEffect(new StatusEffects.Overwatch());
             AbilityPause.StartPause(1.5F, this, "EndAbility");
         }
-        
+
         public override void EndAbility() {
-            Unit.SelectedUnit.EndTurn();
+            Unit.ActiveUnit.EndTurn();
         }
 
         public override void TileWatchTrigger(Unit triggeredUnit) {
             var selectedUnit = triggeredUnit;
-            var targetUnit = Unit.SelectedUnit;
+            var targetUnit = Unit.ActiveUnit;
             selectedUnit.LookAtGameObject(targetUnit.gameObject);
             var hitSuccess = Random.Range(0.01F, 1.00F);
             var damageDone = 0;

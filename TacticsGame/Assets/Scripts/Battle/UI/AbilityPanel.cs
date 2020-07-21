@@ -28,27 +28,27 @@ namespace TacticsGame.Battle.UI {
 
         private void ChangeAbility(object sender, AbilityButton.OnAbilityButtonClickArgs e) {
             MovementUI.DestroyMovementUI();
-            Unit.SelectedUnit.selectedAbility = e.SelectedAbility;
+            Unit.ActiveUnit.selectedAbility = e.SelectedAbility;
             ActivatePanel();
             abilityDescription.GetComponent<Text>().text = e.SelectedAbility.Description;
             executeButton.transform.GetChild(0).GetComponent<Text>().text = e.SelectedAbility.Name;
         }
 
         public void MoveMode() {
-            Unit.SelectedUnit.selectedAbility = null;
-            Unit.SelectedUnit.targetUnit = null;
+            Unit.ActiveUnit.selectedAbility = null;
+            Unit.ActiveUnit.targetUnit = null;
             DeactivatePanel();
             _targetPanel.UpdateTargetPanel();
-            MovementUI.DrawMovementUI(Unit.SelectedUnit);
+            MovementUI.DrawMovementUI(Unit.ActiveUnit);
         }
 
         private void ActivatePanel() {
             gameObject.GetComponent<Image>().enabled = true;
-            moveButton.SetActive(!Unit.SelectedUnit.moveTaken);
+            moveButton.SetActive(!Unit.ActiveUnit.moveTaken);
             abilityDescription.SetActive(true);
             executeButton.SetActive(true);
             _targetPanel.MovePanel(210);
-            if (Unit.SelectedUnit.selectedAbility.TargetingType == Ability.TargetingTypes.Enemy) ActivateCombatPanels();
+            if (Unit.ActiveUnit.selectedAbility.TargetingType == Ability.TargetingTypes.EnemyFire) ActivateCombatPanels();
             else DeactivateCombatPanels();
         }
 
@@ -75,13 +75,15 @@ namespace TacticsGame.Battle.UI {
             DeactivatePanel();
             AbilityButton.DestroyAll();
             TargetButton.DestroyAll();
-            Unit.SelectedUnit.ExecuteAbility();
+            Unit.ActiveUnit.ExecuteAbility();
         } 
         
         public void CreateAbilityButtons() {
             AbilityButton.DestroyAll();
-            foreach (var ability in Unit.SelectedUnit.abilities) {
-                if (ability.TargetingType == Ability.TargetingTypes.Enemy && Unit.SelectedUnit.EnemiesInLineOfSight().Count == 0)
+            foreach (var ability in Unit.ActiveUnit.abilities) {
+                if ((ability.TargetingType == Ability.TargetingTypes.EnemyFire ||
+                     ability.TargetingType == Ability.TargetingTypes.EnemyWatch)
+                    && Unit.ActiveUnit.EnemiesInLineOfSight().Count == 0)
                     continue;
                 var btn = Instantiate(buttonPrefab, buttonPanel.transform);
                 var actionButton = btn.GetComponent<AbilityButton>();
@@ -93,10 +95,11 @@ namespace TacticsGame.Battle.UI {
         }
 
         public void ChangedTarget(object sender, TargetButton.OnTargetButtonClickArgs e) {
-            if (Unit.SelectedUnit.selectedAbility == null || 
-                Unit.SelectedUnit.selectedAbility.TargetingType != Ability.TargetingTypes.Enemy) 
+            if (Unit.ActiveUnit.selectedAbility == null || 
+                Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyFire ||
+                 Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyWatch) 
                 ChangeAbility(sender, new AbilityButton.OnAbilityButtonClickArgs 
-                    {SelectedAbility = Unit.SelectedUnit.abilities[0]});
+                    { SelectedAbility = Unit.ActiveUnit.abilities[0] });
         }
     }
 }

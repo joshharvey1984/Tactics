@@ -21,16 +21,16 @@ namespace TacticsGame.Battle.UI {
         }
 
         private static void ChangeTarget(object sender, TargetButton.OnTargetButtonClickArgs e) {
-            Unit.SelectedUnit.targetUnit = e.SelectedUnit;
+            Unit.ActiveUnit.targetUnit = e.SelectedUnit;
         }
 
         public void ChangedAbility(object sender, AbilityButton.OnAbilityButtonClickArgs e) {
-            if (e.SelectedAbility.TargetingType == Enemy) {
-                if (!Unit.SelectedUnit.targetUnit) {
-                    Unit.SelectedUnit.targetUnit = Unit.SelectedUnit.EnemiesInLineOfSight()[0];
+            if (e.SelectedAbility.TargetingType == EnemyFire || e.SelectedAbility.TargetingType == EnemyWatch) {
+                if (!Unit.ActiveUnit.targetUnit) {
+                    Unit.ActiveUnit.targetUnit = Unit.ActiveUnit.EnemiesInLineOfSight()[0];
                 }
                 
-                TargetButton.All.First(targetButton => targetButton.targetUnit == Unit.SelectedUnit.targetUnit)
+                TargetButton.All.First(targetButton => targetButton.targetUnit == Unit.ActiveUnit.targetUnit)
                     .ChangeColour(new Color32(191, 30, 46, 255));
             }
             else {
@@ -41,7 +41,7 @@ namespace TacticsGame.Battle.UI {
 
         public void UpdateTargetPanel() {
             TargetButton.DestroyAll();
-            foreach (var unit in Unit.SelectedUnit.EnemiesInLineOfSight()) {
+            foreach (var unit in Unit.ActiveUnit.EnemiesInLineOfSight()) {
                 var btn = Instantiate(targetButtonPrefab, transform);
                 var targetButton = btn.GetComponent<TargetButton>();
                 targetButton.targetUnit = unit;

@@ -9,7 +9,7 @@ namespace TacticsGame.Battle.Core {
         
         private void Update() {
             if (Input.GetKeyUp(KeyCode.Mouse1)) RightClick();
-            if (Input.GetKeyUp(KeyCode.Mouse0)) LeftClick();
+            if (Input.GetKeyDown(KeyCode.Mouse0)) LeftClick();
         }
 
         private void LeftClick() {

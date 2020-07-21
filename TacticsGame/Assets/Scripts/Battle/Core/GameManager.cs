@@ -11,6 +11,7 @@ namespace TacticsGame.Battle.Core {
         public string[] playerNames = {"Josh", "Dave"};
         private float _timer = 60;
         private bool _countdown = true;
+        private bool _startBattle = false;
 
         private InfoBar _infoBar;
 
@@ -19,7 +20,7 @@ namespace TacticsGame.Battle.Core {
             _infoBar.SetPlayerNames(playerNames);
         }
         
-        private void Start() {
+        private void StartBattle() {
             currentRound = 1;
             currentGangTurn = 0;
             StartUnitTurn(FindNextUnit());
@@ -27,7 +28,7 @@ namespace TacticsGame.Battle.Core {
 
         private void StartUnitTurn(Unit unit) {
             _infoBar.SetPlayerTurn(currentRound, playerNames[currentGangTurn]);
-            Unit.SelectedUnit = unit;
+            Unit.ActiveUnit = unit;
             ResetTimer();
             unit.StartTurn();
         }
@@ -61,10 +62,15 @@ namespace TacticsGame.Battle.Core {
         public void StopTimer() => _countdown = false;
 
         private void Update() {
+            if (!_startBattle) {
+                _startBattle = true;
+                StartBattle();
+            }
+            
             if (_countdown) {
                 _timer -= Time.deltaTime;
                 _infoBar.UpdateTimer(_timer);
-                if (_timer <= 0) Unit.SelectedUnit.EndTurn();
+                if (_timer <= 0) Unit.ActiveUnit.EndTurn();
             }
             
         }

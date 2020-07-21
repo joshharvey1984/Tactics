@@ -12,8 +12,6 @@ namespace TacticsGame.Data {
             yield return new WaitForSeconds(seconds);
             var methodInfo = ability.GetType().GetMethod(returnMethod);
             methodInfo.Invoke(ability, null);
-            /*if (!targeting) Ability.EndAbility();
-            else ability.Execute();*/
         }
     }
 }

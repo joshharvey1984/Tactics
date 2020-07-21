@@ -1,5 +1,4 @@
 ﻿using TacticsGame.Battle.Map;
-using TacticsGame.Data.Abilities;
 using UnityEngine;
 
 namespace TacticsGame.Battle.Units {
@@ -10,20 +9,19 @@ namespace TacticsGame.Battle.Units {
         private MapTile _nextTile;
         private Vector3 _nextPos;
         
-        public Unit _unit;
+        public Unit unit;
         private MapTile _lastMapTile;
         
-
         private void Awake() {
             _animator = GetComponent<Animator>();
         }
 
         private void Start() {
-            _lastMapTile = _unit.GetCurrentMapTile();
+            _lastMapTile = unit.GetCurrentMapTile();
         }
 
         public void SetNextTile(MapTile tile) {
-            if (_nextTile == null) SetAnimation("Sprint", true);
+            if (_nextTile == null) SetAnimationBool("Sprint", true);
             _nextTile = tile;
             _nextPos = GetNextMovePosition();
             transform.LookAt(_nextPos);
@@ -31,7 +29,7 @@ namespace TacticsGame.Battle.Units {
 
         public void EndMove() {
             _nextTile = null;
-            SetAnimation("Sprint", false);
+            SetAnimationBool("Sprint", false);
         }
 
         private Vector3 GetNextMovePosition() {
@@ -40,37 +38,42 @@ namespace TacticsGame.Battle.Units {
         }
 
         private void Update() {
-            if (_nextTile != null) {
-                if (Vector3.Distance(transform.position, _nextPos) > 0.01f) {
-                    transform.position = Vector3.MoveTowards(transform.position, _nextPos, MoveSpeed * Time.deltaTime);
-                    if (_unit.GetCurrentMapTile() != _lastMapTile) {
-                        _lastMapTile = _unit.GetCurrentMapTile();
-                        CheckForTileWatch();
-                    }
-                    //_cameraScript.CentreOnGameObject(ut.position);
+            if (_nextTile == null) return;
+            if (Vector3.Distance(transform.position, _nextPos) > 0.01f) {
+                transform.position = Vector3.MoveTowards(transform.position, _nextPos, MoveSpeed * Time.deltaTime);
+                if (unit.GetCurrentMapTile() != _lastMapTile) {
+                    _lastMapTile = unit.GetCurrentMapTile();
+                    CheckForTileWatch();
                 }
-                else {
-                    transform.position = new Vector3(_nextPos.x, _nextPos.y, _nextPos.z);
-                    _unit.MoveNextTile();
-                }
+                //_cameraScript.CentreOnGameObject(ut.position);
+            }
+            else {
+                transform.position = new Vector3(_nextPos.x, _nextPos.y, _nextPos.z);
+                unit.MoveNextTile();
             }
         }
 
         private void CheckForTileWatch() {
-            foreach (var unit in Unit.All) {
-                if (unit.gang == _unit.gang) continue;
-                if (unit.watchingTiles.Count == 0) continue;
-                foreach (var unitWatchingTile in unit.watchingTiles) {
+            foreach (var checkUnit in Unit.All) {
+                if (checkUnit.gang == unit.gang) continue;
+                if (checkUnit.watchingTiles.Count == 0) continue;
+                if (checkUnit.watchingUnit != unit & checkUnit.watchingUnit != null) continue;
+                foreach (var unitWatchingTile in checkUnit.watchingTiles) {
                     if (!unitWatchingTile.Value.Contains(_lastMapTile)) continue;
-                    unitWatchingTile.Key.TileWatchTrigger(unit);
-                    unit.watchingTiles.Remove(unitWatchingTile.Key);
+                    unitWatchingTile.Key.TileWatchTrigger(checkUnit);
+                    checkUnit.watchingTiles.Remove(unitWatchingTile.Key);
+                    checkUnit.watchingUnit = null;
                     break;
                 }
             }
         }
 
-        public void SetAnimation(string anim, bool tf) {
+        public void SetAnimationBool(string anim, bool tf) {
             _animator.SetBool(anim, tf);
+        }
+
+        public void SetAnimationTrigger(string anim) {
+            _animator.SetTrigger(anim);
         }
     }
 }

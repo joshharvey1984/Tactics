@@ -18,14 +18,14 @@ namespace TacticsGame.Data.Abilities {
             TargetingType = TargetingTypes.Self;
         }
         public override void Execute() {
-            Unit.SelectedUnit.PopUpText("HUNKER DOWN");
-            Unit.SelectedUnit.PlayAnimation("Crouch");
-            AddStatusEffect("Hunker Down");
+            Unit.ActiveUnit.PopUpText("HUNKER DOWN");
+            Unit.ActiveUnit.PlayAnimation("Crouch");
+            AddStatusEffect(new StatusEffects.HunkerDown());;
             AbilityPause.StartPause(1.5F, this, "EndAbility");
         }
 
         public override void EndAbility() {
-            Unit.SelectedUnit.EndTurn();
+            Unit.ActiveUnit.EndTurn();
         }
     }
 }

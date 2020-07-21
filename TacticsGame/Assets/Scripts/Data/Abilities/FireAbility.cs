@@ -16,12 +16,12 @@ namespace TacticsGame.Data.Abilities {
             AbilityType = AbilityTypes.Active;
             Description = "Fire weapon at selected Enemy";
             Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Target.png", typeof(Sprite)) as Sprite;
-            TargetingType = TargetingTypes.Enemy;
+            TargetingType = TargetingTypes.EnemyFire;
             SpecialTarget = SpecialTargeting.None;
         }
         
         public override void Execute() {
-            var selectedUnit = Unit.SelectedUnit;
+            var selectedUnit = Unit.ActiveUnit;
             var targetUnit = selectedUnit.targetUnit;
             selectedUnit.LookAtGameObject(targetUnit.gameObject);
             var hitSuccess = Random.Range(0.01F, 1.00F);
@@ -36,9 +36,9 @@ namespace TacticsGame.Data.Abilities {
         }
 
         public override void Targeting() { }
-        
+
         public override void EndAbility() {
-            Unit.SelectedUnit.EndTurn();
+            Unit.ActiveUnit.EndTurn();
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using TacticsGame.Battle.Units;
-using UnityEditor;
+﻿using System.Collections.Generic;
+using TacticsGame.Battle.Core;
+using TacticsGame.Battle.Map;
+using TacticsGame.Battle.Units;
 using UnityEngine;
 
 namespace TacticsGame.Data {
@@ -13,17 +15,21 @@ namespace TacticsGame.Data {
         public abstract AbilityTypes AbilityType { get; set; }
         public abstract Sprite Icon { get; set; }
         public enum TargetingTypes {
-            Enemy,
-            Self
+            EnemyFire,
+            EnemyWatch,
+            Self,
+            Throw
         }
         public abstract TargetingTypes TargetingType { get; set; }
 
         public enum SpecialTargeting {
             None = default,
-            Cone
+            Cone,
+            Throw
         }
         public virtual SpecialTargeting SpecialTarget { get; set; }
         protected readonly AbilityPause AbilityPause;
+        public virtual List<CombatHitModifier> CombatHitModifiers { get; set; }
 
         protected Ability() {
             AbilityPause = GameObject.Find("GameManager").GetComponent<AbilityPause>();
@@ -31,15 +37,17 @@ namespace TacticsGame.Data {
         
         public abstract void Execute();
 
-        protected void AddStatusEffect(string statusEffect) {
-            var statusEffectObject = AssetDatabase
-                .LoadAssetAtPath($"Assets/Scripts/Data/StatusEffects/{statusEffect}.asset", typeof(StatusEffect)) as StatusEffect;
-            Unit.SelectedUnit.AddStatusEffect(statusEffectObject);
+        protected void AddStatusEffect(StatusEffect statusEffect) {
+            Unit.ActiveUnit.AddStatusEffect(statusEffect);
         }
-
+        
+        protected void AddStatusEffectToTarget(StatusEffect statusEffect) {
+            Unit.ActiveUnit.targetUnit.AddStatusEffect(statusEffect);
+        }
+        
         public abstract void EndAbility();
-
         public virtual void Targeting() { }
         public virtual void TileWatchTrigger(Unit triggeredUnit) { }
+        public virtual void ExplodeEffect(MapTile landingTile) { }
     }
 }

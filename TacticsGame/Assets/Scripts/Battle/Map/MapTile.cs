@@ -82,8 +82,8 @@ namespace TacticsGame.Battle.Map {
             return returnDir;
         }
 
-        public Dictionary<Direction, MapTile> GetMovableAdjacentTiles() {
-            var adjacentTiles = GetAdjacentTiles(false);
+        public Dictionary<Direction, MapTile> GetMovableAdjacentTiles(bool diagonals = false) {
+            var adjacentTiles = GetAdjacentTiles(diagonals);
             return adjacentTiles
                 .Where(tile => !MoveBlocked[tile.Key])
                 .ToDictionary(tile => tile.Key, tile => tile.Value);
@@ -158,10 +158,13 @@ namespace TacticsGame.Battle.Map {
             return peakList;
         }
 
-        public void HighlightTile() => UiTile.GetComponent<MeshRenderer>().enabled = true;
+        public void HighlightTile(Color color = default) {
+            UiTile.GetComponent<MeshRenderer>().material.color = color;
+            UiTile.GetComponent<MeshRenderer>().enabled = true;
+        }
         public void UnhighlightTile() => UiTile.GetComponent<MeshRenderer>().enabled = false;
-        public static void HighlightMultipleTiles(IEnumerable<MapTile> mapTiles) {
-            foreach (var mapTile in mapTiles) mapTile.HighlightTile();
+        public static void HighlightMultipleTiles(IEnumerable<MapTile> mapTiles, Color color) {
+            foreach (var mapTile in mapTiles) mapTile.HighlightTile(color);
         }
         public static void UnhighlightAllTiles() {
             foreach (var mapTile in All) mapTile.UnhighlightTile();

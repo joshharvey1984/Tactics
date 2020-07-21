@@ -76,6 +76,35 @@
             </e>
             <e p="InfoMK4.txt" t="Include" />
           </e>
+          <e p="EffectExamples" t="Include">
+            <e p="Editor" t="Include">
+              <e p="PackageManagerAssembly" t="Include">
+                <e p="PackageImportList.txt" t="Include" />
+              </e>
+            </e>
+            <e p="Shared" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="DecalDestroyer.cs" t="Include" />
+                <e p="ExtinguishableFire.cs" t="Include" />
+                <e p="GunAim.cs" t="Include" />
+                <e p="GunShoot.cs" t="Include" />
+                <e p="ParticleCollision.cs" t="Include" />
+                <e p="ParticleExamples.cs" t="Include" />
+                <e p="ParticleMenu.cs" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="SurfaceShader_VC.shader" t="Include" />
+              </e>
+            </e>
+            <e p="TutorialInfo" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="ReadmeEditor.cs" t="Include" />
+                </e>
+                <e p="Readme.cs" t="Include" />
+              </e>
+            </e>
+          </e>
           <e p="HighlightPlus" t="Include">
             <e p="Demo" t="Include">
               <e p="Scripts" t="Include">
@@ -171,6 +200,7 @@
               <e p="BulletTracerGenerator.cs" t="Include" />
               <e p="MuzzleFlash.cs" t="Include" />
               <e p="MuzzleFlashGenerator.cs" t="Include" />
+              <e p="Projectile.cs" t="Include" />
             </e>
             <e p="Map" t="Include">
               <e p="Enums" t="Include">
@@ -190,6 +220,8 @@
                 <e p="RouteLine.cs" t="Include" />
                 <e p="Targeting" t="Include">
                   <e p="ConeTarget.cs" t="Include" />
+                  <e p="GrenadeGrid.cs" t="Include" />
+                  <e p="ThrowTarget.cs" t="Include" />
                 </e>
               </e>
             </e>
@@ -212,16 +244,40 @@
           <e p="Data" t="Include">
             <e p="Abilities" t="Include">
               <e p="FireAbility.cs" t="Include" />
+              <e p="FragGrenade.cs" t="Include" />
               <e p="HunkerDown.cs" t="Include" />
               <e p="Overwatch.cs" t="Include" />
+              <e p="PinDown.cs" t="Include" />
             </e>
             <e p="Ability.cs" t="Include" />
             <e p="AbilityPause.cs" t="Include" />
-            <e p="Armour.cs" t="Include" />
+            <e p="Equipment.cs" t="Include" />
+            <e p="Equipments" t="Include">
+              <e p="Armour.cs" t="Include" />
+              <e p="Armours" t="Include">
+                <e p="LightFlak.cs" t="Include" />
+              </e>
+              <e p="Utilities" t="Include">
+                <e p="Grenade.cs" t="Include" />
+                <e p="Grenades" t="Include">
+                  <e p="FragGrenade.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Weapon.cs" t="Include" />
+              <e p="Weapons" t="Include">
+                <e p="SubMachineGun.cs" t="Include" />
+              </e>
+            </e>
             <e p="StatusEffect.cs" t="Include" />
-            <e p="Weapon.cs" t="Include" />
+            <e p="StatusEffects" t="Include">
+              <e p="HunkerDown.cs" t="Include" />
+              <e p="Overwatch.cs" t="Include" />
+              <e p="PinDown.cs" t="Include" />
+              <e p="PinnedDown.cs" t="Include" />
+            </e>
           </e>
           <e p="Gangs" t="Include">
+            <e p="Gang.cs" t="Include" />
             <e p="Ganger.cs" t="Include" />
           </e>
         </e>

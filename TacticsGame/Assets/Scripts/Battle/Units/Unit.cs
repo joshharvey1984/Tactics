@@ -8,21 +8,29 @@ using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.UI;
 using TacticsGame.Data;
 using TacticsGame.Data.Abilities;
+using TacticsGame.Data.Equipments;
+using TacticsGame.Data.Equipments.Armours;
+using TacticsGame.Data.Equipments.Utilities;
+using TacticsGame.Data.Equipments.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
+using FragGrenade = TacticsGame.Data.Equipments.Utilities.Grenades.FragGrenade;
 
 namespace TacticsGame.Battle.Units {
-    public class Unit : MonoBehaviour
-    {
+    public class Unit : MonoBehaviour {
         public static readonly List<Unit> All = new List<Unit>();
-        public static Unit SelectedUnit;
+        public static Unit ActiveUnit;
 
         private Transform _transform;
         private List<SkinnedMeshRenderer> _meshRenderers;
         [SerializeField] private GameObject weaponGameObject;
+        [SerializeField] private GameObject throwSpawn;
+        
+        private GameObject _grenadeObject;
 
         public Weapon weapon;
         public Armour armour;
+        public List<Equipment> equipment;
         public List<Ability> abilities = new List<Ability>();
 
         private UnitMovement _unitMovement;
@@ -31,6 +39,8 @@ namespace TacticsGame.Battle.Units {
 
         public Unit targetUnit;
         public Ability selectedAbility;
+        public MapTile selectedMapTile;
+        public Equipment selectedEquipment;
 
         private static AbilityPanel _abilityPanel;
         private static TargetPanel _targetPanel;
@@ -44,16 +54,17 @@ namespace TacticsGame.Battle.Units {
 
         public int gang;
         public string unitName;
-        
+
         public bool moveTaken;
         public bool turnTaken;
         public Dictionary<Ability, List<MapTile>> watchingTiles = new Dictionary<Ability, List<MapTile>>();
+        public Unit watchingUnit;
 
         public int movePoints = 8;
         public int hitPoints = 100;
         public int aim = 10;
         public int defence = 10;
-        
+
         public int currentHitPoints = 100;
         public List<StatusEffect> currentStatusEffects = new List<StatusEffect>();
 
@@ -62,10 +73,10 @@ namespace TacticsGame.Battle.Units {
 
         private void Awake() {
             All.Add(this);
-            
+
             _transform = gameObject.transform;
             _unitMovement = GetComponent<UnitMovement>();
-            _unitMovement._unit = this;
+            _unitMovement.unit = this;
 
             var objectRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             _meshRenderers = objectRenderers.ToList();
@@ -77,16 +88,21 @@ namespace TacticsGame.Battle.Units {
 
             _muzzleFlashGenerator = muzzle.GetComponent<MuzzleFlashGenerator>();
             _bulletTracerGenerator = muzzle.GetComponent<BulletTracerGenerator>();
-            
+
             abilities.Add(new FireAbility());
             abilities.Add(new HunkerDown());
             abilities.Add(new Overwatch());
-        }
-
-        private void Start() {
+            
+            weapon = new SubMachineGun();
+            armour = new LightFlak();
+            equipment = new List<Equipment> { new FragGrenade() };
+            
+            abilities.AddRange(weapon.AddedAbilities);
+            abilities.AddRange(armour.AddedAbilities);
+            foreach (var equip in equipment) abilities.AddRange(equip.AddedAbilities);
+            
             CreateStatusBar();
         }
-
         private void CreateStatusBar() {
             var statusBar = Instantiate(statusBarPrefab, GameObject.Find("Canvas").transform);
             statusBar.GetComponent<Slider>().maxValue = hitPoints;
@@ -99,7 +115,7 @@ namespace TacticsGame.Battle.Units {
             _gameManager.StopTimer();
             _moveTiles = tiles;
             _moveNum = 0;
-            _unitMovement.SetAnimation("Crouch", false);
+            _unitMovement.SetAnimationBool("Crouch", false);
             MoveNextTile();
         }
 
@@ -119,27 +135,24 @@ namespace TacticsGame.Battle.Units {
 
         public void ExecuteAbility() {
             _gameManager.StopTimer();
-            if (selectedAbility.SpecialTarget == Ability.SpecialTargeting.Cone) selectedAbility.Targeting();
+            if (selectedAbility.SpecialTarget != Ability.SpecialTargeting.None) selectedAbility.Targeting();
             else selectedAbility.Execute();
-            
         }
 
-        public MapTile GetCurrentMapTile() => MapTile.GetMapTileFromPos(Convert.ToInt32(_transform.position.x), 
-            Convert.ToInt32(_transform.position.z));
+        public MapTile GetCurrentMapTile() => 
+            MapTile.GetMapTileFromPos(Convert.ToInt32(_transform.position.x), 
+                Convert.ToInt32(_transform.position.z));
 
         public void StartTurn() {
-            StatusEffectDurationUpdate();
+            StatusEffectUpdate();
             _unitStatusBar.UpdateStatusIcons();
             MovementUI.DrawMovementUI(this);
             _abilityPanel.CreateAbilityButtons();
             _targetPanel.UpdateTargetPanel();
         }
 
-        private void StatusEffectDurationUpdate() {
-            foreach (var currentStatusEffect in currentStatusEffects) {
-                currentStatusEffect.turnLength--;
-            }
-            currentStatusEffects.RemoveAll(effect => effect.turnLength <= 0);
+        private void StatusEffectUpdate() {
+            
         }
 
         public void EndTurn() {
@@ -150,10 +163,15 @@ namespace TacticsGame.Battle.Units {
             _gameManager.EndUnitTurn();
         }
 
-        public List<Unit> EnemiesInLineOfSight() => 
+        public List<Unit> EnemiesInLineOfSight() =>
             All.Where(unit => unit.gang != gang)
                 .Where(unit => GetCurrentMapTile().CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F, true))
                 .Distinct()
+                .ToList();
+        
+        public List<MapTile> AllTilesInSight() => 
+            MapTile.All
+                .Where(mapTile => GetCurrentMapTile().CanSeeOtherTile(mapTile, 20.0F, true))
                 .ToList();
 
         public void FireBullets(int numBullets) {
@@ -165,11 +183,30 @@ namespace TacticsGame.Battle.Units {
             var popUpText = Instantiate(popupTextPrefab, _canvas.transform);
             popUpText.GetComponent<TextPopup>().TrueStart(this, text);
         }
-        
+
         public void LookAtGameObject(GameObject gameObj) => gameObject.transform.LookAt(gameObj.transform);
-        public void PlayAnimation(string anim) => _unitMovement.SetAnimation(anim, true);
-        
+        public void PlayAnimation(string anim) => _unitMovement.SetAnimationBool(anim, true);
+
+        public void ThrowAnimation(Grenade grenade) { ;
+            _unitMovement.SetAnimationTrigger("Throw");
+            _grenadeObject = Instantiate(grenade.GrenadePrefab, throwSpawn.transform);
+        }
+
+        public void ThrowEvent() {
+            _grenadeObject.transform.parent = null;
+            _grenadeObject.GetComponent<Projectile>().GetTrajectory();
+        }
+
+        public void ThrowExecute() {
+            var grenade = selectedEquipment as Grenade;
+            var explosion = Instantiate(grenade.ExplodePrefab, selectedMapTile.GetWorldPosition(), Quaternion.identity);
+            var parts = explosion.GetComponent<ParticleSystem>();
+            Destroy(explosion, parts.main.duration);
+            selectedAbility.ExplodeEffect(selectedMapTile);
+        }
+
         public void TakeDamage(int damageToTake) {
+            
             currentHitPoints -= damageToTake;
             _unitStatusBar.LoseHealth(damageToTake);
         }
@@ -177,6 +214,6 @@ namespace TacticsGame.Battle.Units {
         public void AddStatusEffect(StatusEffect statusEffect) {
             currentStatusEffects.Add(statusEffect);
             _unitStatusBar.UpdateStatusIcons();
-        } 
+        }
     }
 }

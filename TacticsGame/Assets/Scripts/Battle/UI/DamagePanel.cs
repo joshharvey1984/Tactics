@@ -15,7 +15,7 @@ namespace TacticsGame.Battle.UI {
             foreach (var modText in damageModifiers) modText.text = "";
             foreach (var modValue in damageModValues) modValue.text = "";
             
-            var attackingUnit = Unit.SelectedUnit;
+            var attackingUnit = Unit.ActiveUnit;
             var combatCalc = CombatDamageCalc.DamageCalculation(attackingUnit, attackingUnit.targetUnit,
                 attackingUnit.selectedAbility);
             damageValue.text = combatCalc["DAMAGE"].ToString();
