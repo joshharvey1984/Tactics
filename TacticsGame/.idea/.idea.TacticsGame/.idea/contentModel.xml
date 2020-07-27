@@ -248,6 +248,7 @@
               <e p="HunkerDown.cs" t="Include" />
               <e p="Overwatch.cs" t="Include" />
               <e p="PinDown.cs" t="Include" />
+              <e p="Scattershot.cs" t="Include" />
             </e>
             <e p="Ability.cs" t="Include" />
             <e p="AbilityPause.cs" t="Include" />
@@ -265,6 +266,7 @@
               </e>
               <e p="Weapon.cs" t="Include" />
               <e p="Weapons" t="Include">
+                <e p="Shotgun.cs" t="Include" />
                 <e p="SubMachineGun.cs" t="Include" />
               </e>
             </e>

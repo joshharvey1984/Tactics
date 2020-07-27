@@ -20,60 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27871e6a-4bb0-429f-991d-2bbca1185c60" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinDown.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinDown.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinnedDown.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinnedDown.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Controllers/SoldierBasic.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Controllers/SoldierBasic.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/CombatDamageCalc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/CombatDamageCalc.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/CombatHitCalc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/CombatHitCalc.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/Targeting/ConeTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/Targeting/ConeTarget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/DamagePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/DamagePanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/HitPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/HitPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/UnitStatusBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/UnitStatusBar.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/HunkerDown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/HunkerDown.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Overwatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Overwatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Ability.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Ability.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/AbilityPause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/AbilityPause.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Armour.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Armour.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Armours.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Armours/Light.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Armours/Light.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Armours/Medium.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Armours/Medium.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Hunker Down.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Hunker Down.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Pinned Down.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Pinned Down.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapon.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapon.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/SMG.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/SMG.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/Shotgun.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/Shotgun.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/Sniper Rifle.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/Sniper Rifle.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SubMachineGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SubMachineGun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +55,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/b6/7e43f9e4/KeyValuePair`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Effects/MuzzleFlashGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Overwatch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Scattershot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Effects/MuzzleFlash.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Overwatch.cs.meta" root0="FORCE_HIGHLIGHTING" />
@@ -116,6 +71,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Armours/LightFlak.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MoveGridLine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/Shotgun.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/HighlightPlus/Scripts/HighlightSeeThroughOccluder.cs" root0="FORCE_HIGHLIGHTING" />
@@ -154,8 +110,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TextPopup.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MainCamera.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Enums/Direction.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Overwatch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcons.cs" />
@@ -166,17 +120,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Weapon.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SMG.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipment.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapon.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/CombatDamageCalc.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Armour/LightFlak.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Armour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Armours/LightFlak.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SubMachineGun.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/AbilityPause.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetButton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/HunkerDown.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/HunkerDown.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/PinDown.cs" />
@@ -186,7 +137,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinnedDown.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Overwatch.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/PinDown.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/CombatHitCalc.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/ThrowArc.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/Targeting/ThrowArc.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
@@ -203,8 +153,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/UnitStatusBar.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FragGrenade.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SubMachineGun.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/CombatHitCalc.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/Shotgun.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Scattershot.cs" />
       </list>
     </option>
   </component>
@@ -332,10 +288,10 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="487" y="688" key="Rider.ProjectTemplateDialog.Size/3840.457.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1589127627401" />
-    <state x="927" y="657" key="RiderGenerateDialog" timestamp="1595239749299">
+    <state x="927" y="657" key="RiderGenerateDialog" timestamp="1595882767068">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state x="927" y="657" key="RiderGenerateDialog/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1595239749299" />
+    <state x="927" y="657" key="RiderGenerateDialog/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1595882767068" />
     <state x="1173" y="604" width="1426" height="709" key="SettingsEditor" timestamp="1594757402901">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
@@ -349,19 +305,19 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="1287" y="691" key="Vcs.Push.Dialog.v2/3840.457.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1588934254955" />
-    <state x="241" y="210" width="1003" height="1271" key="dock-window-1" timestamp="1595334331171">
+    <state x="242" y="210" width="1003" height="1271" key="dock-window-1" timestamp="1595878732320">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state x="241" y="210" width="1003" height="1271" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1595334331171" />
+    <state x="242" y="210" width="1003" height="1271" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1595878732320" />
     <state x="3833" y="456" width="891" height="1047" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@3840.456.1920.1030" timestamp="1595323459332" />
     <state x="1660" y="310" width="995" height="1251" key="dock-window-2" timestamp="1592752879024">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="1660" y="310" width="995" height="1251" key="dock-window-2/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1592752879024" />
-    <state x="1326" y="598" width="672" height="678" key="search.everywhere.popup" timestamp="1595362241974">
+    <state x="1326" y="598" width="672" height="678" key="search.everywhere.popup" timestamp="1595883305526">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state x="1326" y="598" width="672" height="678" key="search.everywhere.popup/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1595362241974" />
+    <state x="1326" y="598" width="672" height="678" key="search.everywhere.popup/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1595883305526" />
     <state x="1326" y="598" key="search.everywhere.popup/3840.457.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1588589277048" />
   </component>
 </project>

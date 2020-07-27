@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using TacticsGame.Data.Abilities;
+using UnityEditor;
+using UnityEngine;
 
 namespace TacticsGame.Data.Equipments.Weapons {
     public class SubMachineGun : Weapon {
@@ -10,6 +12,8 @@ namespace TacticsGame.Data.Equipments.Weapons {
         public sealed override bool Ranged { get; set; }
         public sealed override int Damage { get; set; }
         public sealed override int RangeDropOff { get; set; }
+        public sealed override GameObject WeaponModel { get; set; }
+        public sealed override Quaternion SlotRotation { get; set; }
 
         public SubMachineGun() {
             Name = "Submachine Gun";
@@ -19,6 +23,8 @@ namespace TacticsGame.Data.Equipments.Weapons {
             Damage = 25;
             RangeDropOff = 5;
             AddedAbilities = new List<Ability> { new PinDown() };
+            WeaponModel = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Battle/Weapons/SMG.prefab", typeof(GameObject)) as GameObject;
+            SlotRotation = Quaternion.Euler(-12, -96, 260);
         }
     }
 }

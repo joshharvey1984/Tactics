@@ -17,7 +17,7 @@ namespace TacticsGame.Data.Abilities {
             Name = "Frag Grenade";
             AbilityType = AbilityTypes.Active;
             Description = "Throw a frag grenade.";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Fire.png", typeof(Sprite)) as Sprite;
+            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Bomb.png", typeof(Sprite)) as Sprite;
             TargetingType = TargetingTypes.Throw;
             SpecialTarget = SpecialTargeting.Throw;
         }

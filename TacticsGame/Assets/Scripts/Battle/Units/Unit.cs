@@ -15,6 +15,7 @@ using TacticsGame.Data.Equipments.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 using FragGrenade = TacticsGame.Data.Equipments.Utilities.Grenades.FragGrenade;
+using Random = UnityEngine.Random;
 
 namespace TacticsGame.Battle.Units {
     public class Unit : MonoBehaviour {
@@ -48,6 +49,7 @@ namespace TacticsGame.Battle.Units {
         private GameObject _canvas;
         private GameManager _gameManager;
 
+        public GameObject weaponSlot;
         public GameObject muzzle;
         private MuzzleFlashGenerator _muzzleFlashGenerator;
         private BulletTracerGenerator _bulletTracerGenerator;
@@ -85,23 +87,28 @@ namespace TacticsGame.Battle.Units {
             _canvas = GameObject.Find("Canvas");
             _abilityPanel = GameObject.Find("AbilityPanel").GetComponent<AbilityPanel>();
             _targetPanel = GameObject.Find("TargetPanel").GetComponent<TargetPanel>();
-
-            _muzzleFlashGenerator = muzzle.GetComponent<MuzzleFlashGenerator>();
-            _bulletTracerGenerator = muzzle.GetComponent<BulletTracerGenerator>();
-
+            
             abilities.Add(new FireAbility());
             abilities.Add(new HunkerDown());
             abilities.Add(new Overwatch());
-            
-            weapon = new SubMachineGun();
+
+            var weaponRng = Random.Range(0, 100);
+            weapon = new Shotgun();
             armour = new LightFlak();
             equipment = new List<Equipment> { new FragGrenade() };
             
             abilities.AddRange(weapon.AddedAbilities);
             abilities.AddRange(armour.AddedAbilities);
             foreach (var equip in equipment) abilities.AddRange(equip.AddedAbilities);
-            
+
             CreateStatusBar();
+            SpawnWeaponModel();
+        }
+
+        private void SpawnWeaponModel() {
+            weaponGameObject = Instantiate(weapon.WeaponModel, weaponSlot.transform);
+            weaponSlot.transform.rotation = weapon.SlotRotation;
+            muzzle = weaponGameObject.transform.Find("MuzzleFlashGenerator").gameObject;
         }
         private void CreateStatusBar() {
             var statusBar = Instantiate(statusBarPrefab, GameObject.Find("Canvas").transform);
@@ -175,8 +182,8 @@ namespace TacticsGame.Battle.Units {
                 .ToList();
 
         public void FireBullets(int numBullets) {
-            _muzzleFlashGenerator.toFire = numBullets;
-            _bulletTracerGenerator.toFire = numBullets;
+            muzzle.GetComponent<MuzzleFlashGenerator>().toFire = numBullets;
+            muzzle.GetComponent<BulletTracerGenerator>().toFire = numBullets;
         }
 
         public void PopUpText(string text) {
