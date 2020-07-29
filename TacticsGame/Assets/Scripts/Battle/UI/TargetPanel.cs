@@ -36,7 +36,6 @@ namespace TacticsGame.Battle.UI {
             else {
                 UpdateTargetPanel();
             }
-            
         }
 
         public void UpdateTargetPanel() {

@@ -8,6 +8,7 @@ namespace TacticsGame.Battle.Map.UI {
         private static readonly MouseHoverTile MouseHoverTile = GameObject.Find("GameManager").GetComponent<MouseHoverTile>();
         private static readonly PlayerControls PlayerControl = GameObject.Find("GameManager").GetComponent<PlayerControls>();
         private static readonly CoverIcons CoverIcons = GameObject.Find("Map").GetComponent<CoverIcons>();
+        private static readonly GameManager GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         private static MapTile _hoverTile;
         private static Unit _currentUnit;
@@ -30,12 +31,14 @@ namespace TacticsGame.Battle.Map.UI {
             MouseHoverTile.OnHoverTileChanged += UpdateUi;
             CoverIcons.SubscribeToHoverTile();
             PlayerControl.OnRightClick += MoveTileSelected;
+            PlayerControl.OnLeftClick += SwitchActiveUnit;
         }
 
         private static void UnsubscribeToHoverTile() {
             MouseHoverTile.OnHoverTileChanged -= UpdateUi;
             CoverIcons.UnsubscribeToHoverTile();
             PlayerControl.OnRightClick -= MoveTileSelected;
+            PlayerControl.OnLeftClick -= SwitchActiveUnit;
         }
         
         private static void UpdateUi(object sender, MouseHoverTile.OnHoverTileChangedArgs args) {
@@ -60,9 +63,18 @@ namespace TacticsGame.Battle.Map.UI {
 
         private static void MoveTileSelected(object sender, EventArgs args) {
             if (_hoverTile == null || _hoverTile.MoveNum < 1) return;
+            _currentUnit.moveTaken = true;
             DestroyMovementUI();
             var rTiles = MoveRoute.GetMoveRoute(_currentUnit.GetCurrentMapTile(), _hoverTile);
             _currentUnit.MoveUnit(rTiles);
+        }
+
+        private static void SwitchActiveUnit(object sender, EventArgs args) {
+            if (_hoverTile == null) return;
+            if (_hoverTile.GetUnitInTile() == null) return;
+            if (_hoverTile.GetUnitInTile() == Unit.ActiveUnit) return;
+            if (_hoverTile.GetUnitInTile().gang == GameManager.currentGangTurn && !_hoverTile.GetUnitInTile().turnTaken)
+                GameManager.StartUnitTurn(_hoverTile.GetUnitInTile());
         }
     }
 }

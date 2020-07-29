@@ -6,6 +6,7 @@ using TacticsGame.Battle.Map.Enums;
 using TacticsGame.Battle.Units;
 using static TacticsGame.Battle.Map.Enums.CoverType;
 using static TacticsGame.Battle.Map.Enums.Direction;
+using Object = UnityEngine.Object;
 
 namespace TacticsGame.Battle.Map {
     public class MapTile {
@@ -111,23 +112,28 @@ namespace TacticsGame.Battle.Map {
             MoveBlocked[direction] = moveBlocker;
         }
         
-        public bool CanSeeOtherTile(MapTile mapTile, float distance, bool cornerPeak = false) {
+        public bool CanSeeOtherTile(MapTile mapTile, float distance, bool cornerPeak = false, bool cornerSpot = false) {
             var startPositions = new List<Vector3> { UiTile.transform.position };
             if (cornerPeak)
                 startPositions.AddRange(CornerPeakFrom().Select(tile => tile.UiTile.transform.position));
             
-            var endPos = mapTile.UiTile.transform.position;
-            endPos.y += 0.8F;
-
+            var endPositions = new List<Vector3> { mapTile.GetWorldPosition() };
+            if (cornerSpot)
+                endPositions.AddRange(mapTile.CornerPeakFrom().Select(tile => tile.UiTile.transform.position));
+            
             foreach (var startPosition in startPositions) {
-                var losPos = startPosition;
-                losPos.y += 0.8F;
-                if (Vector3.Distance(losPos, endPos) > distance) continue;
-                if (Physics.Linecast(losPos, endPos, out var hit)) {
-                    if (hit.collider.CompareTag($"LOS")) continue;
-                }
+                foreach (var endPosition in endPositions) {
+                    var endPos = endPosition;
+                    endPos.y += 0.8F;
+                    var losPos = startPosition;
+                    losPos.y += 0.8F;
+                    if (Vector3.Distance(losPos, endPos) > distance) continue;
+                    if (Physics.Linecast(losPos, endPos, out var hit)) {
+                        if (hit.collider.CompareTag($"LOS")) continue;
+                    }
 
-                return true;
+                    return true;
+                }
             }
 
             return false;
@@ -169,5 +175,12 @@ namespace TacticsGame.Battle.Map {
         public static void UnhighlightAllTiles() {
             foreach (var mapTile in All) mapTile.UnhighlightTile();
         }
+
+        public void CreateProp(GameObject prop) {
+            var newProp = Object.Instantiate(prop, GetWorldPosition(), Quaternion.identity);
+            newProp.transform.Rotate(new Vector3(-90, 0));
+        }
+
+        public Unit GetUnitInTile() => Unit.All.FirstOrDefault(unit => unit.GetCurrentMapTile() == this);
     }
 }

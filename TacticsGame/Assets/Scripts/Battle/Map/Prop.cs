@@ -11,6 +11,7 @@ namespace TacticsGame.Battle.Map {
         [SerializeField] private CoverType coverType = CoverType.NoCover;
         [SerializeField] private bool moveBlocker = false;
         [SerializeField] private bool transparentHover = false;
+        [SerializeField] private int lifeSpan = -1;
 
         private MouseHoverTile _mouseHoverTile;
         private Camera _mainCamera;
@@ -27,8 +28,13 @@ namespace TacticsGame.Battle.Map {
         }
 
         private void Start() {
-            if (!wallType) FindBlockingTiles();
-            else FindWallBLockingTiles();
+            if (moveBlocker) {
+                if (!wallType) FindBlockingTiles();
+                else FindWallBLockingTiles();
+            }
+            else {
+                if (!wallType) boundsCalc.GetComponent<MeshRenderer>().enabled = false;
+            }
         }
 
         private void FindBlockingTiles() {
@@ -89,7 +95,12 @@ namespace TacticsGame.Battle.Map {
             _meshRenderer.material.shader = Shader.Find("Outlined/Silhouette Only");
             _meshRenderer.material.SetColor("_OutlineColor", new Color(0.213F, 0.925F, 0.943F));
         }
-        
+
+        private void ReduceLifeSpan() {
+            if (lifeSpan == -1) return;
+            lifeSpan--;
+            if (lifeSpan == 0) Destroy(gameObject);
+        }
         
     }
 }

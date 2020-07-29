@@ -624,6 +624,10 @@ PrefabInstance:
       propertyPath: rmsCount
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 760084960, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
+      propertyPath: seeThrough
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1472097213436868, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_Name
       value: Soldier (1)
@@ -1126,6 +1130,7 @@ MonoBehaviour:
   playerNames:
   - Josh
   - Dave
+  activeUnits: 0000000000000000
 --- !u!4 &515998762
 Transform:
   m_ObjectHideFlags: 0
@@ -1138,7 +1143,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &515998763
 MonoBehaviour:
@@ -2135,7 +2140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213512920971450, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4213512920971450, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

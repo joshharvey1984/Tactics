@@ -35,7 +35,7 @@ namespace TacticsGame.Data {
             AbilityPause = GameObject.Find("GameManager").GetComponent<AbilityPause>();
         }
         
-        public abstract void Execute();
+        public virtual void Execute() { }
 
         protected void AddStatusEffect(StatusEffect statusEffect) {
             Unit.ActiveUnit.AddStatusEffect(statusEffect);
@@ -45,9 +45,10 @@ namespace TacticsGame.Data {
             Unit.ActiveUnit.targetUnit.AddStatusEffect(statusEffect);
         }
         
-        public abstract void EndAbility();
+        public virtual void EndAbility() { }
         public virtual void Targeting() { }
         public virtual void TileWatchTrigger(Unit triggeredUnit) { }
         public virtual void ExplodeEffect(MapTile landingTile) { }
+        public virtual void PassiveEffect(Unit effectedUnit) { }
     }
 }

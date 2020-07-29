@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TacticsGame.Battle.Map.Enums;
+using TacticsGame.Battle.Map.UI;
+using UnityEngine;
 
 namespace TacticsGame.Battle.Map {
     public static class MoveGrid {
@@ -27,11 +29,13 @@ namespace TacticsGame.Battle.Map {
                 if (mapTile.Value.MoveNum == -1) mapTile.Value.MoveNum = moveNum + 1;
                 returnTiles.Add(mapTile.Value);
             }
+
             return returnTiles;
         }
 
         public static void ResetMovedGrid() {
             foreach (var mapTile in MapTile.All) mapTile.MoveNum = -1;
+            MovementUI.DestroyMovementUI();
         }
     }
 }

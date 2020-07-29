@@ -11,11 +11,10 @@ using TacticsGame.Data.Abilities;
 using TacticsGame.Data.Equipments;
 using TacticsGame.Data.Equipments.Armours;
 using TacticsGame.Data.Equipments.Utilities;
-using TacticsGame.Data.Equipments.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 using FragGrenade = TacticsGame.Data.Equipments.Utilities.Grenades.FragGrenade;
-using Random = UnityEngine.Random;
+using SmokeGrenade = TacticsGame.Data.Equipments.Utilities.Grenades.SmokeGrenade;
 
 namespace TacticsGame.Battle.Units {
     public class Unit : MonoBehaviour {
@@ -67,6 +66,9 @@ namespace TacticsGame.Battle.Units {
         public int aim = 10;
         public int defence = 10;
 
+        public int sightRange = 20;
+        public int fireRange = 20;
+
         public int currentHitPoints = 100;
         public List<StatusEffect> currentStatusEffects = new List<StatusEffect>();
 
@@ -91,18 +93,24 @@ namespace TacticsGame.Battle.Units {
             abilities.Add(new FireAbility());
             abilities.Add(new HunkerDown());
             abilities.Add(new Overwatch());
-
-            var weaponRng = Random.Range(0, 100);
-            weapon = new Shotgun();
+            
+            weapon = new SniperRifle();
             armour = new LightFlak();
-            equipment = new List<Equipment> { new FragGrenade() };
+            equipment = new List<Equipment> { new FragGrenade(), new SmokeGrenade() };
             
             abilities.AddRange(weapon.AddedAbilities);
             abilities.AddRange(armour.AddedAbilities);
             foreach (var equip in equipment) abilities.AddRange(equip.AddedAbilities);
-
-            CreateStatusBar();
+            
             SpawnWeaponModel();
+            PassiveCheck();
+            CreateStatusBar();
+        }
+
+        private void PassiveCheck() {
+            foreach (var ability in abilities.Where(ability => ability.AbilityType == Ability.AbilityTypes.Passive)) {
+                ability.PassiveEffect(this);
+            }
         }
 
         private void SpawnWeaponModel() {
@@ -110,6 +118,7 @@ namespace TacticsGame.Battle.Units {
             weaponSlot.transform.rotation = weapon.SlotRotation;
             muzzle = weaponGameObject.transform.Find("MuzzleFlashGenerator").gameObject;
         }
+        
         private void CreateStatusBar() {
             var statusBar = Instantiate(statusBarPrefab, GameObject.Find("Canvas").transform);
             statusBar.GetComponent<Slider>().maxValue = hitPoints;
@@ -134,7 +143,6 @@ namespace TacticsGame.Battle.Units {
 
         private void EndMoveTurn() {
             _unitMovement.EndMove();
-            moveTaken = true;
             _abilityPanel.CreateAbilityButtons();
             _targetPanel.UpdateTargetPanel();
             _gameManager.StartTimer();
@@ -172,7 +180,7 @@ namespace TacticsGame.Battle.Units {
 
         public List<Unit> EnemiesInLineOfSight() =>
             All.Where(unit => unit.gang != gang)
-                .Where(unit => GetCurrentMapTile().CanSeeOtherTile(unit.GetCurrentMapTile(), 20.0F, true))
+                .Where(unit => GetCurrentMapTile().CanSeeOtherTile(unit.GetCurrentMapTile(), sightRange, true, true))
                 .Distinct()
                 .ToList();
         
@@ -213,7 +221,6 @@ namespace TacticsGame.Battle.Units {
         }
 
         public void TakeDamage(int damageToTake) {
-            
             currentHitPoints -= damageToTake;
             _unitStatusBar.LoseHealth(damageToTake);
         }

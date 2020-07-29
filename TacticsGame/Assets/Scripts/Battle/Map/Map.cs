@@ -1,22 +1,17 @@
-﻿using System;
-using TacticsGame.Battle.Units;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TacticsGame.Battle.Map
-{
-    public class Map : MonoBehaviour
-    {
+namespace TacticsGame.Battle.Map {
+    public class Map : MonoBehaviour {
         private const int MapSizeX = 16, MapSizeZ = 16;
         public GameObject uiTilePrefab;
         public Canvas canvas;
-        
-        
+
+
         private void Awake() {
             CreateMapTiles();
         }
 
-        private void CreateMapTiles()
-        {
+        private void CreateMapTiles() {
             for (var x = 0; x < MapSizeX; x++) {
                 for (var z = 0; z < MapSizeZ; z++) {
                     var mapTile = new MapTile(x, z);

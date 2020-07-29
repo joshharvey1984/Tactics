@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.Units;
@@ -81,6 +82,7 @@ namespace TacticsGame.Battle.UI {
         public void CreateAbilityButtons() {
             AbilityButton.DestroyAll();
             foreach (var ability in Unit.ActiveUnit.abilities) {
+                if (ability.AbilityType == Ability.AbilityTypes.Passive) continue;
                 if ((ability.TargetingType == Ability.TargetingTypes.EnemyFire ||
                      ability.TargetingType == Ability.TargetingTypes.EnemyWatch)
                     && Unit.ActiveUnit.EnemiesInLineOfSight().Count == 0)
