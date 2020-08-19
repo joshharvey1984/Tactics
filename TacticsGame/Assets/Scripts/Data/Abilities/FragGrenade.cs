@@ -17,7 +17,7 @@ namespace TacticsGame.Data.Abilities {
             Name = "Frag Grenade";
             AbilityType = AbilityTypes.Active;
             Description = "Throw a frag grenade.";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Bomb.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Bomb");
             TargetingType = TargetingTypes.Throw;
             SpecialTarget = SpecialTargeting.Throw;
         }
@@ -51,6 +51,7 @@ namespace TacticsGame.Data.Abilities {
                     }
                 }
             }
+            landingTile.UiTile.AddComponent<AudioSource>().PlayOneShot(grenade.ExplosionAudio);
             AbilityPause.StartPause(1.5F, this, "EndAbility");
         }
 

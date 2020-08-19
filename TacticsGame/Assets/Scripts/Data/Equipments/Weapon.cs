@@ -8,5 +8,6 @@ namespace TacticsGame.Data.Equipments {
         public virtual int RangeDropOff { get; set; }
         public abstract GameObject WeaponModel { get; set; }
         public abstract Quaternion SlotRotation { get; set; }
+        public abstract AudioClip FireSound { get; set; }
     }
 }

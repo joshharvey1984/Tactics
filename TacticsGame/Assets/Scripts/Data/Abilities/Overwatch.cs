@@ -19,7 +19,7 @@ namespace TacticsGame.Data.Abilities {
             Name = "Overwatch";
             AbilityType = AbilityTypes.Active;
             Description = "Fire at the first enemy unit to move in line of sight";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Eye.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Eye");
             TargetingType = TargetingTypes.Self;
             SpecialTarget = SpecialTargeting.Cone;
             CombatHitModifiers = new List<CombatHitModifier> {

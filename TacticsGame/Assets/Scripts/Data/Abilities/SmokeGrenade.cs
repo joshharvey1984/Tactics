@@ -16,7 +16,7 @@ namespace TacticsGame.Data.Abilities {
             Name = "Smoke Grenade";
             AbilityType = AbilityTypes.Active;
             Description = "Throw a smoke grenade.";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Cloud.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Cloud");
             TargetingType = TargetingTypes.Throw;
             SpecialTarget = SpecialTargeting.Throw;
         }
@@ -35,7 +35,7 @@ namespace TacticsGame.Data.Abilities {
             var grenade = new Equipments.Utilities.Grenades.SmokeGrenade();
             var aoeTile = ThrowTarget.FindAOETiles(landingTile.UiTile, grenade.BlastAreaOfEffect, grenade.ShrapnelAreaOfEffect);
             foreach (var mapTile in aoeTile.Item1) {
-                mapTile.CreateProp(AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Battle/Map/Props/SmokeEffect.prefab", typeof(GameObject)) as GameObject);
+                mapTile.CreateProp(Resources.Load("Prefabs/Battle/Map/Props/SmokeEffect", typeof(GameObject)) as GameObject);
             }
             AbilityPause.StartPause(1.5F, this, "EndAbility");
         }

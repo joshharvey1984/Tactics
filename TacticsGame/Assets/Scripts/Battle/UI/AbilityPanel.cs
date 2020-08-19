@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using TacticsGame.Battle.Core;
-using TacticsGame.Battle.Map.UI;
+﻿using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.Units;
 using TacticsGame.Data;
 using UnityEngine;
@@ -21,10 +18,13 @@ namespace TacticsGame.Battle.UI {
         
         private TargetPanel _targetPanel;
 
+        private UIAudio _uiAudio;
+
         private void Awake() {
             _targetPanel = FindObjectOfType<TargetPanel>();
             _hitPanel = Resources.FindObjectsOfTypeAll<HitPanel>()[0];
             _damagePanel = Resources.FindObjectsOfTypeAll<DamagePanel>()[0];
+            _uiAudio = FindObjectOfType<UIAudio>();
         }
 
         private void ChangeAbility(object sender, AbilityButton.OnAbilityButtonClickArgs e) {
@@ -41,6 +41,7 @@ namespace TacticsGame.Battle.UI {
             DeactivatePanel();
             _targetPanel.UpdateTargetPanel();
             MovementUI.DrawMovementUI(Unit.ActiveUnit);
+            _uiAudio.Play(_uiAudio.PathToAudioClip("Audio/UI/MoveButton"));
         }
 
         private void ActivatePanel() {
@@ -51,6 +52,7 @@ namespace TacticsGame.Battle.UI {
             _targetPanel.MovePanel(210);
             if (Unit.ActiveUnit.selectedAbility.TargetingType == Ability.TargetingTypes.EnemyFire) ActivateCombatPanels();
             else DeactivateCombatPanels();
+            _uiAudio.Play(_uiAudio.PathToAudioClip("Audio/UI/AbilityPanelActive"));
         }
 
         private void DeactivatePanel() {

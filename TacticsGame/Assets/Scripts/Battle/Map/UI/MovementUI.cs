@@ -67,8 +67,9 @@ namespace TacticsGame.Battle.Map.UI {
             DestroyMovementUI();
             var rTiles = MoveRoute.GetMoveRoute(_currentUnit.GetCurrentMapTile(), _hoverTile);
             _currentUnit.MoveUnit(rTiles);
+            GameManager.SendUnitMove(_currentUnit, _hoverTile);
         }
-
+        
         private static void SwitchActiveUnit(object sender, EventArgs args) {
             if (_hoverTile == null) return;
             if (_hoverTile.GetUnitInTile() == null) return;

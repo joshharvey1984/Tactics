@@ -16,7 +16,7 @@ namespace TacticsGame.Data.Abilities {
             Name = "Scattershot";
             AbilityType = AbilityTypes.Active;
             Description = "Graze all units in cone target for half damage.";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Tex_skill_44.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Tex_skill_44");
             TargetingType = TargetingTypes.Self;
             SpecialTarget = SpecialTargeting.Cone;
         }

@@ -14,6 +14,7 @@ namespace TacticsGame.Data.Equipments.Weapons {
         public sealed override int RangeDropOff { get; set; }
         public sealed override GameObject WeaponModel { get; set; }
         public sealed override Quaternion SlotRotation { get; set; }
+        public override AudioClip FireSound { get; set; }
 
         public SubMachineGun() {
             Name = "Submachine Gun";
@@ -23,7 +24,7 @@ namespace TacticsGame.Data.Equipments.Weapons {
             Damage = 25;
             RangeDropOff = 5;
             AddedAbilities = new List<Ability> { new PinDown() };
-            WeaponModel = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Battle/Weapons/SMG.prefab", typeof(GameObject)) as GameObject;
+            WeaponModel = Resources.Load("Assets/Prefabs/Battle/Weapons/SMG", typeof(GameObject)) as GameObject;
             SlotRotation = Quaternion.Euler(-12, -96, 260);
         }
     }

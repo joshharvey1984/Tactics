@@ -13,6 +13,7 @@ namespace TacticsGame.Data.Equipments.Utilities.Grenades {
         public sealed override int ShrapnelDamage { get; set; }
         public sealed override GameObject GrenadePrefab { get; set; }
         public sealed override GameObject ExplodePrefab { get; set; }
+        public sealed override AudioClip ExplosionAudio { get; set; }
 
 
         public FragGrenade() {
@@ -23,10 +24,12 @@ namespace TacticsGame.Data.Equipments.Utilities.Grenades {
             BlastDamage = 60;
             ShrapnelDamage = 30;
             AddedAbilities = new List<Ability> { new Abilities.FragGrenade() };
-            GrenadePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Battle/Weapons/frag_grenade.prefab",
+            GrenadePrefab = Resources.Load("Prefabs/Battle/Weapons/frag_grenade.prefab",
                 typeof(GameObject)) as GameObject;
-            ExplodePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Battle/Effects/SmallExplosionEffect.prefab",
+            ExplodePrefab = Resources.Load("Prefabs/Battle/Effects/SmallExplosionEffect.prefab",
                 typeof(GameObject)) as GameObject;
+            ExplosionAudio = Resources.Load("Audio/SFX/Grenades/Frag Grenade.wav", 
+                typeof(AudioClip)) as AudioClip;
         }
     }
 }

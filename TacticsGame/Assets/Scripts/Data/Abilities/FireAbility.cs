@@ -1,6 +1,5 @@
 ﻿using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Units;
-using UnityEditor;
 using UnityEngine;
 
 namespace TacticsGame.Data.Abilities {
@@ -15,7 +14,7 @@ namespace TacticsGame.Data.Abilities {
             Name = "Fire";
             AbilityType = AbilityTypes.Active;
             Description = "Fire weapon at selected Enemy";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Target.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Target");
             TargetingType = TargetingTypes.EnemyFire;
             SpecialTarget = SpecialTargeting.None;
         }
@@ -29,9 +28,12 @@ namespace TacticsGame.Data.Abilities {
             var successfulHit = hitSuccess < CombatHitCalc.CalculateHitChance(selectedUnit, targetUnit, this)["HIT"];
             if (successfulHit)
                 damageDone = CombatDamageCalc.DamageCalculation(selectedUnit, targetUnit, this)["DAMAGE"];
+            selectedUnit.GetComponent<UnitAudio>().Play(selectedUnit.weapon.FireSound);
             selectedUnit.FireBullets(5);
             targetUnit.PopUpText(successfulHit ? damageDone.ToString() : "MISS");
             targetUnit.TakeDamage(damageDone);
+            Object.FindObjectOfType<GameManager>().SendAbility(Name, selectedUnit, targetUnit, null);
+            Object.FindObjectOfType<GameManager>().SendDamage(targetUnit, damageDone);
             AbilityPause.StartPause(1.5F, this, "EndAbility");
         }
 
@@ -39,6 +41,14 @@ namespace TacticsGame.Data.Abilities {
 
         public override void EndAbility() {
             Unit.ActiveUnit.EndTurn();
+        }
+
+        public override void ObservedExecute() {
+            var selectedUnit = Unit.ActiveUnit;
+            var targetUnit = selectedUnit.targetUnit;
+            selectedUnit.LookAtGameObject(targetUnit.gameObject);
+            selectedUnit.GetComponent<UnitAudio>().Play(selectedUnit.weapon.FireSound);
+            selectedUnit.FireBullets(5);
         }
     }
 }

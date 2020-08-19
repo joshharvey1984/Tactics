@@ -14,7 +14,7 @@ namespace TacticsGame.Data.Abilities {
             Name = "Hunker Down";
             AbilityType = AbilityTypes.Active;
             Description = "Hunker down and increase defensive bonus.";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Shield.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Shield");
             TargetingType = TargetingTypes.Self;
         }
         public override void Execute() {

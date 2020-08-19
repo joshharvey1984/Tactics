@@ -43,6 +43,7 @@ namespace TacticsGame.Battle.Units {
                 transform.position = Vector3.MoveTowards(transform.position, _nextPos, MoveSpeed * Time.deltaTime);
                 if (unit.GetCurrentMapTile() != _lastMapTile) {
                     _lastMapTile = unit.GetCurrentMapTile();
+                    unit.UpdateEnemyDraw();
                     CheckForTileWatch();
                 }
                 //_cameraScript.CentreOnGameObject(ut.position);

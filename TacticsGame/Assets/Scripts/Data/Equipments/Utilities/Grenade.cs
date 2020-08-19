@@ -9,5 +9,6 @@ namespace TacticsGame.Data.Equipments.Utilities {
         public virtual int ShrapnelDamage { get; set; }
         public abstract GameObject GrenadePrefab { get; set; }
         public abstract GameObject ExplodePrefab { get; set; }
+        public abstract AudioClip ExplosionAudio { get; set; }
     }
 }

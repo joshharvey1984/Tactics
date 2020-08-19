@@ -18,7 +18,7 @@ namespace TacticsGame.Data.Abilities {
             Name = "Pin Down";
             AbilityType = AbilityTypes.Active;
             Description = "Pin down an enemy fighter and reduce their aim. If the enemy moves in line of sight then perform a reaction shot.";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_PinDown.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_PinDown");
             TargetingType = TargetingTypes.EnemyWatch;
             CombatHitModifiers = new List<CombatHitModifier> {
                 new CombatHitModifier {

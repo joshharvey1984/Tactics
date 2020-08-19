@@ -12,7 +12,7 @@ namespace TacticsGame.Data.StatusEffects {
 
         public Overwatch() {
             Name = "Overwatch";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Eye.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Eye");
             EndActions = new List<EndAction> {EndAction.TurnStart};
             CombatHitModifiers = new List<CombatHitModifier> {
                 new CombatHitModifier {

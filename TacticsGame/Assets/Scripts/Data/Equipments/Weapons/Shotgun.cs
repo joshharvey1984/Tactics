@@ -13,6 +13,7 @@ namespace TacticsGame.Data.Equipments.Weapons {
         public override int Damage { get; set; }
         public override GameObject WeaponModel { get; set; }
         public override Quaternion SlotRotation { get; set; }
+        public override AudioClip FireSound { get; set; }
 
         public Shotgun() {
             Name = "Shotgun";
@@ -22,8 +23,9 @@ namespace TacticsGame.Data.Equipments.Weapons {
             Damage = 35;
             RangeDropOff = 7;
             AddedAbilities = new List<Ability> { new Scattershot() };
-            WeaponModel = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Battle/Weapons/Shotgun.prefab", typeof(GameObject)) as GameObject;
+            WeaponModel = Resources.Load("Prefabs/Battle/Weapons/Shotgun", typeof(GameObject)) as GameObject;
             SlotRotation = Quaternion.Euler(-55, 116, 54);
+            FireSound = Resources.Load<AudioClip>("Audio/SFX/Gun Fire/Shotgun");
         }
     }
 }

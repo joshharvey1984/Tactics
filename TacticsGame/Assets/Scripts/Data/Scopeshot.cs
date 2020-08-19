@@ -14,7 +14,7 @@ namespace TacticsGame.Data {
             Name = "Scopeshot";
             AbilityType = AbilityTypes.Passive;
             Description = "Allows unit to fire at any enemy in unobstructed line-of-sight ignoring range limit.";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_address.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load("Textures/Abilities/Icon_address", typeof(Sprite)) as Sprite;
             TargetingType = TargetingTypes.Self;
         }
 

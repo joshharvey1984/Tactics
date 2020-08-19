@@ -14,7 +14,6 @@ namespace TacticsGame.Battle.Core {
         }
 
         private void Awake() {
-            if (!Camera.current) _mainCamera = Camera.main;
             OnHoverTileChanged += _OnHoverTileChanged;
         }
 
@@ -23,7 +22,9 @@ namespace TacticsGame.Battle.Core {
         }
 
         private void Update() {
-            var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            var mousePosition = Input.mousePosition;
+            if (_mainCamera == null) GetMainCam();
+            var ray = _mainCamera.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out var hit, 200.0f, WallBitMask)) {
                 if (hit.collider.gameObject != _hoverTileObject)
                     OnHoverTileChanged?.Invoke(this,
@@ -32,6 +33,10 @@ namespace TacticsGame.Battle.Core {
             else {
                 OnHoverTileChanged?.Invoke(this, new OnHoverTileChangedArgs {HoverTileUi = null});
             }
+        }
+
+        private void GetMainCam() {
+            if (!Camera.current) _mainCamera = Camera.main;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace TacticsGame.Data.StatusEffects {
 
         public PinDown() {
             Name = "Pin Down";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_PinDown.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_PinDown");
             EndActions = new List<EndAction> { EndAction.TurnStart };
         }
     }

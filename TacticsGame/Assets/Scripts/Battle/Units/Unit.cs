@@ -11,6 +11,7 @@ using TacticsGame.Data.Abilities;
 using TacticsGame.Data.Equipments;
 using TacticsGame.Data.Equipments.Armours;
 using TacticsGame.Data.Equipments.Utilities;
+using TacticsGame.Data.Equipments.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 using FragGrenade = TacticsGame.Data.Equipments.Utilities.Grenades.FragGrenade;
@@ -20,10 +21,11 @@ namespace TacticsGame.Battle.Units {
     public class Unit : MonoBehaviour {
         public static readonly List<Unit> All = new List<Unit>();
         public static Unit ActiveUnit;
+        public int unitId;
 
         private Transform _transform;
         private List<SkinnedMeshRenderer> _meshRenderers;
-        [SerializeField] private GameObject weaponGameObject;
+        [SerializeField] public GameObject weaponGameObject;
         [SerializeField] private GameObject throwSpawn;
         
         private GameObject _grenadeObject;
@@ -33,6 +35,8 @@ namespace TacticsGame.Battle.Units {
         public List<Equipment> equipment;
         public List<Ability> abilities = new List<Ability>();
 
+        private UnitAudio _unitAudio;
+        
         private UnitMovement _unitMovement;
         private List<MapTile> _moveTiles;
         private int _moveNum;
@@ -47,6 +51,7 @@ namespace TacticsGame.Battle.Units {
         public GameObject popupTextPrefab;
         private GameObject _canvas;
         private GameManager _gameManager;
+        public PlayerGang playerGang;
 
         public GameObject weaponSlot;
         public GameObject muzzle;
@@ -82,6 +87,8 @@ namespace TacticsGame.Battle.Units {
             _unitMovement = GetComponent<UnitMovement>();
             _unitMovement.unit = this;
 
+            _unitAudio = GetComponent<UnitAudio>();
+
             var objectRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             _meshRenderers = objectRenderers.ToList();
 
@@ -89,12 +96,13 @@ namespace TacticsGame.Battle.Units {
             _canvas = GameObject.Find("Canvas");
             _abilityPanel = GameObject.Find("AbilityPanel").GetComponent<AbilityPanel>();
             _targetPanel = GameObject.Find("TargetPanel").GetComponent<TargetPanel>();
+            playerGang = GameObject.Find("GameManager").GetComponent<PlayerGang>();
             
             abilities.Add(new FireAbility());
             abilities.Add(new HunkerDown());
             abilities.Add(new Overwatch());
             
-            weapon = new SniperRifle();
+            weapon = new Shotgun();
             armour = new LightFlak();
             equipment = new List<Equipment> { new FragGrenade(), new SmokeGrenade() };
             
@@ -105,6 +113,18 @@ namespace TacticsGame.Battle.Units {
             SpawnWeaponModel();
             PassiveCheck();
             CreateStatusBar();
+        }
+
+        public static void SetUnitId() {
+            var id = 0;
+            foreach (var unit in All) {
+                unit.unitId = id;
+                id++;
+            }
+        }
+
+        public static Unit GetUnitById(int id) {
+            return All.First(unit => unit.unitId == id);
         }
 
         private void PassiveCheck() {
@@ -132,6 +152,7 @@ namespace TacticsGame.Battle.Units {
             _moveTiles = tiles;
             _moveNum = 0;
             _unitMovement.SetAnimationBool("Crouch", false);
+            _unitAudio.SprintSound();
             MoveNextTile();
         }
 
@@ -142,10 +163,13 @@ namespace TacticsGame.Battle.Units {
         }
 
         private void EndMoveTurn() {
+            _unitAudio.StopSprintSound();
             _unitMovement.EndMove();
-            _abilityPanel.CreateAbilityButtons();
-            _targetPanel.UpdateTargetPanel();
-            _gameManager.StartTimer();
+            if (_gameManager.gangNumber == _gameManager.currentGangTurn) {
+                _abilityPanel.CreateAbilityButtons();
+                _targetPanel.UpdateTargetPanel();
+                _gameManager.StartTimer();
+            }
         }
 
         public void ExecuteAbility() {
@@ -159,6 +183,7 @@ namespace TacticsGame.Battle.Units {
                 Convert.ToInt32(_transform.position.z));
 
         public void StartTurn() {
+            UpdateEnemyDraw();
             StatusEffectUpdate();
             _unitStatusBar.UpdateStatusIcons();
             MovementUI.DrawMovementUI(this);
@@ -188,6 +213,14 @@ namespace TacticsGame.Battle.Units {
             MapTile.All
                 .Where(mapTile => GetCurrentMapTile().CanSeeOtherTile(mapTile, 20.0F, true))
                 .ToList();
+        
+        public List<MapTile> GetAllTilesInSight() {
+            var returnList = new List<MapTile>();
+            foreach (var unit in All.Where(unit => unit.gang == gang)) {
+                returnList.AddRange(unit.AllTilesInSight());
+            }
+            return returnList;
+        }
 
         public void FireBullets(int numBullets) {
             muzzle.GetComponent<MuzzleFlashGenerator>().toFire = numBullets;
@@ -228,6 +261,22 @@ namespace TacticsGame.Battle.Units {
         public void AddStatusEffect(StatusEffect statusEffect) {
             currentStatusEffects.Add(statusEffect);
             _unitStatusBar.UpdateStatusIcons();
+        }
+
+        public void UpdateEnemyDraw() {
+            playerGang.UnitVisibilityUpdate();
+        }
+
+        public void HideUnit() {
+            foreach (var skinnedMeshRenderer in _meshRenderers) {
+                skinnedMeshRenderer.enabled = false;
+            }
+        }
+
+        public void ShowUnit() {
+            foreach (var skinnedMeshRenderer in _meshRenderers) {
+                skinnedMeshRenderer.enabled = true;
+            }
         }
     }
 }

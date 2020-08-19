@@ -36,6 +36,7 @@ namespace TacticsGame.Data {
         }
         
         public virtual void Execute() { }
+        public virtual void ObservedExecute() { }
 
         protected void AddStatusEffect(StatusEffect statusEffect) {
             Unit.ActiveUnit.AddStatusEffect(statusEffect);

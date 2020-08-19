@@ -12,7 +12,7 @@ namespace TacticsGame.Data.StatusEffects {
 
         public HunkerDown() {
             Name = "Hunker Down";
-            Icon = AssetDatabase.LoadAssetAtPath("Assets/Textures/Abilities/Icon_Shield.png", typeof(Sprite)) as Sprite;
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Shield");
             EndActions = new List<EndAction> {EndAction.TurnStart};
             CombatHitModifiers = new List<CombatHitModifier> {
                 new CombatHitModifier {

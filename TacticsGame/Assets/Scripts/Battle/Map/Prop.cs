@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Map.Enums;
 using UnityEngine;
@@ -7,12 +8,13 @@ namespace TacticsGame.Battle.Map {
     public class Prop : MonoBehaviour {
         public static List<Prop> All = new List<Prop>();
 
-        [SerializeField] private bool wallType;
+        [SerializeField] private bool wallType = false;
         [SerializeField] private CoverType coverType = CoverType.NoCover;
         [SerializeField] private bool moveBlocker = false;
         [SerializeField] private bool transparentHover = false;
         [SerializeField] private int lifeSpan = -1;
 
+        private GameManager _gameManager;
         private MouseHoverTile _mouseHoverTile;
         private Camera _mainCamera;
         private MeshRenderer _meshRenderer;
@@ -23,8 +25,10 @@ namespace TacticsGame.Battle.Map {
             All.Add(this);
             _mainCamera = Camera.main;
             _mouseHoverTile = FindObjectOfType<MouseHoverTile>();
+            _gameManager = FindObjectOfType<GameManager>();
             _mouseHoverTile.OnHoverTileChanged += CheckForTransparency;
             _meshRenderer = GetComponentInChildren<MeshRenderer>();
+            if (lifeSpan > 0) _gameManager.OnNewRound += ReduceLifeSpan;
         }
 
         private void Start() {
@@ -96,8 +100,7 @@ namespace TacticsGame.Battle.Map {
             _meshRenderer.material.SetColor("_OutlineColor", new Color(0.213F, 0.925F, 0.943F));
         }
 
-        private void ReduceLifeSpan() {
-            if (lifeSpan == -1) return;
+        private void ReduceLifeSpan(object sender, EventArgs e) {
             lifeSpan--;
             if (lifeSpan == 0) Destroy(gameObject);
         }

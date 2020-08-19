@@ -10,15 +10,16 @@ namespace TacticsGame.Data.Equipments.Utilities.Grenades {
         public override int BlastAreaOfEffect { get; set; }
         public override GameObject GrenadePrefab { get; set; }
         public override GameObject ExplodePrefab { get; set; }
+        public override AudioClip ExplosionAudio { get; set; }
 
         public SmokeGrenade() {
             Name = "Smoke Grenade";
             Value = 50;
             BlastAreaOfEffect = 1;
             AddedAbilities = new List<Ability> { new Abilities.SmokeGrenade() };
-            GrenadePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Battle/Weapons/smoke_grenade.prefab",
+            GrenadePrefab = Resources.Load("Prefabs/Battle/Weapons/smoke_grenade.prefab",
                 typeof(GameObject)) as GameObject;
-            ExplodePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Battle/Effects/muzzleFlash.prefab",
+            ExplodePrefab = Resources.Load("Prefabs/Battle/Effects/muzzleFlash.prefab",
                 typeof(GameObject)) as GameObject;
         }
     }

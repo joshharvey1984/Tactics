@@ -8,6 +8,8 @@ using UnityEngine.UI;
 namespace TacticsGame.Battle.UI {
     public class AbilityButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
         private static readonly List<AbilityButton> All = new List<AbilityButton>();
+
+        private UIAudio _uiAudio;
         
         private Image _myIcon;
         private Ability _ability;
@@ -20,6 +22,7 @@ namespace TacticsGame.Battle.UI {
         private void Awake() {
             All.Add(this);
             _myIcon = transform.GetChild(0).gameObject.GetComponent<Image>();
+            _uiAudio = FindObjectOfType<UIAudio>();
         }
 
         public static void DestroyAll() {
@@ -35,6 +38,7 @@ namespace TacticsGame.Battle.UI {
 
         private void OnHover() {
             if (_myIcon != null) transform.localScale = Vector3.one * 1.2f;
+            _uiAudio.Play(_uiAudio.PathToAudioClip("Audio/UI/AbilityButton"), 0.125F);
         }
         
         private void OnClick() => OnAbilityButtonClick?.Invoke(this, new OnAbilityButtonClickArgs{ SelectedAbility = _ability });
