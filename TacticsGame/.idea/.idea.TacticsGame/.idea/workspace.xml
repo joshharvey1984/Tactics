@@ -21,151 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="27871e6a-4bb0-429f-991d-2bbca1185c60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TacticsGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects/SmallExplosionEffect.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects/SmallExplosionEffect.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects/bulletTrace.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects/bulletTrace.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects/muzzleFlash.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Effects/muzzleFlash.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/Barrel1 Variant.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/Barrel1 Variant.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/SmokeEffect.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/SmokeEffect.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/Truck_04 Variant.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/Truck_04 Variant.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/wall.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Props/wall.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Manhole A.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Manhole A.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement A.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement A.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement B.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement B.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement C.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement C.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement D.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement D.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement E.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement E.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement F.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Pavement F.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Road A.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Road A.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Road B.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Road B.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Road C.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/Tile Parts/Road C.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/UI.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/UI/CoverUI.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/UI/CoverUI.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/UI/UITile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Map/UI/UITile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/AbilityBtn.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/AbilityBtn.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/AimCone.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/AimCone.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/Popup Text.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/Popup Text.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/TargetBtn.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/TargetBtn.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/UnitStatus.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/UI/UnitStatus.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Units/Soldier.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/SMG.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/SMG.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/Shotgun.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/Shotgun.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/SniperRifle.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/SniperRifle.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/frag_grenade.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/frag_grenade.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/smoke_grenade.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Battle/Weapons/smoke_grenade.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Battle.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MainCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MainCamera.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/BulletTracerGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Effects/BulletTracerGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Map.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/CoverIcon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/AbilityPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/DamagePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/UI/DamagePanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerGang.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerGang.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FragGrenade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FragGrenade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/HunkerDown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/HunkerDown.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Overwatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Overwatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/PinDown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/PinDown.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Scattershot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Scattershot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/SmokeGrenade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/SmokeGrenade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Ability.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Ability.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/SniperRifle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SniperRifle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/SniperRifle.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SniperRifle.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Utilities/Grenade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Utilities/Grenade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Utilities/Grenades/FragGrenade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Utilities/Grenades/FragGrenade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Utilities/Grenades/SmokeGrenade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Utilities/Grenades/SmokeGrenade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/Shotgun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/Shotgun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SubMachineGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SubMachineGun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Scopeshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Scopeshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/HunkerDown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/HunkerDown.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinDown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinDown.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinnedDown.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/PinnedDown.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gangs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gangs/Gang.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gangs/Gang.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gangs/Ganger.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gangs/Ganger.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Bomb.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Bomb.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Cloud.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Cloud.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Eye.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Eye.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Fire.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Fire.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_PinDown.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_PinDown.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Shield.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Shield.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Target.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_Target.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_address.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Icon_address.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Tex_skill_44.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Abilities/Tex_skill_44.PNG.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Icon_FullCover.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Icon_FullCover.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Icon_HalfCover.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Icon_HalfCover.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Icon_Terror.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Icon_Terror.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/TileUI.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/TileUI.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/Kenney Assets/Stylized city/Materials/windows_2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Photon/PhotonUnityNetworking/Demos/DemoSlotRacer/Kenney Assets/Stylized city/Materials/windows_2.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,6 +98,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/Overwatch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/Prop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Utilities/Grenades/FragGrenade.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/FogOfWar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/MouseHoverTile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Map/UI/MovementUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/PlayerNameInputField.cs" root0="FORCE_HIGHLIGHTING" />
@@ -242,6 +106,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/Core/MainCamera.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/UI/UIAudio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/51/accec36f/Void.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/FPSCount.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Battle/UI/TargetPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/StatusEffects/HunkerDown.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapons/SubMachineGun.cs" root0="FORCE_HIGHLIGHTING" />
@@ -258,10 +123,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Utilities/SmokeGrenade.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerControls.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MoveGrid.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/MainCamera.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Equipments/Weapon.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/UI/UnitStatusBar.cs" />
@@ -305,10 +167,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/FireAbility.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Gang.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/UnitMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerGang.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/BattleSetup.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/PlayerGang.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/MapTile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Core/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Map/FogOfWar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/Units/Unit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Battle/FPSCount.cs" />
       </list>
     </option>
   </component>
@@ -459,18 +324,18 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="273" y="371" width="1237" height="1116" key="VCS.FileHistoryDialog/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1596368322958" />
-    <state x="1386" y="254" width="967" height="1291" key="dock-window-1" timestamp="1597869999708">
+    <state x="1319" y="271" width="1182" height="1341" key="dock-window-1" timestamp="1598004688510">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state x="1386" y="254" width="967" height="1291" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1597869999708" />
+    <state x="1319" y="271" width="1182" height="1341" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1598004688510" />
     <state x="3833" y="456" width="891" height="1047" key="dock-window-1/3840.456.1920.1030/0.0.3072.1688@3840.456.1920.1030" timestamp="1595323459332" />
     <state x="1660" y="310" width="995" height="1251" key="dock-window-2" timestamp="1592752879024">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="1660" y="310" width="995" height="1251" key="dock-window-2/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1592752879024" />
-    <state x="1326" y="598" width="672" height="678" key="search.everywhere.popup" timestamp="1597870930025">
+    <state x="1326" y="598" width="672" height="678" key="search.everywhere.popup" timestamp="1597923358164">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state x="1326" y="598" width="672" height="678" key="search.everywhere.popup/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1597870930025" />
+    <state x="1326" y="598" width="672" height="678" key="search.everywhere.popup/3840.456.1920.1030/0.0.3072.1688@0.0.3072.1688" timestamp="1597923358164" />
   </component>
 </project>

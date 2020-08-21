@@ -1078,6 +1078,8 @@ GameObject:
   - component: {fileID: 515998765}
   - component: {fileID: 515998766}
   - component: {fileID: 515998767}
+  - component: {fileID: 515998768}
+  - component: {fileID: 515998769}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1192,6 +1194,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gangNumber: 0
   playerUnits: []
+  enemyUnits: []
+--- !u!114 &515998768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515998760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680188fd63d717b4eba6649bec3de0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogOfWarParticle: {fileID: 4202912805863114594, guid: 0173ca67684f0b547a811082e41ef6a6, type: 3}
+  fowParticleSystem: {fileID: 0}
+  playerGang: {fileID: 0}
+--- !u!114 &515998769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515998760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6d8e073a4339d4d931db2ccb19978a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &562853287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2075,7 +2105,7 @@ Camera:
   m_BackGroundColor: {r: 0.1661579, g: 0.032467052, b: 0.3018868, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
@@ -2087,7 +2117,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 21.2
+  field of view: 27.109304
   orthographic: 1
   orthographic size: 5
   m_Depth: -1
@@ -2237,7 +2267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213512920971450, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4213512920971450, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2724,6 +2754,10 @@ PrefabInstance:
     - target: {fileID: 2664418546621928853, guid: dfe3d25efc6846f469bcb8a523fdcd86, type: 3}
       propertyPath: m_Name
       value: Pavement F (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944677372654345972, guid: dfe3d25efc6846f469bcb8a523fdcd86, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2500001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe3d25efc6846f469bcb8a523fdcd86, type: 3}
@@ -3708,13 +3742,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829170499}
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: -0, y: 0.38268343, z: -0, w: 0.92387956}
   m_LocalPosition: {x: 5, y: 2.3, z: 5}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.10000001, y: 0.1, z: 0.10000001}
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1 &1923071834
 GameObject:

@@ -325,11 +325,13 @@
               <e p="MuzzleFlashGenerator.cs" t="Include" />
               <e p="Projectile.cs" t="Include" />
             </e>
+            <e p="FPSCount.cs" t="Include" />
             <e p="Map" t="Include">
               <e p="Enums" t="Include">
                 <e p="CoverType.cs" t="Include" />
                 <e p="Direction.cs" t="Include" />
               </e>
+              <e p="FogOfWar.cs" t="Include" />
               <e p="Map.cs" t="Include" />
               <e p="MapTile.cs" t="Include" />
               <e p="MoveGrid.cs" t="Include" />
@@ -768,6 +770,7 @@
         </e>
         <e p="Shaders" t="Include">
           <e p="Outline Shader.shader" t="Include" />
+          <e p="SphericalFog.shader" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

@@ -27,6 +27,7 @@ namespace TacticsGame.Battle.Core {
         private static PlayerControls _playerControls;
         private PhotonView _photonView;
         private PlayerGang _playerGang;
+        private FogOfWar _fogOfWar;
 
         public event EventHandler OnNewRound;
 
@@ -35,6 +36,7 @@ namespace TacticsGame.Battle.Core {
             _playerControls = GameObject.Find("GameManager").GetComponent<PlayerControls>();
             _photonView = GetComponent<PhotonView>();
             _playerGang = GetComponent<PlayerGang>();
+            _fogOfWar = FindObjectOfType<FogOfWar>();
         }
 
         public void SubscribeToTab() {
@@ -49,6 +51,7 @@ namespace TacticsGame.Battle.Core {
             _infoBar.SetPlayerNames(new[]{ PhotonNetwork.NickName, PhotonNetwork.PlayerListOthers[0].NickName });
             currentRound = 1;
             RefreshActiveUnitNumbers();
+            _fogOfWar.DrawAllFogOfWar();
             if (isMaster) {
                 currentGangTurn = Random.Range(0, 2);
                 SendGangTurn(currentGangTurn);
@@ -132,6 +135,7 @@ namespace TacticsGame.Battle.Core {
             yield return new WaitForSeconds(0.1F);
             currentGangTurn = gangTurn;
             _playerGang.UnitVisibilityUpdate();
+            _fogOfWar.UpdateFogOfWar();
             if (gangTurn == gangNumber) StartUnitTurn(FindNextUnit());
         }
         

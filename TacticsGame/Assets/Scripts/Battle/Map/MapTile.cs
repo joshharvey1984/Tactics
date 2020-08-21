@@ -20,6 +20,7 @@ namespace TacticsGame.Battle.Map {
         public GameObject UiTile { get; set; }
         public int MoveNum { get; set; } = -1;
         public Prop TileProp { get; set; }
+        public GameObject FogOfWar { get; set; }
         
         public MapTile(int mapPosX, int mapPosZ) {
             MapPosX = mapPosX;

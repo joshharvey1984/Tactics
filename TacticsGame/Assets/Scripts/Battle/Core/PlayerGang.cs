@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TacticsGame.Battle.Map;
 using TacticsGame.Battle.Units;
 using UnityEngine;
 
@@ -35,6 +36,14 @@ namespace TacticsGame.Battle.Core {
                     enemyUnit.HideUnit();
                 }
             }
+        }
+        
+        public List<MapTile> GetAllTilesInSight() {
+            var returnList = new List<MapTile>();
+            foreach (var unit in playerUnits) {
+                returnList.AddRange(unit.AllTilesInSight());
+            }
+            return returnList;
         }
         
     }

@@ -52,6 +52,7 @@ namespace TacticsGame.Battle.Units {
         private GameObject _canvas;
         private GameManager _gameManager;
         public PlayerGang playerGang;
+        public FogOfWar fogOfWar;
 
         public GameObject weaponSlot;
         public GameObject muzzle;
@@ -97,6 +98,7 @@ namespace TacticsGame.Battle.Units {
             _abilityPanel = GameObject.Find("AbilityPanel").GetComponent<AbilityPanel>();
             _targetPanel = GameObject.Find("TargetPanel").GetComponent<TargetPanel>();
             playerGang = GameObject.Find("GameManager").GetComponent<PlayerGang>();
+            fogOfWar = GameObject.Find("GameManager").GetComponent<FogOfWar>();
             
             abilities.Add(new FireAbility());
             abilities.Add(new HunkerDown());
@@ -183,7 +185,7 @@ namespace TacticsGame.Battle.Units {
                 Convert.ToInt32(_transform.position.z));
 
         public void StartTurn() {
-            UpdateEnemyDraw();
+            UpdateVisibility();
             StatusEffectUpdate();
             _unitStatusBar.UpdateStatusIcons();
             MovementUI.DrawMovementUI(this);
@@ -213,14 +215,6 @@ namespace TacticsGame.Battle.Units {
             MapTile.All
                 .Where(mapTile => GetCurrentMapTile().CanSeeOtherTile(mapTile, 20.0F, true))
                 .ToList();
-        
-        public List<MapTile> GetAllTilesInSight() {
-            var returnList = new List<MapTile>();
-            foreach (var unit in All.Where(unit => unit.gang == gang)) {
-                returnList.AddRange(unit.AllTilesInSight());
-            }
-            return returnList;
-        }
 
         public void FireBullets(int numBullets) {
             muzzle.GetComponent<MuzzleFlashGenerator>().toFire = numBullets;
@@ -263,8 +257,9 @@ namespace TacticsGame.Battle.Units {
             _unitStatusBar.UpdateStatusIcons();
         }
 
-        public void UpdateEnemyDraw() {
+        public void UpdateVisibility() {
             playerGang.UnitVisibilityUpdate();
+            fogOfWar.UpdateFogOfWar();
         }
 
         public void HideUnit() {
