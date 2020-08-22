@@ -36,7 +36,9 @@ namespace TacticsGame.Battle.Units {
         public List<Ability> abilities = new List<Ability>();
 
         private UnitAudio _unitAudio;
-        
+        private UnitVoice _unitVoice;
+        public string VoicePath { get; } = "Audio/SFX/Voice/Female/";
+
         private UnitMovement _unitMovement;
         private List<MapTile> _moveTiles;
         private int _moveNum;
@@ -79,6 +81,7 @@ namespace TacticsGame.Battle.Units {
         public List<StatusEffect> currentStatusEffects = new List<StatusEffect>();
 
         [SerializeField] private GameObject statusBarPrefab;
+        private GameObject _statusBar;
         private UnitStatusBar _unitStatusBar;
 
         private void Awake() {
@@ -89,6 +92,7 @@ namespace TacticsGame.Battle.Units {
             _unitMovement.unit = this;
 
             _unitAudio = GetComponent<UnitAudio>();
+            _unitVoice = GetComponent<UnitVoice>();
 
             var objectRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
             _meshRenderers = objectRenderers.ToList();
@@ -115,6 +119,7 @@ namespace TacticsGame.Battle.Units {
             SpawnWeaponModel();
             PassiveCheck();
             CreateStatusBar();
+            visEffects.staticInit();
         }
 
         public static void SetUnitId() {
@@ -129,6 +134,15 @@ namespace TacticsGame.Battle.Units {
             return All.First(unit => unit.unitId == id);
         }
 
+        public void Speak(string folder) {
+            if (gang == _gameManager.gangNumber) {
+                _unitVoice.PlayVoiceClip(folder);
+                _unitStatusBar.SetVoiceIcon(true);
+            }
+        }
+        
+        public void EndSpeak() => _unitStatusBar.SetVoiceIcon(false);
+
         private void PassiveCheck() {
             foreach (var ability in abilities.Where(ability => ability.AbilityType == Ability.AbilityTypes.Passive)) {
                 ability.PassiveEffect(this);
@@ -142,10 +156,10 @@ namespace TacticsGame.Battle.Units {
         }
         
         private void CreateStatusBar() {
-            var statusBar = Instantiate(statusBarPrefab, GameObject.Find("Canvas").transform);
-            statusBar.GetComponent<Slider>().maxValue = hitPoints;
-            statusBar.GetComponent<Slider>().value = hitPoints;
-            _unitStatusBar = statusBar.GetComponent<UnitStatusBar>();
+            _statusBar = Instantiate(statusBarPrefab, GameObject.Find("Canvas").transform);
+            _statusBar.GetComponent<Slider>().maxValue = hitPoints;
+            _statusBar.GetComponent<Slider>().value = hitPoints;
+            _unitStatusBar = _statusBar.GetComponent<UnitStatusBar>();
             _unitStatusBar.unit = this;
         }
 
@@ -155,6 +169,7 @@ namespace TacticsGame.Battle.Units {
             _moveNum = 0;
             _unitMovement.SetAnimationBool("Crouch", false);
             _unitAudio.SprintSound();
+            Speak("Moving");
             MoveNextTile();
         }
 
@@ -191,6 +206,7 @@ namespace TacticsGame.Battle.Units {
             MovementUI.DrawMovementUI(this);
             _abilityPanel.CreateAbilityButtons();
             _targetPanel.UpdateTargetPanel();
+            Speak("Selected");
         }
 
         private void StatusEffectUpdate() {
@@ -201,8 +217,7 @@ namespace TacticsGame.Battle.Units {
             MovementUI.DestroyMovementUI();
             selectedAbility = null;
             targetUnit = null;
-            turnTaken = true;
-            _gameManager.EndUnitTurn();
+            _gameManager.SendEndUnitTurn(unitId);
         }
 
         public List<Unit> EnemiesInLineOfSight() =>
@@ -231,6 +246,7 @@ namespace TacticsGame.Battle.Units {
 
         public void ThrowAnimation(Grenade grenade) { ;
             _unitMovement.SetAnimationTrigger("Throw");
+            Speak("Grenade");
             _grenadeObject = Instantiate(grenade.GrenadePrefab, throwSpawn.transform);
         }
 
@@ -248,8 +264,26 @@ namespace TacticsGame.Battle.Units {
         }
 
         public void TakeDamage(int damageToTake) {
+            if (damageToTake <= 0) {
+                PopUpText("MISS");
+                return;
+            }
+            
+            var bloodPos = _transform.position;
+            bloodPos.y += 0.5F;
+            visEffects.createEffect((int)visualEffectNames.bloodImpact, bloodPos );
+            PopUpText(damageToTake.ToString());
+            Speak("Damaged");
             currentHitPoints -= damageToTake;
+            if (currentHitPoints <= 0) UnitDeath();
+            else _unitMovement.SetAnimationTrigger("Damaged");
             _unitStatusBar.LoseHealth(damageToTake);
+        }
+
+        private void UnitDeath() {
+            All.Remove(this);
+            Speak("Killed");
+            _unitMovement.SetAnimationTrigger("Die");
         }
 
         public void AddStatusEffect(StatusEffect statusEffect) {
@@ -261,17 +295,25 @@ namespace TacticsGame.Battle.Units {
             playerGang.UnitVisibilityUpdate();
             fogOfWar.UpdateFogOfWar();
         }
+        
 
         public void HideUnit() {
-            foreach (var skinnedMeshRenderer in _meshRenderers) {
-                skinnedMeshRenderer.enabled = false;
-            }
+            foreach (var skinnedMeshRenderer in _meshRenderers) skinnedMeshRenderer.enabled = false;
+
+            foreach (var meshRenderer in weaponGameObject.GetComponentsInChildren<MeshRenderer>()) 
+                meshRenderer.enabled = false;
+
+            _statusBar.SetActive(false);
         }
 
         public void ShowUnit() {
-            foreach (var skinnedMeshRenderer in _meshRenderers) {
-                skinnedMeshRenderer.enabled = true;
-            }
+            foreach (var skinnedMeshRenderer in _meshRenderers) skinnedMeshRenderer.enabled = true;
+            
+            
+            foreach (var meshRenderer in weaponGameObject.GetComponentsInChildren<MeshRenderer>()) 
+                meshRenderer.enabled = true;
+
+            _statusBar.SetActive(true);
         }
     }
 }

@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Color: {r: 0.5411765, g: 0.11764707, b: 0.18039216, a: 0.78039217}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -149,7 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab0953440e6b73438935e7162200451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPanel: {fileID: 0}
+  hitChanceText: {fileID: 7557752455527207644}
+  selectBox: {fileID: 7386950389279980540}
   targetUnit: {fileID: 0}
 --- !u!1 &7386950389279980540
 GameObject:
@@ -213,6 +215,7 @@ MonoBehaviour:
   m_Color: {r: 0.7490196, g: 0.11764706, b: 0.015686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -276,7 +279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20.1, y: 10}
+  m_AnchoredPosition: {x: 20.1, y: 10.6}
   m_SizeDelta: {x: 60, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &163201614823862887
@@ -303,16 +306,17 @@ MonoBehaviour:
   m_Color: {r: 0.7490196, g: 0.12156863, b: 0.16862746, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: aa920c5bf74bdf646907adcc39aa5b25, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 72
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

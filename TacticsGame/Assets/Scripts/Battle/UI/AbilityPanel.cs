@@ -98,7 +98,7 @@ namespace TacticsGame.Battle.UI {
             }
         }
 
-        public void ChangedTarget(object sender, TargetButton.OnTargetButtonClickArgs e) {
+        public void ChangedTarget(object sender, TargetButton.TargetButtonClickArgs e) {
             if (Unit.ActiveUnit.selectedAbility == null || 
                 Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyFire ||
                  Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyWatch) 

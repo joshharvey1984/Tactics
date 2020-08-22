@@ -17,10 +17,10 @@ namespace TacticsGame.Data.Equipments.Weapons {
 
         public Shotgun() {
             Name = "Shotgun";
-            Value = 120;
+            Value = 50;
             Melee = false;
             Ranged = true;
-            Damage = 35;
+            Damage = 200;
             RangeDropOff = 7;
             AddedAbilities = new List<Ability> { new Scattershot() };
             WeaponModel = Resources.Load("Prefabs/Battle/Weapons/Shotgun", typeof(GameObject)) as GameObject;

@@ -9,11 +9,15 @@ using UnityEngine.UI;
 namespace TacticsGame.Battle.UI {
     public class TargetButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
         public static readonly List<TargetButton> All = new List<TargetButton>();
+
+        [SerializeField] private GameObject hitChanceText;
+        [SerializeField] private GameObject selectBox;
+        
         
         public Unit targetUnit;
         
-        public event EventHandler<OnTargetButtonClickArgs> OnTargetButtonClick;
-        public class OnTargetButtonClickArgs : EventArgs {
+        public event EventHandler<TargetButtonClickArgs> OnTargetButtonClick;
+        public class TargetButtonClickArgs : EventArgs {
             public Unit SelectedUnit;
         }
 
@@ -28,20 +32,29 @@ namespace TacticsGame.Battle.UI {
             All.Clear();
         }
 
-        private void OnClick() => OnTargetButtonClick?.Invoke(this, new OnTargetButtonClickArgs{ SelectedUnit = targetUnit });
+        public void TargetSelected() {
+            ChangeColour(new Color32(191, 30, 46, 255));
+            selectBox.SetActive(true);
+        }
 
+        public void SetHitChance(float hitChance) => hitChanceText.GetComponent<Text>().text = hitChance + "%";
+
+        private void OnClick() {
+            OnTargetButtonClick?.Invoke(this, new TargetButtonClickArgs{ SelectedUnit = targetUnit });
+        } 
+        
         private void OnHover() {
             ChangeColour(new Color32(191, 30, 46, 255));
+            hitChanceText.SetActive(true);
         }
 
         private void DeHover() {
-            if (Unit.ActiveUnit.targetUnit != targetUnit || 
-                Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyFire ||
-                Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyWatch)
+            if (Unit.ActiveUnit.targetUnit != targetUnit)
                 ChangeColour(new Color32(138, 31, 43, 215));
+            hitChanceText.SetActive(false);
         }
-        
-        public void ChangeColour(Color32 color) => gameObject.GetComponent<Image>().color = color;
+
+        private void ChangeColour(Color32 color) => gameObject.GetComponent<Image>().color = color;
 
         public void OnPointerEnter(PointerEventData eventData) => OnHover();
         public void OnPointerExit(PointerEventData eventData) => DeHover();

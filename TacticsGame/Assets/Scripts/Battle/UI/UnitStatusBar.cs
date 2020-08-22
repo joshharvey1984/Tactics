@@ -11,6 +11,7 @@ namespace TacticsGame.Battle.UI {
         public Unit unit;
         private Camera _mainCamera;
         public GameObject statusIcon;
+        public GameObject voiceIcon;
         
         private void Start() {
             _slider = gameObject.GetComponent<Slider>();
@@ -32,6 +33,8 @@ namespace TacticsGame.Battle.UI {
             }
         }
 
+        public void SetVoiceIcon(bool onOff) => voiceIcon.SetActive(onOff);
+
         private void Update() {
             var pos = _mainCamera.WorldToScreenPoint(unit.transform.position);
             pos.y += 110;
@@ -47,6 +50,7 @@ namespace TacticsGame.Battle.UI {
             for (var i = 0; i < _health; i++) {
                 _slider.value -= 1;
                 yield return new WaitForSeconds(0.02F);
+                if (_slider.value <= 0) gameObject.SetActive(false);
             }
         }
     }

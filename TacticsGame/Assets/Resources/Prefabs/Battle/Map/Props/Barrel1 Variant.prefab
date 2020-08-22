@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0ed2053d5f80145b675976604f8276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallType: 0
   coverType: 1
   moveBlocker: 1
+  transparentHover: 0
+  lifeSpan: -1
+  destructible: 1
   boundsCalc: {fileID: 8232044452478475355}
 --- !u!1001 &8231150023087730387
 PrefabInstance:
@@ -24,7 +28,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1237251554611738, guid: d2e438a5fcf723b4fa57379cd5845fb3, type: 3}
       propertyPath: m_Name
-      value: Barrel1
+      value: Barrel1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1237251554611738, guid: d2e438a5fcf723b4fa57379cd5845fb3, type: 3}
       propertyPath: m_TagString

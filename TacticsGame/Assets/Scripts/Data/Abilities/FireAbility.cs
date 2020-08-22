@@ -30,7 +30,6 @@ namespace TacticsGame.Data.Abilities {
                 damageDone = CombatDamageCalc.DamageCalculation(selectedUnit, targetUnit, this)["DAMAGE"];
             selectedUnit.GetComponent<UnitAudio>().Play(selectedUnit.weapon.FireSound);
             selectedUnit.FireBullets(5);
-            targetUnit.PopUpText(successfulHit ? damageDone.ToString() : "MISS");
             targetUnit.TakeDamage(damageDone);
             Object.FindObjectOfType<GameManager>().SendAbility(Name, selectedUnit, targetUnit, null);
             Object.FindObjectOfType<GameManager>().SendDamage(targetUnit, damageDone);

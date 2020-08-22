@@ -13,6 +13,7 @@ namespace TacticsGame.Battle.Map {
         [SerializeField] private bool moveBlocker = false;
         [SerializeField] private bool transparentHover = false;
         [SerializeField] private int lifeSpan = -1;
+        [SerializeField] private bool destructible;
 
         private GameManager _gameManager;
         private MouseHoverTile _mouseHoverTile;

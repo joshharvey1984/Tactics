@@ -4,22 +4,18 @@ using UnityEngine;
 
 namespace TacticsGame.Battle.Units {
     public class UnitAudio : MonoBehaviour {
-        private AudioSource[] _audioSources;
+        [SerializeField] private AudioSource[] audioSources;
         
         public bool sprinting = false;
 
-        private void Awake() {
-            _audioSources = GetComponents<AudioSource>();
-        }
-
         public void Play(AudioClip clipToPlay, float volume = 0.5F, float pitch = 1.0F, int sourceNum = 0) {
-            _audioSources[sourceNum].volume = volume;
-            _audioSources[sourceNum].pitch = pitch;
-            _audioSources[sourceNum].PlayOneShot(clipToPlay);
+            audioSources[sourceNum].volume = volume;
+            audioSources[sourceNum].pitch = pitch;
+            audioSources[sourceNum].PlayOneShot(clipToPlay);
         }
 
         private void StopAllSounds() {
-            foreach (var audioSource in _audioSources) audioSource.Stop();
+            foreach (var audioSource in audioSources) audioSource.Stop();
         }
 
         public void SprintSound() {

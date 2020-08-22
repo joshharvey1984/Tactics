@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
 using TacticsGame.Battle.Map;
-using TacticsGame.Battle.Map.UI;
 using TacticsGame.Battle.UI;
 using TacticsGame.Battle.Units;
 using UnityEngine;
@@ -66,12 +64,16 @@ namespace TacticsGame.Battle.Core {
             unit.StartTurn();
         }
 
-        public void EndUnitTurn() {
+        [PunRPC]
+        public void EndUnitTurn(int unitId) {
             MoveGrid.ResetMovedGrid();
+            Unit.GetUnitById(unitId).turnTaken = true;
             RefreshActiveUnitNumbers();
-            if (activeUnits[NextGangTurn()] > 0) currentGangTurn = NextGangTurn();
-            if (activeUnits[currentGangTurn] == 0) NextRound();
-            SendGangTurn(currentGangTurn);
+            if ((activeUnits[currentGangTurn] + activeUnits[NextGangTurn()]) == 0) NextRound();
+            else {
+                if (activeUnits[NextGangTurn()] > 0) currentGangTurn = NextGangTurn();
+                if (currentGangTurn == gangNumber) StartUnitTurn(FindNextUnit());
+            }
         }
 
         private int NextGangTurn() => currentGangTurn == 0 ? 1 : 0;
@@ -100,8 +102,8 @@ namespace TacticsGame.Battle.Core {
             RefreshActiveUnitNumbers();
             OnNewRound?.Invoke(this, EventArgs.Empty);
             currentGangTurn = NextGangTurn();
-            SendGangTurn(currentGangTurn);
-            StartUnitTurn(FindNextUnit());
+            _infoBar.SetPlayerTurn(currentRound, playerNames[currentGangTurn]);
+            if (currentGangTurn == gangNumber) StartUnitTurn(FindNextUnit());
         }
 
         private void ResetTimer() {
@@ -124,6 +126,11 @@ namespace TacticsGame.Battle.Core {
         [PunRPC]
         private void SendGangTurn(int gangTurn) {
             _photonView.RPC("GetGangTurn", RpcTarget.All, gangTurn);
+        }
+
+        [PunRPC]
+        public void SendEndUnitTurn(int unitId) {
+            _photonView.RPC("EndUnitTurn", RpcTarget.All, unitId);
         }
         
         [PunRPC]

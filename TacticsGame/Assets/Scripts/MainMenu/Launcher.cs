@@ -17,6 +17,7 @@ namespace TacticsGame.MainMenu {
         private bool _findingGame = false;
 
         private void Awake() {
+            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
             SceneManager.sceneLoaded += OnBattleLoaded;
             _battleSetup = gameObject.GetComponent<BattleSetup>();
             joinGame.gameObject.SetActive(false);
@@ -27,7 +28,7 @@ namespace TacticsGame.MainMenu {
         }
 
         private void Connect() {
-            status.text = "Connecting...";
+            status.text = "Connecting To Server...";
             PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = GameVersion;
         }

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Units;
 using UnityEngine;
 using static TacticsGame.Data.Ability.TargetingTypes;
@@ -20,8 +21,9 @@ namespace TacticsGame.Battle.UI {
             _transform.position = targetPanelPos;
         }
 
-        private static void ChangeTarget(object sender, TargetButton.OnTargetButtonClickArgs e) {
+        private void ChangeTarget(object sender, TargetButton.TargetButtonClickArgs e) {
             Unit.ActiveUnit.targetUnit = e.SelectedUnit;
+            UpdateTargetPanel();
         }
 
         public void ChangedAbility(object sender, AbilityButton.OnAbilityButtonClickArgs e) {
@@ -29,12 +31,10 @@ namespace TacticsGame.Battle.UI {
                 if (!Unit.ActiveUnit.targetUnit) {
                     Unit.ActiveUnit.targetUnit = Unit.ActiveUnit.EnemiesInLineOfSight()[0];
                 }
-                
-                TargetButton.All.First(targetButton => targetButton.targetUnit == Unit.ActiveUnit.targetUnit)
-                    .ChangeColour(new Color32(191, 30, 46, 255));
+                UpdateTargetPanel();
             }
             else {
-                UpdateTargetPanel();
+                TargetButton.DestroyAll();
             }
         }
 
@@ -44,6 +44,11 @@ namespace TacticsGame.Battle.UI {
                 var btn = Instantiate(targetButtonPrefab, transform);
                 var targetButton = btn.GetComponent<TargetButton>();
                 targetButton.targetUnit = unit;
+                if (Unit.ActiveUnit.targetUnit == unit) targetButton.TargetSelected();
+                if (Unit.ActiveUnit.selectedAbility == null)
+                    Unit.ActiveUnit.selectedAbility = Unit.ActiveUnit.abilities[0];
+                var hitChance = CombatHitCalc.CalculateHitChance(Unit.ActiveUnit, unit, Unit.ActiveUnit.selectedAbility)["HIT"];
+                targetButton.SetHitChance(hitChance * 100);
                 targetButton.OnTargetButtonClick += ChangeTarget;
                 targetButton.OnTargetButtonClick += _abilityPanel.ChangedTarget;
             }

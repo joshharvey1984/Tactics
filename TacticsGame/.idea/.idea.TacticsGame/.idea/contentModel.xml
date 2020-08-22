@@ -106,6 +106,9 @@
               </e>
             </e>
           </e>
+          <e p="Female Soldier Voice - Dr. Elena Shiroff" t="Include">
+            <e p="LICENSE.txt" t="Include" />
+          </e>
           <e p="HighlightPlus" t="Include">
             <e p="Demo" t="Include">
               <e p="Scripts" t="Include">
@@ -173,6 +176,18 @@
           <e p="RainbowAssets" t="Include">
             <e p="!Core" t="Include">
               <e p="NOTICES.txt" t="Include" />
+            </e>
+          </e>
+          <e p="Realistic VFX" t="Include">
+            <e p="ReadMe.txt" t="Include" />
+            <e p="Standard Assets" t="Include">
+              <e p="Effects" t="Include">
+                <e p="GlassRefraction" t="Include">
+                  <e p="Shaders" t="Include">
+                    <e p="GlassStainedBumpDistort.shader" t="Include" />
+                  </e>
+                </e>
+              </e>
             </e>
           </e>
           <e p="SciFiFlatSkills" t="Include">
@@ -309,6 +324,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Battle" t="Include">
+            <e p="camDemo.cs" t="Include" />
             <e p="Core" t="Include">
               <e p="CombatDamageCalc.cs" t="Include" />
               <e p="CombatHitCalc.cs" t="Include" />
@@ -350,6 +366,10 @@
                 </e>
               </e>
             </e>
+            <e p="Music" t="Include">
+              <e p="MixLevels.cs" t="Include" />
+              <e p="MusicLayers.cs" t="Include" />
+            </e>
             <e p="UI" t="Include">
               <e p="AbilityButton.cs" t="Include" />
               <e p="ABilityPanel.cs" t="Include" />
@@ -366,7 +386,9 @@
               <e p="Unit.cs" t="Include" />
               <e p="UnitAudio.cs" t="Include" />
               <e p="UnitMovement.cs" t="Include" />
+              <e p="UnitVoice.cs" t="Include" />
             </e>
+            <e p="visEffects.cs" t="Include" />
           </e>
           <e p="Data" t="Include">
             <e p="Abilities" t="Include">
@@ -770,7 +792,6 @@
         </e>
         <e p="Shaders" t="Include">
           <e p="Outline Shader.shader" t="Include" />
-          <e p="SphericalFog.shader" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

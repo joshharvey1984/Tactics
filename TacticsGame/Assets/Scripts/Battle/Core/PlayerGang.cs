@@ -1,34 +1,29 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TacticsGame.Battle.Map;
 using TacticsGame.Battle.Units;
 using UnityEngine;
 
 namespace TacticsGame.Battle.Core {
     public class PlayerGang : MonoBehaviour {
-        public int gangNumber;
-        public List<Unit> playerUnits = new List<Unit>();
-        public List<Unit> enemyUnits = new List<Unit>();
+        private int _gangNumber;
 
-        public void SetGangNumber(int gang) {
-            gangNumber = gang;
-            foreach (var unit in Unit.All) {
-                if (unit.gang == gangNumber) {
-                    playerUnits.Add(unit);
-                }
-                else enemyUnits.Add(unit);
-            }
-        }
+        public void SetGangNumber(int gang) => _gangNumber = gang;
+
+        private IEnumerable<Unit> GetPlayerUnits() => Unit.All.Where(unit => unit.gang == _gangNumber).ToList();
+
+        private IEnumerable<Unit> GetEnemyUnits() => Unit.All.Where(unit => unit.gang != _gangNumber).ToList();
 
         private List<Unit> GetAllEnemiesInSight() {
             var returnList = new List<Unit>();
-            foreach (var playerUnit in playerUnits) {
+            foreach (var playerUnit in GetPlayerUnits()) {
                 returnList.AddRange(playerUnit.EnemiesInLineOfSight());
             }
             return returnList;
         }
         
         public void UnitVisibilityUpdate() {
-            foreach (var enemyUnit in enemyUnits) {
+            foreach (var enemyUnit in GetEnemyUnits()) {
                 if (GetAllEnemiesInSight().Contains(enemyUnit)) {
                     enemyUnit.ShowUnit();
                 }
@@ -40,11 +35,10 @@ namespace TacticsGame.Battle.Core {
         
         public List<MapTile> GetAllTilesInSight() {
             var returnList = new List<MapTile>();
-            foreach (var unit in playerUnits) {
+            foreach (var unit in GetPlayerUnits()) {
                 returnList.AddRange(unit.AllTilesInSight());
             }
             return returnList;
         }
-        
     }
 }
