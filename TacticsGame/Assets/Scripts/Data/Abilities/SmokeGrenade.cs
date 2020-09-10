@@ -1,7 +1,7 @@
-﻿using TacticsGame.Battle.Map;
+﻿using System.Collections.Generic;
+using TacticsGame.Battle.Map;
 using TacticsGame.Battle.Map.UI.Targeting;
 using TacticsGame.Battle.Units;
-using UnityEditor;
 using UnityEngine;
 
 namespace TacticsGame.Data.Abilities {
@@ -11,24 +11,19 @@ namespace TacticsGame.Data.Abilities {
         public override AbilityTypes AbilityType { get; set; }
         public override Sprite Icon { get; set; }
         public override TargetingTypes TargetingType { get; set; }
+        public override List<AbilityBehaviour> AbilityBehaviours { get; set; }
+        public override List<AbilityCalculation> AbilityCalculations { get; set; }
 
-        public SmokeGrenade() {
+        public SmokeGrenade(Equipment smokeGrenade) {
             Name = "Smoke Grenade";
             AbilityType = AbilityTypes.Active;
             Description = "Throw a smoke grenade.";
             Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Cloud");
-            TargetingType = TargetingTypes.Throw;
-            SpecialTarget = SpecialTargeting.Throw;
-        }
-        
-        public override void Targeting() {
-            Unit.ActiveUnit.selectedEquipment = new Equipments.Utilities.Grenades.SmokeGrenade();
-            var throwTarget = new ThrowTarget(10, 1, 0);
-            throwTarget.SubscribeToHoverTile();
-        }
-        
-        public override void Execute() {
-            Unit.ActiveUnit.ThrowAnimation(new Equipments.Utilities.Grenades.SmokeGrenade());
+            TargetingType = TargetingTypes.Point;
+            EquipmentObject = smokeGrenade;
+            AbilityBehaviours = new List<AbilityBehaviour> {
+                new UnitVoiceClip(1, "Grenade")
+            };
         }
 
         public override void ExplodeEffect(MapTile landingTile) {
@@ -37,11 +32,7 @@ namespace TacticsGame.Data.Abilities {
             foreach (var mapTile in aoeTile.Item1) {
                 mapTile.CreateProp(Resources.Load("Prefabs/Battle/Map/Props/SmokeEffect", typeof(GameObject)) as GameObject);
             }
-            AbilityPause.StartPause(1.5F, this, "EndAbility");
-        }
-
-        public override void EndAbility() {
-            Unit.ActiveUnit.EndTurn();
+            //AbilityPause.StartPause(1.5F, this, "EndAbility");
         }
     }
 }

@@ -1,17 +1,33 @@
 ﻿using System.Collections;
-using System.Reflection;
+using TacticsGame.Battle.Units;
 using UnityEngine;
 
 namespace TacticsGame.Data {
     public class AbilityPause : MonoBehaviour
     {
-        public void StartPause(float seconds, Ability ability, string returnMethod) {
-            StartCoroutine(Pause(seconds, ability, returnMethod));
+        public void EndTurnPause(float seconds) {
+            StartCoroutine(Pause(seconds));
         }
-        private IEnumerator Pause(float seconds, Ability ability, string returnMethod) {
+        
+        private static IEnumerator Pause(float seconds) {
             yield return new WaitForSeconds(seconds);
-            var methodInfo = ability.GetType().GetMethod(returnMethod);
-            methodInfo.Invoke(ability, null);
+            Unit.ActiveUnit.EndTurn();
         }
     }
+
+    /*public class AbilityStagePause : MonoBehaviour {
+        private Ability Ability { get; }
+        private int AbilityStage { get; set; }
+        public AbilityStagePause(Ability ability, int abilityStage, float seconds) {
+            Ability = ability;
+            AbilityStage = abilityStage;
+            StartCoroutine(Pause(seconds));
+        }    
+        
+        private IEnumerator Pause(float seconds) {
+            yield return new WaitForSeconds(seconds);
+            AbilityStage++;
+            new AbilityUse(Ability, AbilityStage);
+        }
+    }*/
 }

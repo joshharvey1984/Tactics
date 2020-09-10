@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TacticsGame.Battle.Core;
+using TacticsGame.Battle.Network;
 using TacticsGame.Battle.Units;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -99,7 +100,7 @@ namespace TacticsGame.Battle.Map.UI.Targeting {
             Object.Destroy(_arcTarget);
             MapTile.UnhighlightAllTiles();
             UnsubscribeToHoverTile();
-            Unit.ActiveUnit.selectedAbility.Execute();
+            GameObject.Find("GameManager").GetComponent<GameManager>().SendAbility(new AbilityAction());
         }
     }
 }

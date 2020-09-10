@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using TacticsGame.Battle.Units;
-using TacticsGame.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace TacticsGame.Battle.UI {
     public class TargetButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
-        public static readonly List<TargetButton> All = new List<TargetButton>();
+        private static readonly List<TargetButton> All = new List<TargetButton>();
 
         [SerializeField] private GameObject hitChanceText;
         [SerializeField] private GameObject selectBox;
-        
         
         public Unit targetUnit;
         

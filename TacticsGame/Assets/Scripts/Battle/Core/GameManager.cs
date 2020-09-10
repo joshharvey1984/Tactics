@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
 using TacticsGame.Battle.Map;
+using TacticsGame.Battle.Network;
 using TacticsGame.Battle.UI;
 using TacticsGame.Battle.Units;
+using TacticsGame.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -65,11 +68,10 @@ namespace TacticsGame.Battle.Core {
         }
 
         [PunRPC]
-        public void EndUnitTurn(int unitId) {
+        public void EndUnitTurn() {
             MoveGrid.ResetMovedGrid();
-            Unit.GetUnitById(unitId).turnTaken = true;
             RefreshActiveUnitNumbers();
-            if ((activeUnits[currentGangTurn] + activeUnits[NextGangTurn()]) == 0) NextRound();
+            if (activeUnits[currentGangTurn] + activeUnits[NextGangTurn()] == 0) NextRound();
             else {
                 if (activeUnits[NextGangTurn()] > 0) currentGangTurn = NextGangTurn();
                 if (currentGangTurn == gangNumber) StartUnitTurn(FindNextUnit());
@@ -127,11 +129,6 @@ namespace TacticsGame.Battle.Core {
         private void SendGangTurn(int gangTurn) {
             _photonView.RPC("GetGangTurn", RpcTarget.All, gangTurn);
         }
-
-        [PunRPC]
-        public void SendEndUnitTurn(int unitId) {
-            _photonView.RPC("EndUnitTurn", RpcTarget.All, unitId);
-        }
         
         [PunRPC]
         private void GetGangTurn(int gangTurn) {
@@ -174,38 +171,15 @@ namespace TacticsGame.Battle.Core {
         }
 
         [PunRPC]
-        public void SendAbility(string abilityName, Unit unit, Unit targetUnit, MapTile targetTile) {
-            var unitId = unit.unitId;
-            var targetUnitId = -1;
-            if (targetUnit != null) targetUnitId = targetUnit.unitId;
-            var targetTileXy = new [] { -1, -1 };
-            if (targetTile != null) {
-                targetTileXy[0] = targetTile.MapPosX;
-                targetTileXy[1] = targetTile.MapPosZ;
-            }
-            _photonView.RPC("GetAbility", RpcTarget.Others, abilityName, unitId, targetUnitId, targetTileXy);
+        public void SendAbility(AbilityAction abilityAction) {
+            _photonView.RPC("GetAbility", RpcTarget.All, abilityAction.AbilityActionData);
         }
 
         [PunRPC]
-        public void GetAbility(string abilityName, int unitId, int targetUnitId, int[] targetTileXy) {
-            var unit = Unit.GetUnitById(unitId);
-            Unit.ActiveUnit = unit;
-            unit.selectedAbility = unit.abilities.First(ability => ability.Name == abilityName);
-            if (targetUnitId > -1) unit.targetUnit = Unit.GetUnitById(targetUnitId);
-            unit.selectedAbility.ObservedExecute();
-        }
-        
-        [PunRPC]
-        public void SendDamage(Unit targetUnit, int damage) {
-            var unitId = targetUnit.unitId;
-            _photonView.RPC("GetDamage", RpcTarget.Others, unitId, damage);
-        }
-        
-        [PunRPC]
-        public void GetDamage(int targetUnitId, int damage) {
-            var unit = Unit.GetUnitById(targetUnitId);
-            unit.PopUpText(damage > 0 ? damage.ToString() : "MISS");
-            unit.TakeDamage(damage);
+        public void GetAbility(Dictionary<string, string> abilityAction) {
+            AbilityAction.AbilityActionDeserialize(abilityAction);
+            Unit.ActiveUnit.AbilityUse = new AbilityUse();
+            Unit.ActiveUnit.AbilityUse.ExecuteNextStage();
         }
     }
 }

@@ -23,12 +23,12 @@ namespace TacticsGame.Data.Equipments.Utilities.Grenades {
             ShrapnelAreaOfEffect = 3;
             BlastDamage = 60;
             ShrapnelDamage = 30;
-            AddedAbilities = new List<Ability> { new Abilities.FragGrenade() };
-            GrenadePrefab = Resources.Load("Prefabs/Battle/Weapons/frag_grenade.prefab",
+            AddedAbilities = new List<Ability> { new Abilities.FragGrenade(this) };
+            GrenadePrefab = Resources.Load("Prefabs/Battle/Weapons/frag_grenade",
                 typeof(GameObject)) as GameObject;
-            ExplodePrefab = Resources.Load("Prefabs/Battle/Effects/SmallExplosionEffect.prefab",
+            ExplodePrefab = Resources.Load("Prefabs/Battle/Effects/SmallExplosionEffect",
                 typeof(GameObject)) as GameObject;
-            ExplosionAudio = Resources.Load("Audio/SFX/Grenades/Frag Grenade.wav", 
+            ExplosionAudio = Resources.Load("Audio/SFX/Grenades/Frag Grenade", 
                 typeof(AudioClip)) as AudioClip;
         }
     }

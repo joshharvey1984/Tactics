@@ -1,62 +1,48 @@
-﻿using TacticsGame.Battle.Map;
+﻿using System.Collections.Generic;
+using TacticsGame.Battle.Map;
 using TacticsGame.Battle.Map.UI.Targeting;
-using TacticsGame.Battle.Units;
-using UnityEditor;
 using UnityEngine;
 
 namespace TacticsGame.Data.Abilities {
-    public class FragGrenade : Ability {
+    public sealed class FragGrenade : Ability {
         public sealed override string Name { get; set; }
         public sealed override string Description { get; set; }
         public sealed override AbilityTypes AbilityType { get; set; }
         public sealed override Sprite Icon { get; set; }
         public sealed override TargetingTypes TargetingType { get; set; }
-        public sealed override SpecialTargeting SpecialTarget { get; set; }
+        public override List<AbilityBehaviour> AbilityBehaviours { get; set; }
+        public override List<AbilityCalculation> AbilityCalculations { get; set; }
 
-        public FragGrenade() {
+
+        public FragGrenade(Equipment fragGrenade) {
             Name = "Frag Grenade";
             AbilityType = AbilityTypes.Active;
             Description = "Throw a frag grenade.";
             Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Bomb");
-            TargetingType = TargetingTypes.Throw;
-            SpecialTarget = SpecialTargeting.Throw;
-        }
-
-        public override void Targeting() {
-            Unit.ActiveUnit.selectedEquipment = new Equipments.Utilities.Grenades.FragGrenade();
-            var throwTarget = new ThrowTarget(10, 1, 3);
-            throwTarget.SubscribeToHoverTile();
-        }
-
-        public override void Execute() {
-            Unit.ActiveUnit.ThrowAnimation(new Equipments.Utilities.Grenades.FragGrenade());
+            TargetingType = TargetingTypes.Point;
+            EquipmentObject = fragGrenade;
+            AbilityBehaviours = new List<AbilityBehaviour> {
+                new UnitVoiceClip(1, "Grenade"),
+                new ThrowGrenade(1)
+            };
         }
 
         public override void ExplodeEffect(MapTile landingTile) {
             var grenade = new Equipments.Utilities.Grenades.FragGrenade();
             var aoeTile = ThrowTarget.FindAOETiles(landingTile.UiTile, grenade.BlastAreaOfEffect, grenade.ShrapnelAreaOfEffect);
             foreach (var mapTile in aoeTile.Item1) {
-                foreach (var unit in Unit.All) {
-                    if (unit.GetCurrentMapTile() == mapTile) {
-                        unit.PopUpText(grenade.BlastDamage.ToString());
-                        unit.TakeDamage(grenade.BlastDamage);
-                    }
+                if (mapTile.GetUnitInTile()) {
+                    mapTile.GetUnitInTile().PopUpText(grenade.BlastDamage.ToString());
+                    mapTile.GetUnitInTile().TakeDamage(grenade.BlastDamage);
                 }
             }
             foreach (var mapTile in aoeTile.Item2) {
-                foreach (var unit in Unit.All) {
-                    if (unit.GetCurrentMapTile() == mapTile) {
-                        unit.PopUpText(grenade.ShrapnelDamage.ToString());
-                        unit.TakeDamage(grenade.ShrapnelDamage);
-                    }
+                if (mapTile.GetUnitInTile()) {
+                    mapTile.GetUnitInTile().PopUpText(grenade.ShrapnelDamage.ToString());
+                    mapTile.GetUnitInTile().TakeDamage(grenade.ShrapnelDamage);
                 }
             }
             landingTile.UiTile.AddComponent<AudioSource>().PlayOneShot(grenade.ExplosionAudio);
-            AbilityPause.StartPause(1.5F, this, "EndAbility");
-        }
-
-        public override void EndAbility() {
-            Unit.ActiveUnit.EndTurn();
         }
     }
 }

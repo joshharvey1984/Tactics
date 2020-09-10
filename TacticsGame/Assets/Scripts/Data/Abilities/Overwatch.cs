@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using TacticsGame.Battle.Core;
-using TacticsGame.Battle.Map.UI.Targeting;
 using TacticsGame.Battle.Units;
-using UnityEditor;
 using UnityEngine;
 
 namespace TacticsGame.Data.Abilities {
@@ -12,16 +10,15 @@ namespace TacticsGame.Data.Abilities {
         public override AbilityTypes AbilityType { get; set; }
         public override Sprite Icon { get; set; }
         public override TargetingTypes TargetingType { get; set; }
-        public override SpecialTargeting SpecialTarget { get; set; }
-        public override List<CombatHitModifier> CombatHitModifiers { get; set; }
+        public override List<AbilityBehaviour> AbilityBehaviours { get; set; }
+        public override List<AbilityCalculation> AbilityCalculations { get; set; }
 
         public Overwatch() {
             Name = "Overwatch";
             AbilityType = AbilityTypes.Active;
             Description = "Fire at the first enemy unit to move in line of sight";
             Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Eye");
-            TargetingType = TargetingTypes.Self;
-            SpecialTarget = SpecialTargeting.Cone;
+            TargetingType = TargetingTypes.Cone;
             CombatHitModifiers = new List<CombatHitModifier> {
                 new CombatHitModifier {
                     Name = "Reaction Shot", 
@@ -29,23 +26,9 @@ namespace TacticsGame.Data.Abilities {
                     ModifierValue = -0.2F
                 }
             };
+            ActiveUnitStatusEffect = new StatusEffects.Overwatch();
         }
-
-        public override void Targeting() {
-            var coneTarget = new ConeTarget();
-            coneTarget.SubscribeToHoverTile();
-        }
-
-        public override void Execute() {
-            Unit.ActiveUnit.PopUpText("OVERWATCH");
-            AddStatusEffect(new StatusEffects.Overwatch());
-            AbilityPause.StartPause(1.5F, this, "EndAbility");
-        }
-
-        public override void EndAbility() {
-            Unit.ActiveUnit.EndTurn();
-        }
-
+        
         public override void TileWatchTrigger(Unit triggeredUnit) {
             var selectedUnit = triggeredUnit;
             var targetUnit = Unit.ActiveUnit;

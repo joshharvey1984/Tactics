@@ -2,7 +2,6 @@
 using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Units;
 using TacticsGame.Data.StatusEffects;
-using UnityEditor;
 using UnityEngine;
 
 namespace TacticsGame.Data.Abilities {
@@ -12,14 +11,15 @@ namespace TacticsGame.Data.Abilities {
         public override AbilityTypes AbilityType { get; set; }
         public override Sprite Icon { get; set; }
         public override TargetingTypes TargetingType { get; set; }
-        public override List<CombatHitModifier> CombatHitModifiers { get; set; }
+        public override List<AbilityBehaviour> AbilityBehaviours { get; set; }
+        public override List<AbilityCalculation> AbilityCalculations { get; set; }
 
         public PinDown() {
             Name = "Pin Down";
             AbilityType = AbilityTypes.Active;
             Description = "Pin down an enemy fighter and reduce their aim. If the enemy moves in line of sight then perform a reaction shot.";
             Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_PinDown");
-            TargetingType = TargetingTypes.EnemyWatch;
+            TargetingType = TargetingTypes.Single;
             CombatHitModifiers = new List<CombatHitModifier> {
                 new CombatHitModifier {
                     Name = "Reaction Shot", 
@@ -27,23 +27,16 @@ namespace TacticsGame.Data.Abilities {
                     ModifierValue = -0.2F
                 }
             };
+            ActiveUnitStatusEffect = new StatusEffects.PinDown();
+            TargetUnitStatusEffect = new PinnedDown();
+            AbilityBehaviours = new List<AbilityBehaviour> {
+                new UnitVoiceClip(1, "LockedOnTarget"),
+                new UnitAnimation(1, "AimWeapon"),
+                new AddStatusEffect(1, new StatusEffects.PinDown()),
+                new AddStatusEffectToTarget(1, new PinnedDown())
+            };
         }
-        public override void Execute() {
-            Unit.ActiveUnit.LookAtGameObject(Unit.ActiveUnit.targetUnit.gameObject);
-            Unit.ActiveUnit.PopUpText("PIN DOWN");
-            Unit.ActiveUnit.targetUnit.PopUpText("PINNED DOWN");
-            AddStatusEffect(new StatusEffects.PinDown());
-            AddStatusEffectToTarget(new PinnedDown());
-            Unit.ActiveUnit.watchingUnit = Unit.ActiveUnit.targetUnit;
-            Unit.ActiveUnit.watchingTiles.Add(this, Unit.ActiveUnit.AllTilesInSight());
-            AbilityPause.StartPause(1.5F, this, "EndAbility");
-        }
-
-        public override void EndAbility() {
-            Unit.ActiveUnit.EndTurn();
-        }
-
-
+        
         public override void TileWatchTrigger(Unit triggeredUnit) {
             var selectedUnit = triggeredUnit;
             var targetUnit = Unit.ActiveUnit;

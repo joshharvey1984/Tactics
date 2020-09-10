@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace TacticsGame.Data.Abilities {
-    public sealed class HunkerDown : Ability {
+    public sealed class Shoot : Ability {
         public override string Name { get; set; }
         public override string Description { get; set; }
         public override AbilityTypes AbilityType { get; set; }
@@ -11,16 +11,20 @@ namespace TacticsGame.Data.Abilities {
         public override List<AbilityBehaviour> AbilityBehaviours { get; set; }
         public override List<AbilityCalculation> AbilityCalculations { get; set; }
 
-        public HunkerDown() {
-            Name = "Hunker Down";
+        public Shoot() {
+            Name = "Shoot";
             AbilityType = AbilityTypes.Active;
-            Description = "Hunker down and increase defensive bonus.";
-            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Shield");
-            TargetingType = TargetingTypes.None;
+            Description = "Shoot weapon at selected Enemy";
+            Icon = Resources.Load<Sprite>("Textures/Abilities/Icon_Target");
+            TargetingType = TargetingTypes.Single;
+            AbilityCalculations = new List<AbilityCalculation> {
+                new CalculationDamage()
+            };
             AbilityBehaviours = new List<AbilityBehaviour> {
-                new UnitVoiceClip(1, "Cover"),
-                new UnitAnimation(1, "Crouch"),
-                new AddStatusEffect(1, new StatusEffects.HunkerDown())
+                new UnitVoiceClip(1, "Firing", true),
+                new UnitAnimation(1, "AimWeapon"),
+                new FireWeapon(2),
+                new UnitTakeDamage(2)
             };
         }
     }

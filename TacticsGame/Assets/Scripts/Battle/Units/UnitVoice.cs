@@ -12,10 +12,10 @@ namespace TacticsGame.Battle.Units {
             _unit = GetComponent<Unit>();
         }
 
-        public void PlayVoiceClip(string folder) {
+        public void PlayVoiceClip(string folder, float volume) {
             if (audioSource.isPlaying) return;
             _speaking = true;
-            audioSource.volume = 0.7F;
+            audioSource.volume = volume;
             audioSource.PlayOneShot(GetRandomClip(folder));
         }
 

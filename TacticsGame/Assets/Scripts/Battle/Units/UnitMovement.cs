@@ -57,12 +57,12 @@ namespace TacticsGame.Battle.Units {
         private void CheckForTileWatch() {
             foreach (var checkUnit in Unit.All) {
                 if (checkUnit.gang == unit.gang) continue;
-                if (checkUnit.watchingTiles.Count == 0) continue;
+                if (checkUnit.aoeTargetTiles.Count == 0) continue;
                 if (checkUnit.watchingUnit != unit & checkUnit.watchingUnit != null) continue;
-                foreach (var unitWatchingTile in checkUnit.watchingTiles) {
+                foreach (var unitWatchingTile in checkUnit.aoeTargetTiles) {
                     if (!unitWatchingTile.Value.Contains(_lastMapTile)) continue;
-                    unitWatchingTile.Key.TileWatchTrigger(checkUnit);
-                    checkUnit.watchingTiles.Remove(unitWatchingTile.Key);
+                    //unitWatchingTile.Key.TileWatchTrigger(checkUnit);
+                    checkUnit.aoeTargetTiles.Remove(unitWatchingTile.Key);
                     checkUnit.watchingUnit = null;
                     break;
                 }

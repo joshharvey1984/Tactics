@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TacticsGame.Data.Abilities;
 using UnityEngine;
 
 namespace TacticsGame.Data.Equipments.Weapons {

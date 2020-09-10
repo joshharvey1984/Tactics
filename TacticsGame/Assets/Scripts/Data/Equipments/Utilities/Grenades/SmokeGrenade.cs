@@ -16,10 +16,10 @@ namespace TacticsGame.Data.Equipments.Utilities.Grenades {
             Name = "Smoke Grenade";
             Value = 50;
             BlastAreaOfEffect = 1;
-            AddedAbilities = new List<Ability> { new Abilities.SmokeGrenade() };
-            GrenadePrefab = Resources.Load("Prefabs/Battle/Weapons/smoke_grenade.prefab",
+            AddedAbilities = new List<Ability> { new Abilities.SmokeGrenade(this) };
+            GrenadePrefab = Resources.Load("Prefabs/Battle/Weapons/smoke_grenade",
                 typeof(GameObject)) as GameObject;
-            ExplodePrefab = Resources.Load("Prefabs/Battle/Effects/muzzleFlash.prefab",
+            ExplodePrefab = Resources.Load("Prefabs/Battle/Effects/muzzleFlash",
                 typeof(GameObject)) as GameObject;
         }
     }

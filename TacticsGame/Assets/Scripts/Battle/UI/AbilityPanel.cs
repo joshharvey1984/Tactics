@@ -50,7 +50,7 @@ namespace TacticsGame.Battle.UI {
             abilityDescription.SetActive(true);
             executeButton.SetActive(true);
             _targetPanel.MovePanel(210);
-            if (Unit.ActiveUnit.selectedAbility.TargetingType == Ability.TargetingTypes.EnemyFire) ActivateCombatPanels();
+            if (Unit.ActiveUnit.selectedAbility.TargetingType == Ability.TargetingTypes.Single) ActivateCombatPanels();
             else DeactivateCombatPanels();
             _uiAudio.Play(_uiAudio.PathToAudioClip("Audio/UI/AbilityPanelActive"));
         }
@@ -85,8 +85,7 @@ namespace TacticsGame.Battle.UI {
             AbilityButton.DestroyAll();
             foreach (var ability in Unit.ActiveUnit.abilities) {
                 if (ability.AbilityType == Ability.AbilityTypes.Passive) continue;
-                if ((ability.TargetingType == Ability.TargetingTypes.EnemyFire ||
-                     ability.TargetingType == Ability.TargetingTypes.EnemyWatch)
+                if (ability.TargetingType == Ability.TargetingTypes.Single 
                     && Unit.ActiveUnit.EnemiesInLineOfSight().Count == 0)
                     continue;
                 var btn = Instantiate(buttonPrefab, buttonPanel.transform);
@@ -100,8 +99,7 @@ namespace TacticsGame.Battle.UI {
 
         public void ChangedTarget(object sender, TargetButton.TargetButtonClickArgs e) {
             if (Unit.ActiveUnit.selectedAbility == null || 
-                Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyFire ||
-                 Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.EnemyWatch) 
+                Unit.ActiveUnit.selectedAbility.TargetingType != Ability.TargetingTypes.Single)
                 ChangeAbility(sender, new AbilityButton.OnAbilityButtonClickArgs 
                     { SelectedAbility = Unit.ActiveUnit.abilities[0] });
         }

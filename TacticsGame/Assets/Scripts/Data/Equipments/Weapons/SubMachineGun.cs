@@ -24,7 +24,7 @@ namespace TacticsGame.Data.Equipments.Weapons {
             Damage = 25;
             RangeDropOff = 5;
             AddedAbilities = new List<Ability> { new PinDown() };
-            WeaponModel = Resources.Load("Assets/Prefabs/Battle/Weapons/SMG", typeof(GameObject)) as GameObject;
+            WeaponModel = Resources.Load("Prefabs/Battle/Weapons/SMG", typeof(GameObject)) as GameObject;
             SlotRotation = Quaternion.Euler(-12, -96, 260);
         }
     }

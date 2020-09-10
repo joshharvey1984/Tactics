@@ -12,11 +12,7 @@ namespace TacticsGame.Battle.Map {
         private void Awake() {
             CreateMapTiles();
         }
-
-        private void Start() {
-            Unit.SetUnitId();
-        }
-
+        
         private void CreateMapTiles() {
             for (var x = 0; x < MapSizeX; x++) {
                 for (var z = 0; z < MapSizeZ; z++) {

@@ -5,6 +5,7 @@ using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Effects;
 using TacticsGame.Battle.Map;
 using TacticsGame.Battle.Map.UI;
+using TacticsGame.Battle.Network;
 using TacticsGame.Battle.UI;
 using TacticsGame.Data;
 using TacticsGame.Data.Abilities;
@@ -43,10 +44,12 @@ namespace TacticsGame.Battle.Units {
         private List<MapTile> _moveTiles;
         private int _moveNum;
 
+        public AbilityUse AbilityUse;
         public Unit targetUnit;
         public Ability selectedAbility;
         public MapTile selectedMapTile;
         public Equipment selectedEquipment;
+        public int damageCalculation;
 
         private static AbilityPanel _abilityPanel;
         private static TargetPanel _targetPanel;
@@ -66,7 +69,7 @@ namespace TacticsGame.Battle.Units {
 
         public bool moveTaken;
         public bool turnTaken;
-        public Dictionary<Ability, List<MapTile>> watchingTiles = new Dictionary<Ability, List<MapTile>>();
+        public Dictionary<Ability, List<MapTile>> aoeTargetTiles = new Dictionary<Ability, List<MapTile>>();
         public Unit watchingUnit;
 
         public int movePoints = 8;
@@ -104,11 +107,15 @@ namespace TacticsGame.Battle.Units {
             playerGang = GameObject.Find("GameManager").GetComponent<PlayerGang>();
             fogOfWar = GameObject.Find("GameManager").GetComponent<FogOfWar>();
             
-            abilities.Add(new FireAbility());
+            abilities.Add(new Shoot());
             abilities.Add(new HunkerDown());
             abilities.Add(new Overwatch());
             
-            weapon = new Shotgun();
+            if (unitId == 0 || unitId == 2)
+                weapon = new Shotgun();
+            else {
+                weapon = new SubMachineGun();
+            }
             armour = new LightFlak();
             equipment = new List<Equipment> { new FragGrenade(), new SmokeGrenade() };
             
@@ -122,30 +129,28 @@ namespace TacticsGame.Battle.Units {
             visEffects.staticInit();
         }
 
-        public static void SetUnitId() {
-            var id = 0;
-            foreach (var unit in All) {
-                unit.unitId = id;
-                id++;
-            }
-        }
-
         public static Unit GetUnitById(int id) {
             return All.First(unit => unit.unitId == id);
         }
 
         public void Speak(string folder) {
-            if (gang == _gameManager.gangNumber) {
-                _unitVoice.PlayVoiceClip(folder);
+            if (gang != _gameManager.gangNumber) {
+                _unitVoice.PlayVoiceClip(folder, 0.0F);
+            }
+            else {
+                _unitVoice.PlayVoiceClip(folder, 0.7F);
                 _unitStatusBar.SetVoiceIcon(true);
             }
         }
         
-        public void EndSpeak() => _unitStatusBar.SetVoiceIcon(false);
+        public void FireWeapon() {
+            GetComponent<UnitAudio>().Play(weapon.FireSound);
+            FireBullets(5);
+        }
 
         private void PassiveCheck() {
             foreach (var ability in abilities.Where(ability => ability.AbilityType == Ability.AbilityTypes.Passive)) {
-                ability.PassiveEffect(this);
+                //ability.PassiveEffect(this);
             }
         }
 
@@ -191,8 +196,13 @@ namespace TacticsGame.Battle.Units {
 
         public void ExecuteAbility() {
             _gameManager.StopTimer();
-            if (selectedAbility.SpecialTarget != Ability.SpecialTargeting.None) selectedAbility.Targeting();
-            else selectedAbility.Execute();
+            if (selectedAbility.TargetingType == Ability.TargetingTypes.Cone || selectedAbility.TargetingType == Ability.TargetingTypes.Point) 
+                selectedAbility.Targeting();
+            else {
+                if (selectedAbility.AbilityCalculations != null)
+                    foreach (var calculation in selectedAbility.AbilityCalculations) calculation.Calculate();
+                _gameManager.SendAbility(new AbilityAction());
+            }
         }
 
         public MapTile GetCurrentMapTile() => 
@@ -217,7 +227,8 @@ namespace TacticsGame.Battle.Units {
             MovementUI.DestroyMovementUI();
             selectedAbility = null;
             targetUnit = null;
-            _gameManager.SendEndUnitTurn(unitId);
+            turnTaken = true;
+            _gameManager.EndUnitTurn();
         }
 
         public List<Unit> EnemiesInLineOfSight() =>
@@ -241,13 +252,23 @@ namespace TacticsGame.Battle.Units {
             popUpText.GetComponent<TextPopup>().TrueStart(this, text);
         }
 
-        public void LookAtGameObject(GameObject gameObj) => gameObject.transform.LookAt(gameObj.transform);
+        public void LookAtGameObject(GameObject gameObj) {
+            gameObject.transform.LookAt(gameObj.transform);
+            AbilityUse?.RemoveBehaviour(selectedAbility.AbilityBehaviours.Find(x => x is UnitAnimation));
+        }
+        
+        public void EndSpeak() {
+            _unitStatusBar.SetVoiceIcon(false);
+            AbilityUse?.RemoveBehaviour(selectedAbility.AbilityBehaviours.Find(x => x is UnitVoiceClip));
+        } 
+
         public void PlayAnimation(string anim) => _unitMovement.SetAnimationBool(anim, true);
 
-        public void ThrowAnimation(Grenade grenade) { ;
+        public void ThrowAnimation(Equipment item) {
+            var grenade = item as Grenade;
+            selectedEquipment = grenade;
             _unitMovement.SetAnimationTrigger("Throw");
-            Speak("Grenade");
-            _grenadeObject = Instantiate(grenade.GrenadePrefab, throwSpawn.transform);
+            _grenadeObject = Instantiate(grenade?.GrenadePrefab, throwSpawn.transform);
         }
 
         public void ThrowEvent() {
@@ -257,7 +278,7 @@ namespace TacticsGame.Battle.Units {
 
         public void ThrowExecute() {
             var grenade = selectedEquipment as Grenade;
-            var explosion = Instantiate(grenade.ExplodePrefab, selectedMapTile.GetWorldPosition(), Quaternion.identity);
+            var explosion = Instantiate(grenade?.ExplodePrefab, selectedMapTile.GetWorldPosition(), Quaternion.identity);
             var parts = explosion.GetComponent<ParticleSystem>();
             Destroy(explosion, parts.main.duration);
             selectedAbility.ExplodeEffect(selectedMapTile);
@@ -288,6 +309,7 @@ namespace TacticsGame.Battle.Units {
 
         public void AddStatusEffect(StatusEffect statusEffect) {
             currentStatusEffects.Add(statusEffect);
+            PopUpText(statusEffect.Name);
             _unitStatusBar.UpdateStatusIcons();
         }
 

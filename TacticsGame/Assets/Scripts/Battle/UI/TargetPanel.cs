@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TacticsGame.Battle.Core;
+﻿using TacticsGame.Battle.Core;
 using TacticsGame.Battle.Units;
 using UnityEngine;
 using static TacticsGame.Data.Ability.TargetingTypes;
@@ -27,7 +26,7 @@ namespace TacticsGame.Battle.UI {
         }
 
         public void ChangedAbility(object sender, AbilityButton.OnAbilityButtonClickArgs e) {
-            if (e.SelectedAbility.TargetingType == EnemyFire || e.SelectedAbility.TargetingType == EnemyWatch) {
+            if (e.SelectedAbility.TargetingType == Single) {
                 if (!Unit.ActiveUnit.targetUnit) {
                     Unit.ActiveUnit.targetUnit = Unit.ActiveUnit.EnemiesInLineOfSight()[0];
                 }
